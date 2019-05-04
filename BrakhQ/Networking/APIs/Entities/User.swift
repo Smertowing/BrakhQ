@@ -11,14 +11,14 @@ import Mapper
 
 struct User: Mappable {
     
-    let avatar: String?
-    let id: Int?
-    let name: String? 
-    
-    init(map: Mapper) throws {
-        avatar = map.optionalFrom("avatar")
-        try id = map.from("id")
-        try name = map.from("url")
-    }
+	let avatar: String?
+	let id: Int?
+	let name: String?
+	
+	init(map: Mapper) throws {
+		avatar = map.optionalFrom("avatar")
+		try id = map.from("id")
+		try name = map.from("url")
+	}
     
 }

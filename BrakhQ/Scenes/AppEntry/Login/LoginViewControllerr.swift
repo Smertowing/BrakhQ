@@ -1,5 +1,5 @@
 //
-//  EventViewController.swift
+//  LoginViewController.swift
 //  BrakhQ
 //
 //  Created by Kiryl Holubeu on 4/8/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class EventViewController: UIViewController {
-
-	private let viewModel: EventViewModel
+class LoginViewController: UIViewController {
 	
-	init(viewModel: EventViewModel) {
+	private let viewModel: LoginViewModel
+	
+	init(viewModel: LoginViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -21,10 +21,16 @@ class EventViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	@IBOutlet weak var loginField: UITextField!
+	@IBOutlet weak var passwordField: UITextField!
+	
+	@IBOutlet private weak var indicatorView: UIActivityIndicatorView!
+	@IBOutlet weak var signinButton: UIButton!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-
 	}
-	
+
 }
+

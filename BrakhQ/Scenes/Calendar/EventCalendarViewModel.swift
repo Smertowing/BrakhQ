@@ -13,7 +13,7 @@ import DateToolsSwift
 final class EventCalendarViewModel {
 
 	func events(for date: Date) -> [EventDescriptor] {
-		var events = [Event]()
+		let events = [Event]()
 		
 		return events
 	}

@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  EventFeedViewController.swift
 //  BrakhQ
 //
 //  Created by Kiryl Holubeu on 4/9/19.
@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Eureka
 
-class SettingsViewController: UIViewController {
+class EventFeedViewController: UIViewController {
 
-	private let viewModel: SettingsViewModel
+	private let viewModel: EventFeedViewModel
 
-	init(viewModel: SettingsViewModel) {
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
+
+	init(viewModel: EventFeedViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -20,10 +25,5 @@ class SettingsViewController: UIViewController {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-	}
-
+    
 }

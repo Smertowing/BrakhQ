@@ -10,17 +10,6 @@ import UIKit
 
 class EventViewController: UIViewController {
 
-	private let viewModel: EventViewModel
-	
-	init(viewModel: EventViewModel) {
-		self.viewModel = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

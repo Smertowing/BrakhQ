@@ -20,33 +20,30 @@
 		F319F8DE225BCA23009DDA7B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DD225BCA23009DDA7B /* Place.swift */; };
 		F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DF225BCAFF009DDA7B /* Token.swift */; };
 		F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E1225BCBB6009DDA7B /* Responses.swift */; };
-		F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */; };
+		F319F8EA225BD7F3009DDA7B /* LoginViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E9225BD7F2009DDA7B /* LoginViewControllerr.swift */; };
 		F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8FB225C9207009DDA7B /* WebSocketApi.swift */; };
-		F319F908225CAABA009DDA7B /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F907225CAABA009DDA7B /* EventTableViewController.swift */; };
+		F319F908225CAABA009DDA7B /* EventFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F907225CAABA009DDA7B /* EventFeedViewController.swift */; };
 		F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F910225CABD3009DDA7B /* RegistrationViewController.swift */; };
 		F319F91D225CAC44009DDA7B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F91C225CAC44009DDA7B /* SettingsViewController.swift */; };
 		F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F926225CAD97009DDA7B /* CreateEventViewController.swift */; };
 		F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F931225CAE2B009DDA7B /* EditEventViewController.swift */; };
 		F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */; };
 		F36DB3DB2258A535002A8B71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36DB3DA2258A535002A8B71 /* Localizable.strings */; };
-		F3A731C5227D9C000059233E /* EventCalendarNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */; };
+		F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */; };
+		F3A731C8227DADAD0059233E /* UserPageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C7227DADAD0059233E /* UserPageNavigationController.swift */; };
+		F3A731CA227DADD50059233E /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C9227DADD50059233E /* UserPageViewController.swift */; };
+		F3A731CC227DADFB0059233E /* UserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731CB227DADFB0059233E /* UserPageViewModel.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
-		F3DE2E6422674B73002E5810 /* EditEventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
-		F3DE2E6822674B94002E5810 /* CreateEventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */; };
-		F3DE2E6A22674BA5002E5810 /* EventTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */; };
-		F3DE2E6C22674BB6002E5810 /* EventTableNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */; };
+		F3DE2E6A22674BA5002E5810 /* EventFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6922674BA5002E5810 /* EventFeedViewModel.swift */; };
+		F3DE2E6C22674BB6002E5810 /* EventFeedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6B22674BB6002E5810 /* EventFeedNavigationController.swift */; };
 		F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */; };
-		F3DE2E7022674BDC002E5810 /* EventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */; };
 		F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */; };
-		F3DE2E7422674BF7002E5810 /* RegistrationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */; };
 		F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */; };
-		F3DE2E7822674C19002E5810 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7722674C19002E5810 /* LoginNavigator.swift */; };
 		F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */; };
-		F3DE2E7C22674C33002E5810 /* SettingNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */; };
+		F3DE2E7C22674C33002E5810 /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */; };
 		F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */; };
-		F3DE2E8122674CC7002E5810 /* StartNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E8022674CC7002E5810 /* StartNavigator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,33 +65,30 @@
 		F319F8DD225BCA23009DDA7B /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		F319F8DF225BCAFF009DDA7B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F319F8E1225BCBB6009DDA7B /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
-		F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F319F8E9225BD7F2009DDA7B /* LoginViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerr.swift; sourceTree = "<group>"; };
 		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketApi.swift; sourceTree = "<group>"; };
-		F319F907225CAABA009DDA7B /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		F319F907225CAABA009DDA7B /* EventFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFeedViewController.swift; sourceTree = "<group>"; };
 		F319F910225CABD3009DDA7B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F319F91C225CAC44009DDA7B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F319F931225CAE2B009DDA7B /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewController.swift; sourceTree = "<group>"; };
 		F36DB3DA2258A535002A8B71 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationVC.swift; sourceTree = "<group>"; };
+		F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationController.swift; sourceTree = "<group>"; };
+		F3A731C7227DADAD0059233E /* UserPageNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageNavigationController.swift; sourceTree = "<group>"; };
+		F3A731C9227DADD50059233E /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		F3A731CB227DADFB0059233E /* UserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventNavigator.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventNavigator.swift; sourceTree = "<group>"; };
-		F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E6922674BA5002E5810 /* EventFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFeedViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6B22674BB6002E5810 /* EventFeedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFeedNavigationController.swift; sourceTree = "<group>"; };
 		F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNavigator.swift; sourceTree = "<group>"; };
 		F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNavigator.swift; sourceTree = "<group>"; };
 		F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E7722674C19002E5810 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
-		F3DE2E8022674CC7002E5810 /* StartNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartNavigator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +159,6 @@
 		F319F8CE225B89FF009DDA7B /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */,
 				F319F8CF225B8A67009DDA7B /* EventViewController.swift */,
 				F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */,
 			);
@@ -185,8 +178,7 @@
 		F319F8E7225BD339009DDA7B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E7722674C19002E5810 /* LoginNavigator.swift */,
-				F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */,
+				F319F8E9225BD7F2009DDA7B /* LoginViewControllerr.swift */,
 				F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */,
 			);
 			path = Login;
@@ -195,27 +187,26 @@
 		F319F8E8225BD33F009DDA7B /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */,
 				F319F910225CABD3009DDA7B /* RegistrationViewController.swift */,
 				F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
 		};
-		F319F904225CAA5E009DDA7B /* EventTable */ = {
+		F319F904225CAA5E009DDA7B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */,
-				F319F907225CAABA009DDA7B /* EventTableViewController.swift */,
-				F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */,
+				F3DE2E6B22674BB6002E5810 /* EventFeedNavigationController.swift */,
+				F319F907225CAABA009DDA7B /* EventFeedViewController.swift */,
+				F3DE2E6922674BA5002E5810 /* EventFeedViewModel.swift */,
 			);
-			path = EventTable;
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		F319F90F225CABA5009DDA7B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */,
+				F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */,
 				F319F91C225CAC44009DDA7B /* SettingsViewController.swift */,
 				F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */,
 			);
@@ -225,10 +216,8 @@
 		F319F924225CAD47009DDA7B /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				F319F93B225CAF23009DDA7B /* EventCalendar */,
 				F319F930225CAE1A009DDA7B /* EditEvent */,
 				F319F925225CAD5D009DDA7B /* CreateEvent */,
-				F319F904225CAA5E009DDA7B /* EventTable */,
 				F319F8CE225B89FF009DDA7B /* Event */,
 			);
 			path = Events;
@@ -237,7 +226,6 @@
 		F319F925225CAD5D009DDA7B /* CreateEvent */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */,
 				F319F926225CAD97009DDA7B /* CreateEventViewController.swift */,
 				F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */,
 			);
@@ -247,21 +235,20 @@
 		F319F930225CAE1A009DDA7B /* EditEvent */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */,
 				F319F931225CAE2B009DDA7B /* EditEventViewController.swift */,
 				F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */,
 			);
 			path = EditEvent;
 			sourceTree = "<group>";
 		};
-		F319F93B225CAF23009DDA7B /* EventCalendar */ = {
+		F319F93B225CAF23009DDA7B /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */,
 				F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */,
-				F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */,
 				F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */,
 			);
-			path = EventCalendar;
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		F36DB3DD2258A673002A8B71 /* APIs */ = {
@@ -288,6 +275,9 @@
 		F36DB3E12258A6D2002A8B71 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F3A731C6227DAD650059233E /* UserPage */,
+				F319F93B225CAF23009DDA7B /* Calendar */,
+				F319F904225CAA5E009DDA7B /* Feed */,
 				F319F924225CAD47009DDA7B /* Events */,
 				F319F8E5225BD2CC009DDA7B /* AppEntry */,
 				F319F90F225CABA5009DDA7B /* Settings */,
@@ -302,6 +292,16 @@
 				F36DB3DA2258A535002A8B71 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F3A731C6227DAD650059233E /* UserPage */ = {
+			isa = PBXGroup;
+			children = (
+				F3A731C7227DADAD0059233E /* UserPageNavigationController.swift */,
+				F3A731C9227DADD50059233E /* UserPageViewController.swift */,
+				F3A731CB227DADFB0059233E /* UserPageViewModel.swift */,
+			);
+			path = UserPage;
 			sourceTree = "<group>";
 		};
 		F3DE2E5B226748CA002E5810 /* Models */ = {
@@ -322,7 +322,6 @@
 		F3DE2E7D22674C97002E5810 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2E8022674CC7002E5810 /* StartNavigator.swift */,
 				F301AB2422573DD800FA5412 /* StartViewController.swift */,
 				F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */,
 			);
@@ -485,36 +484,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3DE2E8122674CC7002E5810 /* StartNavigator.swift in Sources */,
-				F3DE2E7422674BF7002E5810 /* RegistrationNavigator.swift in Sources */,
-				F319F908225CAABA009DDA7B /* EventTableViewController.swift in Sources */,
-				F3DE2E6C22674BB6002E5810 /* EventTableNavigator.swift in Sources */,
-				F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */,
+				F319F908225CAABA009DDA7B /* EventFeedViewController.swift in Sources */,
+				F3DE2E6C22674BB6002E5810 /* EventFeedNavigationController.swift in Sources */,
+				F319F8EA225BD7F3009DDA7B /* LoginViewControllerr.swift in Sources */,
 				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
 				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
 				F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */,
 				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
-				F3DE2E6A22674BA5002E5810 /* EventTableViewModel.swift in Sources */,
+				F3DE2E6A22674BA5002E5810 /* EventFeedViewModel.swift in Sources */,
 				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
 				F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
+				F3A731CA227DADD50059233E /* UserPageViewController.swift in Sources */,
 				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,
 				F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */,
-				F3DE2E6822674B94002E5810 /* CreateEventNavigator.swift in Sources */,
-				F3DE2E7822674C19002E5810 /* LoginNavigator.swift in Sources */,
 				F319F8DE225BCA23009DDA7B /* Place.swift in Sources */,
+				F3A731CC227DADFB0059233E /* UserPageViewModel.swift in Sources */,
 				F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */,
 				F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */,
 				F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */,
 				F319F91D225CAC44009DDA7B /* SettingsViewController.swift in Sources */,
 				F319F8DA225BC11C009DDA7B /* User.swift in Sources */,
-				F3A731C5227D9C000059233E /* EventCalendarNavigationVC.swift in Sources */,
+				F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */,
 				F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */,
 				F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */,
-				F3DE2E6422674B73002E5810 /* EditEventNavigator.swift in Sources */,
-				F3DE2E7022674BDC002E5810 /* EventNavigator.swift in Sources */,
-				F3DE2E7C22674C33002E5810 /* SettingNavigator.swift in Sources */,
+				F3DE2E7C22674C33002E5810 /* SettingsNavigationController.swift in Sources */,
+				F3A731C8227DADAD0059233E /* UserPageNavigationController.swift in Sources */,
 				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,

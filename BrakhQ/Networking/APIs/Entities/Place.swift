@@ -11,12 +11,12 @@ import Mapper
 
 struct Place: Mappable {
     
-    let place: Int
-    let user: User
-    
-    init(map: Mapper) throws {
-        try place = map.from("place")
-        try user = map.from("user")
-    }
+	let place: Int
+	let user: User
+	
+	init(map: Mapper) throws {
+		try place = map.from("place")
+		try user = map.from("user")
+	}
     
 }

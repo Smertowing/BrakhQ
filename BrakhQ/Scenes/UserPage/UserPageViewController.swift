@@ -1,22 +1,22 @@
 //
-//  SettingsViewController.swift
+//  UserPageViewController.swift
 //  BrakhQ
 //
-//  Created by Kiryl Holubeu on 4/9/19.
+//  Created by Kiryl Holubeu on 5/4/19.
 //  Copyright © 2019 brakhmen. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class UserPageViewController: UIViewController {
 
-	private let viewModel: SettingsViewModel
-
-	init(viewModel: SettingsViewModel) {
+	private let viewModel: UserPageViewModel
+	
+	init(viewModel: UserPageViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
-
+	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

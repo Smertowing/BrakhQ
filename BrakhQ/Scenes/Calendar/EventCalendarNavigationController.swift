@@ -1,5 +1,5 @@
 //
-//  EventCalendarNavigationVC.swift
+//  EventCalendarNavigationController.swift
 //  BrakhQ
 //
 //  Created by Kiryl Holubeu on 5/4/19.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class EventCalendarNavigationVC: UINavigationController {
+class EventCalendarNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let viewModel = EventCalendarViewModel()
+
 		self.pushViewController(EventCalendarViewController(viewModel: viewModel), animated: false)
 	}
 	
