@@ -12,8 +12,8 @@ class SettingsNavigationController: UINavigationController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let viewModel = EventCalendarViewModel()
-		self.pushViewController(EventCalendarViewController(viewModel: viewModel), animated: false)
+		let viewModel = SettingsViewModel()
+		self.pushViewController(SettingsViewController(viewModel: viewModel), animated: false)
 	}
 	
 }

@@ -33,6 +33,8 @@
 		F3A731C8227DADAD0059233E /* UserPageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C7227DADAD0059233E /* UserPageNavigationController.swift */; };
 		F3A731CA227DADD50059233E /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C9227DADD50059233E /* UserPageViewController.swift */; };
 		F3A731CC227DADFB0059233E /* UserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731CB227DADFB0059233E /* UserPageViewModel.swift */; };
+		F3A731D2227E26E70059233E /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731D1227E26E70059233E /* UpdateProfileViewController.swift */; };
+		F3A731D4227E26FA0059233E /* UpdateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731D3227E26FA0059233E /* UpdateProfileViewModel.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
@@ -78,6 +80,8 @@
 		F3A731C7227DADAD0059233E /* UserPageNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C9227DADD50059233E /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		F3A731CB227DADFB0059233E /* UserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewModel.swift; sourceTree = "<group>"; };
+		F3A731D1227E26E70059233E /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		F3A731D3227E26FA0059233E /* UpdateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 		F319F90F225CABA5009DDA7B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F3A731D0227DDDA40059233E /* UpdateProfile */,
 				F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */,
 				F319F91C225CAC44009DDA7B /* SettingsViewController.swift */,
 				F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */,
@@ -302,6 +307,15 @@
 				F3A731CB227DADFB0059233E /* UserPageViewModel.swift */,
 			);
 			path = UserPage;
+			sourceTree = "<group>";
+		};
+		F3A731D0227DDDA40059233E /* UpdateProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F3A731D1227E26E70059233E /* UpdateProfileViewController.swift */,
+				F3A731D3227E26FA0059233E /* UpdateProfileViewModel.swift */,
+			);
+			path = UpdateProfile;
 			sourceTree = "<group>";
 		};
 		F3DE2E5B226748CA002E5810 /* Models */ = {
@@ -491,12 +505,14 @@
 				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
 				F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */,
 				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
+				F3A731D4227E26FA0059233E /* UpdateProfileViewModel.swift in Sources */,
 				F3DE2E6A22674BA5002E5810 /* EventFeedViewModel.swift in Sources */,
 				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
 				F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3A731CA227DADD50059233E /* UserPageViewController.swift in Sources */,
+				F3A731D2227E26E70059233E /* UpdateProfileViewController.swift in Sources */,
 				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,
 				F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */,
 				F319F8DE225BCA23009DDA7B /* Place.swift in Sources */,

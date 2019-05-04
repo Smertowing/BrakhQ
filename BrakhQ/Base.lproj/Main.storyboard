@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DnJ-PQ-azl">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,23 +15,23 @@
             <objects>
                 <viewController storyboardIdentifier="startVC" id="f3i-SZ-swZ" customClass="StartViewController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y07-qf-Ug7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BrakhQueue" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD9-i7-HCr">
-                                <rect key="frame" x="24" y="214.5" width="552" height="43"/>
+                                <rect key="frame" x="24" y="362.5" width="366" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="BQLabel" translatesAutoresizingMaskIntoConstraints="NO" id="RZJ-ya-7Rl">
-                                <rect key="frame" x="292" y="174.5" width="16" height="16"/>
+                                <rect key="frame" x="100" y="124" width="214.5" height="214.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RZJ-ya-7Rl" secondAttribute="height" multiplier="1:1" id="VCf-Tw-Kho"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9m-WA-Vnb">
-                                <rect key="frame" x="32" y="344" width="536" height="40"/>
+                                <rect key="frame" x="32" y="492" width="350" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="B6e-Qx-bYX"/>
@@ -40,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omi-xB-y9j">
-                                <rect key="frame" x="32" y="408" width="536" height="40"/>
+                                <rect key="frame" x="32" y="556" width="350" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5XL-Tq-fSu"/>
@@ -96,15 +100,15 @@
             </objects>
             <point key="canvasLocation" x="-472" y="580"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--User Page Navigation Controller-->
         <scene sceneID="rFR-R9-obS">
             <objects>
-                <navigationController id="HqI-A2-6dp" sceneMemberID="viewController">
+                <navigationController id="HqI-A2-6dp" customClass="UserPageNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="managerTabItem" id="goK-i2-2GM">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dkP-eD-FKB">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
@@ -120,7 +124,7 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="15h-Oz-nh4">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
@@ -128,15 +132,15 @@
             </objects>
             <point key="canvasLocation" x="-35" y="1445"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Event Feed Navigation Controller-->
         <scene sceneID="60T-jx-cYm">
             <objects>
-                <navigationController id="4tt-X7-dfx" sceneMemberID="viewController">
+                <navigationController id="4tt-X7-dfx" customClass="EventFeedNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="feedTabItem" largeContentSizeImage="firstTabItem" id="lBJ-gV-RGw">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Oe-5j-a6o">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
@@ -144,15 +148,15 @@
             </objects>
             <point key="canvasLocation" x="-1677" y="1445"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings Navigation Controller-->
         <scene sceneID="0qu-HL-kfn">
             <objects>
-                <navigationController id="Qhu-J3-klv" sceneMemberID="viewController">
+                <navigationController id="Qhu-J3-klv" customClass="SettingsNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="settingsTabItem" id="Om8-Ai-pe4">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EFV-Q9-L29">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>

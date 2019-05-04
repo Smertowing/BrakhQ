@@ -28,6 +28,7 @@ class EventCalendarViewController: DayViewController {
 		title = "Calendar"
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
+		tabBarController?.tabBar.isTranslucent = false
 		dayView.autoScrollToFirstEvent = false
 		reloadData()
 	}

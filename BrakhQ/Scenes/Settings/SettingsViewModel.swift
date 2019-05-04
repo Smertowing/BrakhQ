@@ -6,8 +6,14 @@
 //  Copyright © 2019 brakhmen. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class SettingsViewModel {
+	
+	func getUpdateViewController() -> UIViewController {
+		
+		let viewModel = UpdateProfileViewModel()
+		return UpdateProfileViewController(viewModel: viewModel)
+	}
 	
 }
