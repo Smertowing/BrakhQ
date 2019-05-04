@@ -10,20 +10,43 @@ import UIKit
 
 class UserPageViewController: UIViewController {
 
-	private let viewModel: UserPageViewModel
+	private let viewModel: UserPageViewModel = UserPageViewModel()
 	
-	init(viewModel: UserPageViewModel) {
-		self.viewModel = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
+	@IBOutlet weak var eventsTable: UITableView!
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		title = "Queue Manager"
+		self.navigationController?.title = nil
+		eventsTable.delegate = self
+		eventsTable.dataSource = self
 	}
 
 }
+
+extension UserPageViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 5
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 130
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.cellForRow(at: indexPath)?.isSelected = false
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
+		
+		return cell
+	}
+	
+}
+

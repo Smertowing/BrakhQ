@@ -12,8 +12,9 @@ class EventFeedNavigationController: UINavigationController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let viewModel = EventFeedViewModel()
-		self.pushViewController(EventFeedViewController(viewModel: viewModel), animated: false)
+		let storyBoard = UIStoryboard(name: "EventFeed", bundle: nil)
+		let eventFeedViewController = storyBoard.instantiateViewController(withIdentifier: "eventFeedViewController")
+		self.pushViewController(eventFeedViewController, animated: false)
 	}
 	
 }

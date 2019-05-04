@@ -12,8 +12,9 @@ class UserPageNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let viewModel = UserPageViewModel()
-		self.pushViewController(UserPageViewController(viewModel: viewModel), animated: false)
+		let storyBoard = UIStoryboard(name: "UserPage", bundle: nil)
+		let userPageViewController = storyBoard.instantiateViewController(withIdentifier: "userPageViewController") 
+		self.pushViewController(userPageViewController, animated: false)
 	}
 
 }
