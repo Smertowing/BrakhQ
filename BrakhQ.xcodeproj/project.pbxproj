@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9F833B8BE494E3151FFA1224 /* Pods_BrakhQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A975B58F9094AC404F7D33 /* Pods_BrakhQ.framework */; };
+		F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301AB2222573DD800FA5412 /* AppDelegate.swift */; };
+		F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301AB2422573DD800FA5412 /* StartViewController.swift */; };
+		F301AB2822573DD800FA5412 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F301AB2622573DD800FA5412 /* Main.storyboard */; };
+		F301AB2A22573DDA00FA5412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F301AB2922573DDA00FA5412 /* Assets.xcassets */; };
+		F301AB2D22573DDA00FA5412 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F301AB2B22573DDA00FA5412 /* LaunchScreen.storyboard */; };
+		F301AB3722573EB600FA5412 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301AB3622573EB600FA5412 /* AuthenticationServices.framework */; };
+		F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8CF225B8A67009DDA7B /* EventViewController.swift */; };
+		F319F8DA225BC11C009DDA7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8D9225BC11C009DDA7B /* User.swift */; };
+		F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DB225BC25E009DDA7B /* Queue.swift */; };
+		F319F8DE225BCA23009DDA7B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DD225BCA23009DDA7B /* Place.swift */; };
+		F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DF225BCAFF009DDA7B /* Token.swift */; };
+		F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E1225BCBB6009DDA7B /* Responses.swift */; };
+		F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */; };
+		F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8FB225C9207009DDA7B /* WebSocketApi.swift */; };
+		F319F908225CAABA009DDA7B /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F907225CAABA009DDA7B /* EventTableViewController.swift */; };
+		F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F910225CABD3009DDA7B /* RegistrationViewController.swift */; };
+		F319F91D225CAC44009DDA7B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F91C225CAC44009DDA7B /* SettingsViewController.swift */; };
+		F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F926225CAD97009DDA7B /* CreateEventViewController.swift */; };
+		F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F931225CAE2B009DDA7B /* EditEventViewController.swift */; };
+		F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */; };
+		F36DB3DB2258A535002A8B71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36DB3DA2258A535002A8B71 /* Localizable.strings */; };
+		F3A731C5227D9C000059233E /* EventCalendarNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */; };
+		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
+		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
+		F3DE2E6422674B73002E5810 /* EditEventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */; };
+		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
+		F3DE2E6822674B94002E5810 /* CreateEventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */; };
+		F3DE2E6A22674BA5002E5810 /* EventTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */; };
+		F3DE2E6C22674BB6002E5810 /* EventTableNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */; };
+		F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */; };
+		F3DE2E7022674BDC002E5810 /* EventNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */; };
+		F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */; };
+		F3DE2E7422674BF7002E5810 /* RegistrationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */; };
+		F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */; };
+		F3DE2E7822674C19002E5810 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7722674C19002E5810 /* LoginNavigator.swift */; };
+		F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */; };
+		F3DE2E7C22674C33002E5810 /* SettingNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */; };
+		F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */; };
+		F3DE2E8122674CC7002E5810 /* StartNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E8022674CC7002E5810 /* StartNavigator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1532658E0D2CFF0A0B2CEADF /* Pods-BrakhQ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrakhQ.release.xcconfig"; path = "Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ.release.xcconfig"; sourceTree = "<group>"; };
+		38A975B58F9094AC404F7D33 /* Pods_BrakhQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrakhQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F35BB86130F88BD175FE96A /* Pods-BrakhQ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrakhQ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ.debug.xcconfig"; sourceTree = "<group>"; };
+		F301AB1F22573DD800FA5412 /* BrakhQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrakhQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F301AB2222573DD800FA5412 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F301AB2422573DD800FA5412 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		F301AB2722573DD800FA5412 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F301AB2922573DDA00FA5412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F301AB2C22573DDA00FA5412 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F301AB2E22573DDA00FA5412 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F301AB3422573E6900FA5412 /* BrakhQ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BrakhQ.entitlements; sourceTree = "<group>"; };
+		F301AB3622573EB600FA5412 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		F319F8CF225B8A67009DDA7B /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		F319F8D9225BC11C009DDA7B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F319F8DB225BC25E009DDA7B /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		F319F8DD225BCA23009DDA7B /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		F319F8DF225BCAFF009DDA7B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		F319F8E1225BCBB6009DDA7B /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketApi.swift; sourceTree = "<group>"; };
+		F319F907225CAABA009DDA7B /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		F319F910225CABD3009DDA7B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		F319F91C225CAC44009DDA7B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		F319F931225CAE2B009DDA7B /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewController.swift; sourceTree = "<group>"; };
+		F36DB3DA2258A535002A8B71 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationVC.swift; sourceTree = "<group>"; };
+		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E7722674C19002E5810 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigator.swift; sourceTree = "<group>"; };
+		F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
+		F3DE2E8022674CC7002E5810 /* StartNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartNavigator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F301AB1C22573DD800FA5412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F301AB3722573EB600FA5412 /* AuthenticationServices.framework in Frameworks */,
+				9F833B8BE494E3151FFA1224 /* Pods_BrakhQ.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACDCCABE724230E1691A1674 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F35BB86130F88BD175FE96A /* Pods-BrakhQ.debug.xcconfig */,
+				1532658E0D2CFF0A0B2CEADF /* Pods-BrakhQ.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F301AB1622573DD800FA5412 = {
+			isa = PBXGroup;
+			children = (
+				F301AB2122573DD800FA5412 /* BrakhQ */,
+				F301AB2022573DD800FA5412 /* Products */,
+				F301AB3522573EB600FA5412 /* Frameworks */,
+				ACDCCABE724230E1691A1674 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		F301AB2022573DD800FA5412 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F301AB1F22573DD800FA5412 /* BrakhQ.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F301AB2122573DD800FA5412 /* BrakhQ */ = {
+			isa = PBXGroup;
+			children = (
+				F301AB3422573E6900FA5412 /* BrakhQ.entitlements */,
+				F301AB2222573DD800FA5412 /* AppDelegate.swift */,
+				F3DE2E5B226748CA002E5810 /* Models */,
+				F3DE2E5C226748D1002E5810 /* Networking */,
+				F36DB3E12258A6D2002A8B71 /* Scenes */,
+				F36DB3E22258A6E1002A8B71 /* Resources */,
+				F301AB2622573DD800FA5412 /* Main.storyboard */,
+				F301AB2B22573DDA00FA5412 /* LaunchScreen.storyboard */,
+				F301AB2E22573DDA00FA5412 /* Info.plist */,
+			);
+			path = BrakhQ;
+			sourceTree = "<group>";
+		};
+		F301AB3522573EB600FA5412 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F301AB3622573EB600FA5412 /* AuthenticationServices.framework */,
+				38A975B58F9094AC404F7D33 /* Pods_BrakhQ.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F319F8CE225B89FF009DDA7B /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E6F22674BDC002E5810 /* EventNavigator.swift */,
+				F319F8CF225B8A67009DDA7B /* EventViewController.swift */,
+				F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		F319F8E5225BD2CC009DDA7B /* AppEntry */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E7D22674C97002E5810 /* Start */,
+				F319F8E8225BD33F009DDA7B /* Registration */,
+				F319F8E7225BD339009DDA7B /* Login */,
+			);
+			path = AppEntry;
+			sourceTree = "<group>";
+		};
+		F319F8E7225BD339009DDA7B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E7722674C19002E5810 /* LoginNavigator.swift */,
+				F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */,
+				F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F319F8E8225BD33F009DDA7B /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E7322674BF7002E5810 /* RegistrationNavigator.swift */,
+				F319F910225CABD3009DDA7B /* RegistrationViewController.swift */,
+				F3DE2E7122674BE9002E5810 /* RegistrationViewModel.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		F319F904225CAA5E009DDA7B /* EventTable */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E6B22674BB6002E5810 /* EventTableNavigator.swift */,
+				F319F907225CAABA009DDA7B /* EventTableViewController.swift */,
+				F3DE2E6922674BA5002E5810 /* EventTableViewModel.swift */,
+			);
+			path = EventTable;
+			sourceTree = "<group>";
+		};
+		F319F90F225CABA5009DDA7B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E7B22674C33002E5810 /* SettingNavigator.swift */,
+				F319F91C225CAC44009DDA7B /* SettingsViewController.swift */,
+				F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F319F924225CAD47009DDA7B /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				F319F93B225CAF23009DDA7B /* EventCalendar */,
+				F319F930225CAE1A009DDA7B /* EditEvent */,
+				F319F925225CAD5D009DDA7B /* CreateEvent */,
+				F319F904225CAA5E009DDA7B /* EventTable */,
+				F319F8CE225B89FF009DDA7B /* Event */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		F319F925225CAD5D009DDA7B /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E6722674B94002E5810 /* CreateEventNavigator.swift */,
+				F319F926225CAD97009DDA7B /* CreateEventViewController.swift */,
+				F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */,
+			);
+			path = CreateEvent;
+			sourceTree = "<group>";
+		};
+		F319F930225CAE1A009DDA7B /* EditEvent */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E6322674B73002E5810 /* EditEventNavigator.swift */,
+				F319F931225CAE2B009DDA7B /* EditEventViewController.swift */,
+				F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */,
+			);
+			path = EditEvent;
+			sourceTree = "<group>";
+		};
+		F319F93B225CAF23009DDA7B /* EventCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */,
+				F3A731C4227D9C000059233E /* EventCalendarNavigationVC.swift */,
+				F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */,
+			);
+			path = EventCalendar;
+			sourceTree = "<group>";
+		};
+		F36DB3DD2258A673002A8B71 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				F36DB3DE2258A67D002A8B71 /* Entities */,
+				F319F8FB225C9207009DDA7B /* WebSocketApi.swift */,
+				F319F8E1225BCBB6009DDA7B /* Responses.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		F36DB3DE2258A67D002A8B71 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F319F8D9225BC11C009DDA7B /* User.swift */,
+				F319F8DB225BC25E009DDA7B /* Queue.swift */,
+				F319F8DD225BCA23009DDA7B /* Place.swift */,
+				F319F8DF225BCAFF009DDA7B /* Token.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		F36DB3E12258A6D2002A8B71 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F319F924225CAD47009DDA7B /* Events */,
+				F319F8E5225BD2CC009DDA7B /* AppEntry */,
+				F319F90F225CABA5009DDA7B /* Settings */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F36DB3E22258A6E1002A8B71 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F301AB2922573DDA00FA5412 /* Assets.xcassets */,
+				F36DB3DA2258A535002A8B71 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F3DE2E5B226748CA002E5810 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F3DE2E5C226748D1002E5810 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F36DB3DD2258A673002A8B71 /* APIs */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F3DE2E7D22674C97002E5810 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE2E8022674CC7002E5810 /* StartNavigator.swift */,
+				F301AB2422573DD800FA5412 /* StartViewController.swift */,
+				F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F301AB1E22573DD800FA5412 /* BrakhQ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F301AB3122573DDA00FA5412 /* Build configuration list for PBXNativeTarget "BrakhQ" */;
+			buildPhases = (
+				3CE4431A27476D8272803A30 /* [CP] Check Pods Manifest.lock */,
+				F301AB1B22573DD800FA5412 /* Sources */,
+				F301AB1C22573DD800FA5412 /* Frameworks */,
+				F301AB1D22573DD800FA5412 /* Resources */,
+				2DC8E69E82D067AC58BADFAE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BrakhQ;
+			productName = BrakhQ;
+			productReference = F301AB1F22573DD800FA5412 /* BrakhQ.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F301AB1722573DD800FA5412 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = brakhmen;
+				TargetAttributes = {
+					F301AB1E22573DD800FA5412 = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.AutoFillCredentialProvider = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F301AB1A22573DD800FA5412 /* Build configuration list for PBXProject "BrakhQ" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F301AB1622573DD800FA5412;
+			productRefGroup = F301AB2022573DD800FA5412 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F301AB1E22573DD800FA5412 /* BrakhQ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F301AB1D22573DD800FA5412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F301AB2D22573DDA00FA5412 /* LaunchScreen.storyboard in Resources */,
+				F36DB3DB2258A535002A8B71 /* Localizable.strings in Resources */,
+				F301AB2A22573DDA00FA5412 /* Assets.xcassets in Resources */,
+				F301AB2822573DD800FA5412 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DC8E69E82D067AC58BADFAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CalendarKit/CalendarKit.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ModelMapper/Moya_ModelMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Neon/Neon.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalendarKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ModelMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Neon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CE4431A27476D8272803A30 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrakhQ-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F301AB1B22573DD800FA5412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DE2E8122674CC7002E5810 /* StartNavigator.swift in Sources */,
+				F3DE2E7422674BF7002E5810 /* RegistrationNavigator.swift in Sources */,
+				F319F908225CAABA009DDA7B /* EventTableViewController.swift in Sources */,
+				F3DE2E6C22674BB6002E5810 /* EventTableNavigator.swift in Sources */,
+				F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */,
+				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
+				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
+				F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */,
+				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
+				F3DE2E6A22674BA5002E5810 /* EventTableViewModel.swift in Sources */,
+				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
+				F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */,
+				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
+				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
+				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,
+				F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */,
+				F3DE2E6822674B94002E5810 /* CreateEventNavigator.swift in Sources */,
+				F3DE2E7822674C19002E5810 /* LoginNavigator.swift in Sources */,
+				F319F8DE225BCA23009DDA7B /* Place.swift in Sources */,
+				F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */,
+				F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */,
+				F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */,
+				F319F91D225CAC44009DDA7B /* SettingsViewController.swift in Sources */,
+				F319F8DA225BC11C009DDA7B /* User.swift in Sources */,
+				F3A731C5227D9C000059233E /* EventCalendarNavigationVC.swift in Sources */,
+				F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */,
+				F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */,
+				F3DE2E6422674B73002E5810 /* EditEventNavigator.swift in Sources */,
+				F3DE2E7022674BDC002E5810 /* EventNavigator.swift in Sources */,
+				F3DE2E7C22674C33002E5810 /* SettingNavigator.swift in Sources */,
+				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
+				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
+				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,
+				F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F301AB2622573DD800FA5412 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F301AB2722573DD800FA5412 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F301AB2B22573DDA00FA5412 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F301AB2C22573DDA00FA5412 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F301AB2F22573DDA00FA5412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F301AB3022573DDA00FA5412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F301AB3222573DDA00FA5412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F35BB86130F88BD175FE96A /* Pods-BrakhQ.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BrakhQ/BrakhQ.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47K9CVZBFJ;
+				INFOPLIST_FILE = BrakhQ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = men.brakh.BrakhQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F301AB3322573DDA00FA5412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1532658E0D2CFF0A0B2CEADF /* Pods-BrakhQ.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BrakhQ/BrakhQ.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47K9CVZBFJ;
+				INFOPLIST_FILE = BrakhQ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = men.brakh.BrakhQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F301AB1A22573DD800FA5412 /* Build configuration list for PBXProject "BrakhQ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F301AB2F22573DDA00FA5412 /* Debug */,
+				F301AB3022573DDA00FA5412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F301AB3122573DDA00FA5412 /* Build configuration list for PBXNativeTarget "BrakhQ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F301AB3222573DDA00FA5412 /* Debug */,
+				F301AB3322573DDA00FA5412 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F301AB1722573DD800FA5412 /* Project object */;
+}
