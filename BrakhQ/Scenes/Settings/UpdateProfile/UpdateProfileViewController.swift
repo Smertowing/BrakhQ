@@ -24,6 +24,7 @@ class UpdateProfileViewController: FormViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "Update Profile"
 		self.navigationController?.title = nil
 		

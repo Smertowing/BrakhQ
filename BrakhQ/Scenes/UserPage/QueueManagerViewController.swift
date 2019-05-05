@@ -18,6 +18,7 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "Queue Manager"
 		navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
@@ -48,14 +49,8 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 	}
 	
 	@objc func createButtonClicked() {
-		
 		let viewModel = CreateEventViewModel()
 		self.show(CreateEventViewController(viewModel: viewModel), sender: self)
-		/*
-		let storyBoard = UIStoryboard(name: "", bundle: nil)
-		let viewController = storyBoard.instantiateViewController(withIdentifier: "")
-		self.navigationController?.pushViewController(viewController, animated: true)
-		*/
 	}
 	
 }
@@ -72,6 +67,11 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.cellForRow(at: indexPath)?.isSelected = false
+		
+		let storyBoard = UIStoryboard(name: "Event", bundle: nil)
+		let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
+		viewController.viewModel = EventViewModel()
+		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +102,7 @@ extension QueueManagerViewController {
 	}
 	
 	func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-		//
+		
 	}
 	
 }

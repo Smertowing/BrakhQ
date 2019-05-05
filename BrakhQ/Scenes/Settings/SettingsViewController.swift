@@ -24,6 +24,7 @@ class SettingsViewController: FormViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "Settings"
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false

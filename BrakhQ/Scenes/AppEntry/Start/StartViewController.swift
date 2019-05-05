@@ -23,6 +23,7 @@ class StartViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 	}
 
 	@IBAction func login(_ sender: Any) {

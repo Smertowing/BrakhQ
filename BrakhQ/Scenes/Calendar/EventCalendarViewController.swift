@@ -25,6 +25,7 @@ class EventCalendarViewController: DayViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "Calendar"
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false

@@ -24,8 +24,9 @@ class EditEventViewController: FormViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "Edit Queue"
-		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveButtonClicked)), animated: false)
 		initializeForm()
 	}
 	
@@ -34,18 +35,17 @@ class EditEventViewController: FormViewController {
 		form
 			+++
 			Section("Event Info")
-			<<< LabelRow("Title").cellSetup { cell, row in
-				cell.textLabel?.text = row.tag
+			<<< LabelRow("Title") {
+				$0.title = "Title"
+				$0.value = "Event Title"
 			}
-			<<< TextRow("Description (optional)").cellSetup { cell, row in
-				cell.textField.placeholder = row.tag
-			}
+		
 			<<< DateTimeInlineRow("Event Date"){
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60*24)
 				}
 				.onChange { [weak self] row in
-					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts:")
+					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
 					if (row.value?.compare(Date()) == .orderedAscending) || (row.value?.compare(startDate.value!) == .orderedAscending) {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
@@ -69,8 +69,15 @@ class EditEventViewController: FormViewController {
 			}
 			
 			+++
+			Section("Desription (optional)")
+			<<< TextAreaRow("Description (optional)")
+				.cellSetup { cell, row in
+					cell.textView.text = ""
+			}
+			
+			+++
 			Section("Queue Settings")
-			<<< SegmentedRow<String>(){
+			<<< SegmentedRow<String>() {
 				$0.title = "Allocation"
 				$0.options = ["Default", "Random"]
 				$0.value = "Default"
@@ -79,7 +86,7 @@ class EditEventViewController: FormViewController {
 			}
 			
 			<<< StepperRow() {
-				$0.title = "Number of sites"
+				$0.title = "Number of Sites"
 				$0.value = 2
 				$0.cell.stepper.stepValue = 1
 				$0.cell.stepper.maximumValue = 1000
@@ -92,12 +99,12 @@ class EditEventViewController: FormViewController {
 			
 			+++
 			Section("Registration Dates")
-			<<< DateTimeInlineRow("Starts:") {
+			<<< DateTimeInlineRow("Starts") {
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60)
 				}
 				.onChange { [weak self] row in
-					let endRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Ends:")
+					let endRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Ends")
 					if row.value?.compare(endRow.value!) == .orderedDescending {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
@@ -120,12 +127,12 @@ class EditEventViewController: FormViewController {
 					}
 			}
 			
-			<<< DateTimeInlineRow("Ends:"){
+			<<< DateTimeInlineRow("Ends"){
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60*24)
 				}
 				.onChange { [weak self] row in
-					let startRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts:")
+					let startRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
 					if row.value?.compare(startRow.value!) == .orderedAscending {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
@@ -150,15 +157,15 @@ class EditEventViewController: FormViewController {
 			
 			+++
 			Section()
-			<<< ButtonRow("Edit") { (row: ButtonRow) -> Void in
-				row.title = "Confirm Edit"
+			<<< ButtonRow("Save") { (row: ButtonRow) -> Void in
+				row.title = "Save Changes"
 				}
 				.onCellSelection { [weak self] (cell, row) in
 		}
 		
 	}
 	
-	@objc func createButtonClicked() {
+	@objc func saveButtonClicked() {
 		
 	}
 

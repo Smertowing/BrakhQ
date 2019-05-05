@@ -24,8 +24,9 @@ class CreateEventViewController: FormViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		hideKeyboardWhenTappedAround()
 		title = "New Queue"
-		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(self.createButtonClicked)), animated: false)
 		initializeForm()
 	}
 	
@@ -34,10 +35,8 @@ class CreateEventViewController: FormViewController {
 		form
 			+++
 			Section("Event Info")
-			<<< TextRow("Title").cellSetup { cell, row in
-				cell.textField.placeholder = row.tag
-			}
-			<<< TextRow("Description (optional)").cellSetup { cell, row in
+			<<< TextRow("Title")
+				.cellSetup { cell, row in
 				cell.textField.placeholder = row.tag
 			}
 			<<< DateTimeInlineRow("Event Date"){
@@ -45,7 +44,7 @@ class CreateEventViewController: FormViewController {
 				$0.value = Date().addingTimeInterval(60*60*24)
 				}
 				.onChange { [weak self] row in
-					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts:")
+					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
 					if (row.value?.compare(Date()) == .orderedAscending) || (row.value?.compare(startDate.value!) == .orderedAscending) {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
@@ -69,17 +68,22 @@ class CreateEventViewController: FormViewController {
 			}
 	
 			+++
+			Section("Description (optional)")
+			<<< TextAreaRow()
+			
+			+++
 			Section("Queue Settings")
 			<<< SegmentedRow<String>(){
 				$0.title = "Allocation"
 				$0.options = ["Default", "Random"]
 				$0.value = "Default"
-				}.onChange { row in
+				}
+				.onChange { row in
 					
 			}
 			
 			<<< StepperRow() {
-				$0.title = "Number of sites"
+				$0.title = "Number of Sites"
 				$0.value = 2
 				$0.cell.stepper.stepValue = 1
 				$0.cell.stepper.maximumValue = 1000
@@ -92,12 +96,12 @@ class CreateEventViewController: FormViewController {
 			
 			+++
 			Section("Registration Dates")
-			<<< DateTimeInlineRow("Starts:") {
+			<<< DateTimeInlineRow("Starts") {
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60)
 				}
 				.onChange { [weak self] row in
-					let endRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Ends:")
+					let endRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Ends")
 					if row.value?.compare(endRow.value!) == .orderedDescending {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
@@ -120,12 +124,12 @@ class CreateEventViewController: FormViewController {
 					}
 			}
 			
-			<<< DateTimeInlineRow("Ends:"){
+			<<< DateTimeInlineRow("Ends"){
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60*24)
 				}
 				.onChange { [weak self] row in
-					let startRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts:")
+					let startRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
 					if row.value?.compare(startRow.value!) == .orderedAscending {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
