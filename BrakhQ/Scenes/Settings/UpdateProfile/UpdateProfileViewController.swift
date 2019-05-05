@@ -26,6 +26,11 @@ class UpdateProfileViewController: FormViewController {
 		super.viewDidLoad()
 		title = "Update Profile"
 		self.navigationController?.title = nil
+		
+		initializeForm()
+	}
+	
+	private func initializeForm() {
 		form
 			
 			+++
@@ -54,33 +59,32 @@ class UpdateProfileViewController: FormViewController {
 				row.title = "Save"
 				}.onCellSelection { [weak self] (cell, row) in
 					
-				}
-			
+			}
+		
+		form
 			+++
-			Section(header: "Change Password", footer: "Length must be from 8 to 13")
+			Section(header: "Change Password", footer: "Length must be greater than 6")
 			
 			<<< PasswordRow() {
 				$0.title = "Current password:"
-				$0.add(rule: RuleMinLength(minLength: 8))
-				$0.add(rule: RuleMaxLength(maxLength: 13))
+				$0.add(rule: RuleMinLength(minLength: 6))
 				}
 				.cellUpdate { cell, row in
 					if !row.isValid {
 						cell.titleLabel?.textColor = .red
 					}
-				}
+			}
 			
 			<<< PasswordRow("new_password") {
 				$0.title = "New password:"
 				
-				$0.add(rule: RuleMinLength(minLength: 8))
-				$0.add(rule: RuleMaxLength(maxLength: 13))
+				$0.add(rule: RuleMinLength(minLength: 6))
 				}
 				.cellUpdate { cell, row in
 					if !row.isValid {
 						cell.titleLabel?.textColor = .red
 					}
-				}
+			}
 			
 			<<< PasswordRow("confirm_password") {
 				$0.title = "Confirm new password:"
@@ -91,7 +95,7 @@ class UpdateProfileViewController: FormViewController {
 					if !row.isValid {
 						cell.titleLabel?.textColor = .red
 					}
-			  }
+			}
 			
 			+++
 			Section()
@@ -103,7 +107,7 @@ class UpdateProfileViewController: FormViewController {
 				}
 				.cellSetup { (cell, row) in
 					cell.tintColor = .red
-				}
+		}
 	}
 	
 }

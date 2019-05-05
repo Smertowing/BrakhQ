@@ -37,6 +37,7 @@
 		F3A731D9227E3C760059233E /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731D8227E3C760059233E /* EventTableViewCell.swift */; };
 		F3A731DF227E52650059233E /* QueueManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A731DE227E52650059233E /* QueueManager.storyboard */; };
 		F3A731E2227EDA300059233E /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731E1227EDA2F0059233E /* UIViewControllerExt.swift */; };
+		F3A731E4227F10DA0059233E /* BrakhQLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731E3227F10DA0059233E /* BrakhQLogoView.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
@@ -84,6 +85,7 @@
 		F3A731D8227E3C760059233E /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		F3A731DE227E52650059233E /* QueueManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QueueManager.storyboard; sourceTree = "<group>"; };
 		F3A731E1227EDA2F0059233E /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		F3A731E3227F10DA0059233E /* BrakhQLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrakhQLogoView.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A731D8227E3C760059233E /* EventTableViewCell.swift */,
+				F3A731E3227F10DA0059233E /* BrakhQLogoView.swift */,
 			);
 			path = CustomVIews;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
+				F3A731E4227F10DA0059233E /* BrakhQLogoView.swift in Sources */,
 				F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */,
 				F3A731D2227E26E70059233E /* UpdateProfileViewController.swift in Sources */,
 				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,

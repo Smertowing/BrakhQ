@@ -26,51 +26,59 @@ class SettingsViewController: FormViewController {
 		super.viewDidLoad()
 		title = "Settings"
 		self.navigationController?.title = nil
+		navigationController?.navigationBar.isTranslucent = false
+		tabBarController?.tabBar.isTranslucent = false
+		initializeForm()
+	}
+
+	private func initializeForm() {
 		form
 			+++
-			Section("My Profile")
+			Section("My Profile") {
+				$0.header = HeaderFooterView<BrakhQLogoView>(.class)
+			}
+			<<< LabelRow() {
+				$0.title = "Name"
+				$0.value = "Kiryl Holubeu"
+			}
 			
-				<<< LabelRow() {
-					$0.title = "Name"
-					$0.value = "Kiryl Holubeu"
-				}
+			<<< LabelRow() {
+				$0.title = "Email"
+				$0.value = "kiryla.go@gmail.com"
+			}
 			
-				<<< LabelRow() {
-					$0.title = "Email"
-					$0.value = "kiryla.go@gmail.com"
-				}
+			<<< ButtonRow("Update profile") { (row: ButtonRow) -> Void in
+				row.title = row.tag
+				row.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: viewModel.getUpdateViewController), onDismiss: nil)
+			}
 			
-				<<< ButtonRow("Update profile") { (row: ButtonRow) -> Void in
-					row.title = row.tag
-					row.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: viewModel.getUpdateViewController), onDismiss: nil)
-				}
-			
+		form
 			+++
 			Section("Application Settings")
 			
-				<<< PickerInlineRow<String>("Appearance ") { (row : PickerInlineRow<String>) -> Void in
-					row.title = row.tag
-					row.displayValueFor = { (rowValue: String?) in
-						return rowValue.map { (rowValue: String?) in
-							"\(rowValue ?? "Error")"
-						}
+			<<< PickerInlineRow<String>("Appearance") { (row : PickerInlineRow<String>) -> Void in
+				row.title = row.tag
+				row.displayValueFor = { (rowValue: String?) in
+					return rowValue.map { (rowValue: String?) in
+						"\(rowValue ?? "Error")"
 					}
-					row.options = ["Light", "Dark"]
-					row.value = row.options[0]
+				}
+				row.options = ["Light", "Dark"]
+				row.value = row.options[0]
 			}
 			
 			+++
 			Section()
 			
-				<<< ButtonRow() { (row: ButtonRow) -> Void in
-					row.title = "Log Out"
+			<<< ButtonRow() { (row: ButtonRow) -> Void in
+				row.title = "Log Out"
 				}.onCellSelection { [weak self] (cell, row) in
 					self?.showAlert()
 				}.cellSetup { (cell, row) in
-						cell.tintColor = .red
-				}
+					cell.tintColor = .red
+		}
 	}
-
+	
 	@IBAction func showAlert() {
 		let alertController = UIAlertController(title: "OnCellSelection", message: "Button Row Action", preferredStyle: .alert)
 		let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)

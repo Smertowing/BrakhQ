@@ -20,6 +20,8 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 		super.viewDidLoad()
 		title = "Queue Manager"
 		navigationController?.title = nil
+		navigationController?.navigationBar.isTranslucent = false
+		tabBarController?.tabBar.isTranslucent = false
 		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createButtonClicked)), animated: false)
 		configureEventsTable()
 		configureSearchBar()
@@ -46,6 +48,9 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 	}
 	
 	@objc func createButtonClicked() {
+		
+		let viewModel = CreateEventViewModel()
+		self.show(CreateEventViewController(viewModel: viewModel), sender: self)
 		/*
 		let storyBoard = UIStoryboard(name: "", bundle: nil)
 		let viewController = storyBoard.instantiateViewController(withIdentifier: "")
