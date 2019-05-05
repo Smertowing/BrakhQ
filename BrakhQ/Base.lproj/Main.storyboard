@@ -90,7 +90,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4tt-X7-dfx" kind="relationship" relationship="viewControllers" id="4Nz-II-MN7"/>
                         <segue destination="HqI-A2-6dp" kind="relationship" relationship="viewControllers" id="1Q1-uV-vyA"/>
                         <segue destination="thW-z8-09y" kind="relationship" relationship="viewControllers" id="gjM-bH-mn9"/>
                         <segue destination="Qhu-J3-klv" kind="relationship" relationship="viewControllers" id="DBL-fC-yol"/>
@@ -100,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="-472" y="580"/>
         </scene>
-        <!--User Page Navigation Controller-->
+        <!--Queue Manager Navigation Controller-->
         <scene sceneID="rFR-R9-obS">
             <objects>
-                <navigationController id="HqI-A2-6dp" customClass="UserPageNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="HqI-A2-6dp" customClass="QueueManagerNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="managerTabItem" id="goK-i2-2GM">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
@@ -114,14 +113,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cB1-sZ-VOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-857" y="1445"/>
+            <point key="canvasLocation" x="-1299" y="1441"/>
         </scene>
         <!--Event Calendar Navigation Controller-->
         <scene sceneID="kKS-JS-fwi">
             <objects>
                 <navigationController id="thW-z8-09y" customClass="EventCalendarNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="calendarTabItem" id="2eH-dK-AE0">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-8"/>
+                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="15h-Oz-nh4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -130,23 +129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agQ-1T-XUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-35" y="1445"/>
-        </scene>
-        <!--Event Feed Navigation Controller-->
-        <scene sceneID="60T-jx-cYm">
-            <objects>
-                <navigationController id="4tt-X7-dfx" customClass="EventFeedNavigationController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="feedTabItem" largeContentSizeImage="firstTabItem" id="lBJ-gV-RGw">
-                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-8"/>
-                    </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Oe-5j-a6o">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tJt-oj-MCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1677" y="1445"/>
+            <point key="canvasLocation" x="-477" y="1441"/>
         </scene>
         <!--Settings Navigation Controller-->
         <scene sceneID="0qu-HL-kfn">
@@ -162,14 +145,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUC-3J-bV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="1445"/>
+            <point key="canvasLocation" x="355" y="1441"/>
         </scene>
     </scenes>
     <resources>
         <image name="BQLabel" width="215" height="215"/>
         <image name="calendarTabItem" width="30" height="30"/>
-        <image name="feedTabItem" width="30" height="30"/>
-        <image name="firstTabItem" width="30" height="30"/>
         <image name="managerTabItem" width="30" height="30"/>
         <image name="settingsTabItem" width="30" height="30"/>
     </resources>

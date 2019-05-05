@@ -8,11 +8,11 @@
 
 import UIKit
 
-class UserPageNavigationController: UINavigationController {
+class QueueManagerNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let storyBoard = UIStoryboard(name: "UserPage", bundle: nil)
+		let storyBoard = UIStoryboard(name: "QueueManager", bundle: nil)
 		let userPageViewController = storyBoard.instantiateViewController(withIdentifier: "userPageViewController") 
 		self.pushViewController(userPageViewController, animated: false)
 	}
