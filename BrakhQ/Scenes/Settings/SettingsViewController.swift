@@ -39,6 +39,11 @@ class SettingsViewController: FormViewController {
 				$0.header = HeaderFooterView<BrakhQLogoView>(.class)
 			}
 			<<< LabelRow() {
+				$0.title = "Username"
+				$0.value = "Smertowing"
+			}
+			
+			<<< LabelRow() {
 				$0.title = "Name"
 				$0.value = "Kiryl Holubeu"
 			}

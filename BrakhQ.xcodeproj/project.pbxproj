@@ -49,7 +49,6 @@
 		F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */; };
 		F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */; };
 		F3DE2E7C22674C33002E5810 /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */; };
-		F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,7 +99,6 @@
 		F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E7922674C26002E5810 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E7B22674C33002E5810 /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
-		F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				F301AB2422573DD800FA5412 /* StartViewController.swift */,
-				F3DE2E7E22674CB4002E5810 /* StartViewModel.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -528,7 +525,6 @@
 				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
 				F3A731D4227E26FA0059233E /* UpdateProfileViewModel.swift in Sources */,
 				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
-				F3DE2E7F22674CB4002E5810 /* StartViewModel.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */,

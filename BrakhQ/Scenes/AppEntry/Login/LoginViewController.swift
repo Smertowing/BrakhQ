@@ -10,27 +10,53 @@ import UIKit
 
 class LoginViewController: UIViewController {
 	
-	private let viewModel: LoginViewModel
+	var viewModel: LoginViewModel!
 	
-	init(viewModel: LoginViewModel) {
-		self.viewModel = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+	@IBOutlet weak var bottomOffset: NSLayoutConstraint!
+	@IBOutlet weak var topOffset: NSLayoutConstraint!
 	
 	@IBOutlet weak var loginField: UITextField!
 	@IBOutlet weak var passwordField: UITextField!
-	
-	@IBOutlet private weak var indicatorView: UIActivityIndicatorView!
+
 	@IBOutlet weak var signinButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 
+	@IBAction func signinClicked(_ sender: Any) {
+		let mainViewController = self.storyboard!.instantiateViewController(withIdentifier: "mainTabVC")
+		self.present(mainViewController, animated: true, completion: nil)
+	}
+	
+	@IBAction func returnClicked(_ sender: Any) {
+		self.navigationController?.popViewController(animated: true)
+	}
+	
 }
 
+extension LoginViewController  {
+	
+	@objc func keyboardWillShow(notification: NSNotification) {
+		if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			
+			bottomOffset.constant = -keyboardSize.height
+			topOffset.constant = -keyboardSize.height
+			UIView.animate(withDuration: 0.3) {
+				self.view.layoutIfNeeded()
+			}
+		}
+	}
+	
+	@objc func keyboardWillHide(notification: NSNotification) {
+		bottomOffset.constant = 0
+		topOffset.constant = 0
+		UIView.animate(withDuration: 0.3) {
+			self.view.layoutIfNeeded()
+		}
+	}
+	
+}

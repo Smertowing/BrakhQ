@@ -10,27 +10,28 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-	private let viewModel: StartViewModel
-	
-	init(viewModel: StartViewModel) {
-		self.viewModel = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.isNavigationBarHidden = true
+	}
 
 	@IBAction func login(_ sender: Any) {
-		
+		let loginViewController = self.storyboard!.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+		loginViewController.viewModel = LoginViewModel()
+		self.show(loginViewController, sender: self)
+	}
+	
+	@IBAction func loginViaVK(_ sender: Any) {
 	}
 	
 	@IBAction func signup(_ sender: Any) {
+		let viewModel = RegistrationViewModel()
+		self.show(RegistrationViewController(viewModel: viewModel), sender: self)
 	}
 	
 }

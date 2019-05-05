@@ -36,14 +36,13 @@ class UpdateProfileViewController: FormViewController {
 			
 			+++
 			Section("Change Profile")
-			
 			<<< NameRow() {
-				$0.title = "Name:"
+				$0.title = "Name"
 				$0.value = "Kira Holubeu"
 			}
 			
 			<<< EmailRow() {
-				$0.title = "Email:"
+				$0.title = "Email"
 				$0.value = "kiryla.go@gmail.com"
 				
 				$0.add(rule: RuleRequired())
@@ -67,7 +66,7 @@ class UpdateProfileViewController: FormViewController {
 			Section(header: "Change Password", footer: "Length must be greater than 6")
 			
 			<<< PasswordRow() {
-				$0.title = "Current password:"
+				$0.title = "Current password"
 				$0.add(rule: RuleMinLength(minLength: 6))
 				}
 				.cellUpdate { cell, row in
@@ -77,7 +76,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			
 			<<< PasswordRow("new_password") {
-				$0.title = "New password:"
+				$0.title = "New password"
 				
 				$0.add(rule: RuleMinLength(minLength: 6))
 				}
@@ -88,7 +87,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			
 			<<< PasswordRow("confirm_password") {
-				$0.title = "Confirm new password:"
+				$0.title = "Confirm new password"
 				
 				$0.add(rule: RuleEqualsToRow(form: form, tag: "new_password"))
 				}
