@@ -22,19 +22,20 @@ struct ResponseStateRegistration: Codable {
     
 }
 
-struct TokensResponse: Codable {
-    
-	var refreshToken: String
+struct AuthResponse: Codable {
+	
+	var message: String?
+	var refreshToken: String?
 	var success: Bool
-	var token: String
+	var token: String?
 
 }
 
 struct TokenValidationResponse: Codable {
     
-	var expired: Bool
-	var expires: String
-	var type: TokenType
+	var expired: Bool?
+	var expires: String?
+	var type: TokenType?
 	var valid: Bool
     
 }
@@ -49,7 +50,7 @@ struct ModelResponseQueue: Codable {
 
 struct ModelResponseUser: Codable {
     
-	var message: String
+	var message: String?
 	var response: User?
 	var success: Bool
 

@@ -18,7 +18,6 @@
 		F319F8DA225BC11C009DDA7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8D9225BC11C009DDA7B /* User.swift */; };
 		F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DB225BC25E009DDA7B /* Queue.swift */; };
 		F319F8DE225BCA23009DDA7B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DD225BCA23009DDA7B /* Place.swift */; };
-		F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8DF225BCAFF009DDA7B /* Token.swift */; };
 		F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E1225BCBB6009DDA7B /* Responses.swift */; };
 		F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */; };
 		F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F8FB225C9207009DDA7B /* WebSocketApi.swift */; };
@@ -50,6 +49,11 @@
 		F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */; };
 		F3DB0EFE2280741100A9F436 /* FailureInfoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */; };
 		F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */; };
+		F3DB0F0422808A1B00A9F436 /* UserDefaultsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0322808A1B00A9F436 /* UserDefaultsEnums.swift */; };
+		F3DB0F0622808D7100A9F436 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0522808D7100A9F436 /* LaunchViewController.swift */; };
+		F3DB0F09228097DF00A9F436 /* UserStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F08228097DF00A9F436 /* UserStructs.swift */; };
+		F3DB0F0B2280A35000A9F436 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0A2280A35000A9F436 /* DateExt.swift */; };
+		F3DB0F0D2280AC8B00A9F436 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0C2280AC8A00A9F436 /* Token.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
@@ -77,10 +81,9 @@
 		F319F8D9225BC11C009DDA7B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F319F8DB225BC25E009DDA7B /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		F319F8DD225BCA23009DDA7B /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		F319F8DF225BCAFF009DDA7B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F319F8E1225BCBB6009DDA7B /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebSocketApi.swift; path = APIs/WebSocketApi.swift; sourceTree = "<group>"; };
+		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketApi.swift; sourceTree = "<group>"; };
 		F319F910225CABD3009DDA7B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F319F91C225CAC44009DDA7B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +112,11 @@
 		F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FailureInfoView.swift; path = ../FailureInfoView.swift; sourceTree = "<group>"; };
 		F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = FailureInfoView.storyboard; path = ../FailureInfoView.storyboard; sourceTree = "<group>"; };
 		F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewControllerExt.swift; sourceTree = "<group>"; };
+		F3DB0F0322808A1B00A9F436 /* UserDefaultsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEnums.swift; sourceTree = "<group>"; };
+		F3DB0F0522808D7100A9F436 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		F3DB0F08228097DF00A9F436 /* UserStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStructs.swift; sourceTree = "<group>"; };
+		F3DB0F0A2280A35000A9F436 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
+		F3DB0F0C2280AC8A00A9F436 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -278,6 +286,7 @@
 			children = (
 				F36DB3DE2258A67D002A8B71 /* Entities */,
 				F319F8E1225BCBB6009DDA7B /* Responses.swift */,
+				F319F8FB225C9207009DDA7B /* WebSocketApi.swift */,
 			);
 			name = APIs;
 			path = ../Networking/APIs;
@@ -289,7 +298,7 @@
 				F319F8D9225BC11C009DDA7B /* User.swift */,
 				F319F8DB225BC25E009DDA7B /* Queue.swift */,
 				F319F8DD225BCA23009DDA7B /* Place.swift */,
-				F319F8DF225BCAFF009DDA7B /* Token.swift */,
+				F3DB0F0C2280AC8A00A9F436 /* Token.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 			children = (
 				F3A731E1227EDA2F0059233E /* UIViewControllerExt.swift */,
 				F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */,
+				F3DB0F0A2280A35000A9F436 /* DateExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,6 +382,7 @@
 				F3A731F3227FAED00059233E /* AuthEnums.swift */,
 				F3A731F5227FAF6E0059233E /* QueueEnums.swift */,
 				F3A731F7227FAF7C0059233E /* UserEnums.swift */,
+				F3DB0F0322808A1B00A9F436 /* UserDefaultsEnums.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -385,9 +396,18 @@
 			path = FailureInfo;
 			sourceTree = "<group>";
 		};
+		F3DB0F07228097CF00A9F436 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB0F08228097DF00A9F436 /* UserStructs.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		F3DE2E5B226748CA002E5810 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F3DB0F07228097CF00A9F436 /* User */,
 				F36DB3DD2258A673002A8B71 /* APIs */,
 				F3A731F2227FAEBD0059233E /* Enums */,
 			);
@@ -398,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				F3A731EB227FADA00059233E /* Providers */,
-				F319F8FB225C9207009DDA7B /* WebSocketApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -407,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				F301AB2422573DD800FA5412 /* StartViewController.swift */,
+				F3DB0F0522808D7100A9F436 /* LaunchViewController.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -573,13 +593,14 @@
 				F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */,
 				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
 				F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */,
-				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
 				F3A731E2227EDA300059233E /* UIViewControllerExt.swift in Sources */,
+				F3DB0F0B2280A35000A9F436 /* DateExt.swift in Sources */,
 				F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */,
 				F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */,
 				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
 				F3A731D4227E26FA0059233E /* UpdateProfileViewModel.swift in Sources */,
 				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
+				F3DB0F0422808A1B00A9F436 /* UserDefaultsEnums.swift in Sources */,
 				F3A731F8227FAF7C0059233E /* UserEnums.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
@@ -588,6 +609,8 @@
 				F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */,
 				F3A731D2227E26E70059233E /* UpdateProfileViewController.swift in Sources */,
 				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,
+				F3DB0F0D2280AC8B00A9F436 /* Token.swift in Sources */,
+				F3DB0F0622808D7100A9F436 /* LaunchViewController.swift in Sources */,
 				F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */,
 				F319F8DE225BCA23009DDA7B /* Place.swift in Sources */,
 				F3A731CC227DADFB0059233E /* QueueManagerViewModel.swift in Sources */,
@@ -608,6 +631,7 @@
 				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
 				F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
+				F3DB0F09228097DF00A9F436 /* UserStructs.swift in Sources */,
 				F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,
 				F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */,

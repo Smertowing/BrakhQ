@@ -18,8 +18,8 @@ protocol RegistrationViewModelDelegate: class {
 }
 
 final class RegistrationViewModel {
-	weak var delegate: RegistrationViewModelDelegate?
 	
+	weak var delegate: RegistrationViewModelDelegate?
 	let provider = MoyaProvider<UserAPIProvider>()
 	
 	func register(username: String, password: String, email: String, name: String) {

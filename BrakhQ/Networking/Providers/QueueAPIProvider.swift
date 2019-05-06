@@ -19,7 +19,7 @@ enum QueueAPIProvider {
 
 extension QueueAPIProvider: TargetType {
 	var baseURL: URL {
-		return URL(string: "queue2.brakh.men")!
+		return URL(string: "http://queue2.brakh.men")!
 	}
 	
 	var path: String {
@@ -107,7 +107,7 @@ extension QueueAPIProvider: TargetType {
 		case .getQueue:
 			return nil
 		case .createQueue, .updateQueue, .takeQueueSite, .freeUpQueueSite, .takeFirstQueueSite:
-			return ["token": "\(0)"]
+			return ["token": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
 		}
 	}
 	

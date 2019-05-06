@@ -10,6 +10,7 @@ import Moya
 
 enum UserAPIProvider {
 	case getUser(id: Int)
+	case getUserByUsername(username: String)
 	case updateUser(name: String?, password: String?, email: String?)
 	case getQueuesCreatedBy(userId: Int)
 	case getQueuesUsedBy(userId: Int)
@@ -26,6 +27,8 @@ extension UserAPIProvider: TargetType {
 		switch self {
 		case .getUser:
 			return "/api/user"
+		case .getUserByUsername:
+			return "/api/user"
 		case .updateUser:
 			return "/api/user"
 		case .getQueuesCreatedBy(let userId):
@@ -39,7 +42,7 @@ extension UserAPIProvider: TargetType {
 	
 	var method: Method {
 		switch self {
-		case .getUser, .getQueuesCreatedBy, .getQueuesUsedBy:
+		case .getUser, .getUserByUsername, .getQueuesCreatedBy, .getQueuesUsedBy:
 			return .get
 		case .updateUser:
 			return .put
@@ -55,9 +58,18 @@ extension UserAPIProvider: TargetType {
 	var task: Task {
 		switch self {
 		case .getUser(let id):
+			
 			return .requestParameters(
 				parameters: [
 					"id": id
+				],
+				encoding: URLEncoding.default
+			)
+		case .getUserByUsername(let username):
+			
+			return .requestParameters(
+				parameters: [
+					"username": username
 				],
 				encoding: URLEncoding.default
 			)
@@ -89,10 +101,10 @@ extension UserAPIProvider: TargetType {
 	
 	var headers: [String : String]? {
 		switch self {
-		case .getUser, .register:
+		case .register:
 			return nil
-		case .updateUser, .getQueuesCreatedBy, .getQueuesUsedBy:
-			return ["token": "\(0)"]
+		case .getUser, .getUserByUsername, .updateUser, .getQueuesCreatedBy, .getQueuesUsedBy:
+			return ["token": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
 		}
 	}
 	

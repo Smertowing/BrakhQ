@@ -29,7 +29,13 @@ class SettingsViewController: FormViewController {
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
+		
+		setupViewModel()
 		initializeForm()
+	}
+	
+	private func setupViewModel() {
+		viewModel.delegate = self
 	}
 
 	private func initializeForm() {
@@ -79,7 +85,7 @@ class SettingsViewController: FormViewController {
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
 				row.title = "Log Out"
 				}.onCellSelection { [weak self] (cell, row) in
-					self?.showAlert()
+					self?.exitButtonClicked()
 				}.cellSetup { (cell, row) in
 					cell.tintColor = .red
 		}
@@ -92,4 +98,23 @@ class SettingsViewController: FormViewController {
 		present(alertController, animated: true)
 	}
 
+	@objc func exitButtonClicked() {
+		let alert = UIAlertController(title: "exitTitle", message: "exitMessage", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: "yes", style: .destructive, handler: { action in
+			self.viewModel.exit()
+		}))
+		self.present(alert, animated: true)
+	}
+}
+
+extension SettingsViewController: SettingsViewModelDelegate {
+	
+	func settingsViewModel(_ settingsViewModel: SettingsViewModel, readyToExit: Bool) {
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		let startController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "startVC") as! UINavigationController
+		appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
+		appDelegate.window?.rootViewController = startController
+	}
+	
 }
