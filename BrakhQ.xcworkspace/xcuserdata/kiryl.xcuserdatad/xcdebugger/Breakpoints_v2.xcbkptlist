@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewController.swift"
-            timestampString = "578792085.081086"
+            timestampString = "578796537.360682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewController.swift"
-            timestampString = "578792085.081266"
+            timestampString = "578796537.363646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewController.swift"
-            timestampString = "578792085.0813791"
+            timestampString = "578796537.364302"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "578792085.081484"
+            timestampString = "578796537.366192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "578792085.081622"
+            timestampString = "578796537.367877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "578792085.081717"
+            timestampString = "578796537.3694201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -202,13 +202,125 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "578792085.081809"
+            timestampString = "578796537.37009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
             landmarkName = "additionalInfoClicked(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+            timestampString = "578846508.182874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "register(username:password:email:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+            timestampString = "578846508.1829849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "register(username:password:email:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+            timestampString = "578846508.183053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "register(username:password:email:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in BrakhQ.RegistrationViewModel.register(username: Swift.String, password: Swift.String, email: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "BrakhQ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+                  timestampString = "578845497.043171"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "598">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in BrakhQ.RegistrationViewModel.register(username: Swift.String, password: Swift.String, email: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "BrakhQ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+                  timestampString = "578845497.046474"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "605">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Registration/RegistrationViewModel.swift"
+            timestampString = "578846508.183115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "register(username:password:email:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Networking/Providers/UserAPIProvider.swift"
+            timestampString = "578846508.183175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "baseURL"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

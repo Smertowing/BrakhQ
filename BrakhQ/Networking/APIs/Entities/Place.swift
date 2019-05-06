@@ -7,16 +7,10 @@
 //
 
 import Foundation
-import Mapper
 
-struct Place: Mappable {
+struct Place: Codable {
     
-	let place: Int
-	let user: User
-	
-	init(map: Mapper) throws {
-		try place = map.from("place")
-		try user = map.from("user")
-	}
+	var place: Int
+	var user: User
     
 }

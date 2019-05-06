@@ -47,6 +47,9 @@
 		F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F3227FAED00059233E /* AuthEnums.swift */; };
 		F3A731F6227FAF6E0059233E /* QueueEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F5227FAF6E0059233E /* QueueEnums.swift */; };
 		F3A731F8227FAF7C0059233E /* UserEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F7227FAF7C0059233E /* UserEnums.swift */; };
+		F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */; };
+		F3DB0EFE2280741100A9F436 /* FailureInfoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */; };
+		F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
@@ -77,7 +80,7 @@
 		F319F8DF225BCAFF009DDA7B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F319F8E1225BCBB6009DDA7B /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketApi.swift; sourceTree = "<group>"; };
+		F319F8FB225C9207009DDA7B /* WebSocketApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebSocketApi.swift; path = APIs/WebSocketApi.swift; sourceTree = "<group>"; };
 		F319F910225CABD3009DDA7B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		F319F91C225CAC44009DDA7B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +106,9 @@
 		F3A731F3227FAED00059233E /* AuthEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEnums.swift; sourceTree = "<group>"; };
 		F3A731F5227FAF6E0059233E /* QueueEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueEnums.swift; sourceTree = "<group>"; };
 		F3A731F7227FAF7C0059233E /* UserEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnums.swift; sourceTree = "<group>"; };
+		F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FailureInfoView.swift; path = ../FailureInfoView.swift; sourceTree = "<group>"; };
+		F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = FailureInfoView.storyboard; path = ../FailureInfoView.storyboard; sourceTree = "<group>"; };
+		F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewControllerExt.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -271,10 +277,10 @@
 			isa = PBXGroup;
 			children = (
 				F36DB3DE2258A67D002A8B71 /* Entities */,
-				F319F8FB225C9207009DDA7B /* WebSocketApi.swift */,
 				F319F8E1225BCBB6009DDA7B /* Responses.swift */,
 			);
-			path = APIs;
+			name = APIs;
+			path = ../Networking/APIs;
 			sourceTree = "<group>";
 		};
 		F36DB3DE2258A67D002A8B71 /* Entities */ = {
@@ -333,6 +339,7 @@
 		F3A731D7227E3C440059233E /* CustomVIews */ = {
 			isa = PBXGroup;
 			children = (
+				F3DB0EFF2280753A00A9F436 /* FailureInfo */,
 				F3A731D8227E3C760059233E /* EventTableViewCell.swift */,
 				F3A731E9227F70440059233E /* SiteTableViewCell.swift */,
 				F3A731E3227F10DA0059233E /* BrakhQLogoView.swift */,
@@ -344,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A731E1227EDA2F0059233E /* UIViewControllerExt.swift */,
+				F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,9 +376,19 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		F3DB0EFF2280753A00A9F436 /* FailureInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */,
+				F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */,
+			);
+			path = FailureInfo;
+			sourceTree = "<group>";
+		};
 		F3DE2E5B226748CA002E5810 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F36DB3DD2258A673002A8B71 /* APIs */,
 				F3A731F2227FAEBD0059233E /* Enums */,
 			);
 			path = Models;
@@ -380,7 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A731EB227FADA00059233E /* Providers */,
-				F36DB3DD2258A673002A8B71 /* APIs */,
+				F319F8FB225C9207009DDA7B /* WebSocketApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -476,6 +494,7 @@
 				F301AB2A22573DDA00FA5412 /* Assets.xcassets in Resources */,
 				F301AB2822573DD800FA5412 /* Main.storyboard in Resources */,
 				F3A731E6227F60550059233E /* Event.storyboard in Resources */,
+				F3DB0EFE2280741100A9F436 /* FailureInfoView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +572,7 @@
 			files = (
 				F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */,
 				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
+				F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */,
 				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
 				F3A731E2227EDA300059233E /* UIViewControllerExt.swift in Sources */,
 				F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */,
@@ -586,6 +606,7 @@
 				F3A731D9227E3C760059233E /* EventTableViewCell.swift in Sources */,
 				F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */,
 				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
+				F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
 				F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,

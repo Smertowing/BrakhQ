@@ -19,7 +19,7 @@ enum UserAPIProvider {
 extension UserAPIProvider: TargetType {
 	
 	var baseURL: URL {
-		return URL(string: "queue2.brakh.men")!
+		return URL(string: "http://queue2.brakh.men")!
 	}
 	
 	var path: String {

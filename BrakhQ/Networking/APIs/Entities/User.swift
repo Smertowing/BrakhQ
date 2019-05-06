@@ -7,18 +7,11 @@
 //
 
 import Foundation
-import Mapper
 
-struct User: Mappable {
+struct User: Codable {
     
-	let avatar: String?
-	let id: Int?
-	let name: String?
+	var avatar: String?
+	var id: Int?
+	var name: String?
 	
-	init(map: Mapper) throws {
-		avatar = map.optionalFrom("avatar")
-		try id = map.from("id")
-		try name = map.from("url")
-	}
-    
 }

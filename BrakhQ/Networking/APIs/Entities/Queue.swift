@@ -7,44 +7,24 @@
 //
 
 import Foundation
-import Mapper
 
-struct Queue: Mappable {
+struct Queue: Codable {
 	
-	let busy_places: [Place]
-	let description: String
-	let event_date: String
-	let full: Bool
-	let id: Int
-	let mixed: Bool
-	let name: String
-	let owner: User
-	let places_count: Int
-	let queue_type: QueueType
-	let regActive: Bool
-	let regEnded: Bool
-	let regStarted: Bool
-	let reg_end: String
-	let reg_start: String
-	let url: String
-	
-	init(map: Mapper) throws {
-		try busy_places = map.from("busy_places")
-		try description = map.from("description")
-		try event_date = map.from("event_date")
-		try full = map.from("full")
-		try id = map.from("id")
-		try mixed = map.from("mixed")
-		try name = map.from("name")
-		try owner = map.from("owner")
-		try places_count = map.from("places_count")
-		try queue_type = map.from("queue_type")
-		try regActive = map.from("regActive")
-		try regEnded = map.from("regEnded")
-		try regStarted = map.from("regStarted")
-		try reg_end = map.from("reg_end")
-		try reg_start = map.from("reg_start")
-		try url = map.from("url")
-	}
+	var busy_places: [Place]
+	var description: String
+	var event_date: String
+	var full: Bool
+	var id: Int
+	var mixed: Bool
+	var name: String
+	var owner: User
+	var places_count: Int
+	var queue_type: QueueType
+	var regActive: Bool
+	var regEnded: Bool
+	var regStarted: Bool
+	var reg_end: String
+	var reg_start: String
+	var url: String
     
 }

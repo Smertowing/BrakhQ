@@ -7,102 +7,60 @@
 //
 
 import Foundation
-import Mapper
 
-struct ResponseState: Mappable {
+struct ResponseState: Codable {
     
-	let success: Bool
-	let message: String?
-	
-	init(map: Mapper) throws {
-		try success = map.from("success")
-		message = map.optionalFrom("message")
-	}
+	var success: Bool
+	var message: String?
     
 }
 
-struct ResponseStateRegistration: Mappable {
+struct ResponseStateRegistration: Codable {
     
-	let success: Bool
-	let errors: [String:String]?
-	
-	init(map: Mapper) throws {
-		try success = map.from("success")
-		errors = map.optionalFrom("errors")
-	}
+	var success: Bool
+	var errors: [String:String]?
     
 }
 
-struct TokensResponse: Mappable {
+struct TokensResponse: Codable {
     
-	let refreshToken: String
-	let success: Bool
-	let token: String
-	
-	init(map: Mapper) throws {
-		try refreshToken = map.from("refreshToken")
-		try success = map.from("success")
-		try token = map.from("token")
-	}
+	var refreshToken: String
+	var success: Bool
+	var token: String
+
+}
+
+struct TokenValidationResponse: Codable {
+    
+	var expired: Bool
+	var expires: String
+	var type: TokenType
+	var valid: Bool
     
 }
 
-struct TokenValidationResponse: Mappable {
+struct ModelResponseQueue: Codable {
     
-	let expired: Bool
-	let expires: String
-	let type: TokenType
-	let valid: Bool
-	
-	init(map: Mapper) throws {
-		try expired = map.from("expired")
-		try expires = map.from("expires")
-		try type = map.from("type")
-		try valid = map.from("valid")
-	}
+	var message: String
+	var response: Queue?
+	var success: Bool
     
 }
 
-struct ModelResponseQueue: Mappable {
+struct ModelResponseUser: Codable {
     
-	let message: String
-	let response: Queue?
-	let success: Bool
-	
-	init(map: Mapper) throws {
-		try message = map.from("message")
-		response = map.optionalFrom("response")
-		try success = map.from("success")
-	}
-    
+	var message: String
+	var response: User?
+	var success: Bool
+
 }
 
-struct ModelResponseUser: Mappable {
+struct ModelResponseCollectionQueue: Codable {
     
-	let message: String
-	let response: User?
-	let success: Bool
-	
-	init(map: Mapper) throws {
-		try message = map.from("message")
-		response = map.optionalFrom("response")
-		try success = map.from("success")
-	}
-    
-}
+	var message: String
+	var response: [Queue]?
+	var success: Bool
 
-struct ModelResponseCollectionQueue: Mappable {
-    
-	let message: String
-	let response: [Queue]?
-	let success: Bool
-	
-	init(map: Mapper) throws {
-		try message = map.from("message")
-		response = map.optionalFrom("response")
-		try success = map.from("success")
-	}
-    
 }
 
 

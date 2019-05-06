@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Failure Info View-->
+        <scene sceneID="6Yo-Zg-yhL">
+            <objects>
+                <viewController storyboardIdentifier="failureInfoView" id="Z6t-Vc-Xhf" customClass="FailureInfoView" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zqn-Od-FOA"/>
+                        <viewControllerLayoutGuide type="bottom" id="B5o-eK-dhs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fo6-4N-VnC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hio-cX-m5S">
+                                <rect key="frame" x="72" y="328" width="270" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Failure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IF-rE-FWZ">
+                                        <rect key="frame" x="105" y="8" width="60" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUj-Pa-Am9">
+                                        <rect key="frame" x="0.0" y="194" width="270" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="JgW-LC-8i8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="onTapCancelButton:" destination="Z6t-Vc-Xhf" eventType="touchUpInside" id="Ot5-3m-F3y"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-ec-CpZ">
+                                        <rect key="frame" x="8" y="41.5" width="254" height="144.5"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1IF-rE-FWZ" firstAttribute="centerX" secondItem="Hio-cX-m5S" secondAttribute="centerX" id="5Gx-U6-tKi"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Lu-ec-CpZ" secondAttribute="trailing" constant="8" id="Kom-4S-9cf"/>
+                                    <constraint firstItem="hUj-Pa-Am9" firstAttribute="top" secondItem="3Lu-ec-CpZ" secondAttribute="bottom" constant="8" id="PXw-Re-Kgx"/>
+                                    <constraint firstItem="3Lu-ec-CpZ" firstAttribute="leading" secondItem="Hio-cX-m5S" secondAttribute="leading" constant="8" id="QNp-jB-exe"/>
+                                    <constraint firstAttribute="bottom" secondItem="hUj-Pa-Am9" secondAttribute="bottom" id="XhV-9w-1jw"/>
+                                    <constraint firstItem="hUj-Pa-Am9" firstAttribute="leading" secondItem="Hio-cX-m5S" secondAttribute="leading" id="aOO-F2-jTx"/>
+                                    <constraint firstItem="hUj-Pa-Am9" firstAttribute="width" secondItem="Hio-cX-m5S" secondAttribute="width" id="apa-Rt-1aQ"/>
+                                    <constraint firstAttribute="height" constant="240" id="dok-ao-wjQ"/>
+                                    <constraint firstItem="3Lu-ec-CpZ" firstAttribute="top" secondItem="1IF-rE-FWZ" secondAttribute="bottom" constant="8" id="k8z-6u-3bD"/>
+                                    <constraint firstItem="1IF-rE-FWZ" firstAttribute="top" secondItem="Hio-cX-m5S" secondAttribute="top" constant="8" id="nLp-F7-Rq4"/>
+                                    <constraint firstAttribute="width" constant="270" id="vqf-lj-XW9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hio-cX-m5S" firstAttribute="centerX" secondItem="fo6-4N-VnC" secondAttribute="centerX" id="Pbf-jh-w2V"/>
+                            <constraint firstItem="Hio-cX-m5S" firstAttribute="centerY" secondItem="fo6-4N-VnC" secondAttribute="centerY" id="hhR-bL-3fZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fyU-ab-chC"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="Hio-cX-m5S" id="ECi-fx-v3h"/>
+                        <outlet property="descriptionTextView" destination="3Lu-ec-CpZ" id="goe-Ib-Ovq"/>
+                        <outlet property="okeyButton" destination="hUj-Pa-Am9" id="ovv-kl-RTA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oDT-v4-Xih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="355.07246376811599" y="2224.5535714285711"/>
+        </scene>
+    </scenes>
+</document>

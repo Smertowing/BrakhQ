@@ -28,6 +28,7 @@ class RegistrationViewController: FormViewController {
 		title = "Edit Queue"
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(self.registerButtonClicked)), animated: false)
 		
+		setupViewModel()
 		initializeForm()
 	}
 	
@@ -36,53 +37,77 @@ class RegistrationViewController: FormViewController {
 		navigationController?.isNavigationBarHidden = false
 	}
 	
+	private func setupViewModel() {
+		viewModel.delegate = self
+	}
+	
 	private func initializeForm() {
 		form
 			
 			+++
 			Section("Change Profile")
-			<<< NameRow() {
-				$0.title = "Username"
+			<<< NameRow("Username") {
+				$0.title = $0.tag
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
+				}
+				.cellUpdate { cell, row in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+				}
 			}
 			
-			<<< NameRow() {
-				$0.title = "Name"
+			<<< NameRow("Name") {
+				$0.title = $0.tag
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
+				}
+				.cellUpdate { cell, row in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+				}
 			}
 			
-			<<< EmailRow() {
-				$0.title = "Email"
-				
+			<<< EmailRow("Email") {
+				$0.title = $0.tag
 				$0.add(rule: RuleRequired())
 				var ruleSet = RuleSet<String>()
 				ruleSet.add(rule: RuleRequired())
 				ruleSet.add(rule: RuleEmail())
 				$0.add(ruleSet: ruleSet)
 				$0.validationOptions = .validatesOnChangeAfterBlurred
+				}
+				.cellUpdate { cell, row in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+				}
 			}
 		
 			+++
 			Section(header: "Create Password", footer: "Length must be greater than 6")
 			
-			<<< PasswordRow("new_password") {
-				$0.title = "New password"
-				
+			<<< PasswordRow("New password") {
+				$0.title = $0.tag
+				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleMinLength(minLength: 6))
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.cellUpdate { cell, row in
 					if !row.isValid {
 						cell.titleLabel?.textColor = .red
-					}
+				}
 			}
 			
-			<<< PasswordRow("confirm_password") {
-				$0.title = "Confirm new password"
-				
-				$0.add(rule: RuleEqualsToRow(form: form, tag: "new_password"))
+			<<< PasswordRow("Confirm new password") {
+				$0.title = $0.tag
+				$0.add(rule: RuleRequired())
+				$0.add(rule: RuleEqualsToRow(form: form, tag: "New password"))
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.cellUpdate { cell, row in
 					if !row.isValid {
 						cell.titleLabel?.textColor = .red
-					}
+				}
 			}
 			
 			+++
@@ -95,7 +120,42 @@ class RegistrationViewController: FormViewController {
 	}
 	
 	@objc func registerButtonClicked() {
-		
+		if form.validate().isEmpty {
+			let usernameRow: NameRow! = form.rowBy(tag: "Username")
+			let passwordRow: PasswordRow! = form.rowBy(tag: "New password")
+			let emailRow: EmailRow! = form.rowBy(tag: "Email")
+			let nameRow: NameRow! = form.rowBy(tag: "Name")
+			viewModel.register(username: usernameRow.value!,
+												 password: passwordRow.value!,
+												 email: emailRow.value!,
+												 name: nameRow.value!)
+		}
+	}
+	
+}
+
+extension RegistrationViewController: RegistrationViewModelDelegate {
+	
+	func registrationViewModel(_ registrationViewModel: RegistrationViewModel, isLoading: Bool) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
+	func registrationViewModel(_ registrationViewModel: RegistrationViewModel, isSuccess: Bool, didRecieveMessage message: ResponseStateRegistration?) {
+		if isSuccess {
+			if message!.success {
+				
+				let alert = UIAlertController(title: "Successfull", message: "You've created account!", preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+					_ = self.navigationController?.popViewController(animated: true)
+				})
+				self.present(alert, animated: true, completion: nil)
+				
+			} else {
+				showErrorAlert(errorsLog: message!.errors)
+			}
+		} else {
+			showErrorAlert(errorsLog: ["Error:":"Internet connection failure"])
+		}
 	}
 	
 }

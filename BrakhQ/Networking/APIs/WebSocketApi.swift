@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Mapper
 
-enum WSEvents: String {
+enum WSEvents: String, Codable {
 	case regStart = "REG_START"
 	case regEnd = "REG_END"
 	case placeTake = "PLACE_TAKE"
@@ -18,16 +17,10 @@ enum WSEvents: String {
 	case queueMix = "QUEUE_MIX"
 }
 
-struct WebSockerResponse: Mappable {
+struct WebSockerResponse: Codable {
     
-	let event: WSEvents
-	let queue: Queue?
-	let place: Place?
+	var event: WSEvents
+	var queue: Queue?
+	var place: Place?
 	
-	init(map: Mapper) throws {
-		try event = map.from("event")
-		queue = map.optionalFrom("queue")
-		place = map.optionalFrom("place")
-	}
-
 }
