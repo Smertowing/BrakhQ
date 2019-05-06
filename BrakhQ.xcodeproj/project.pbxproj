@@ -41,6 +41,12 @@
 		F3A731E6227F60550059233E /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A731E5227F60550059233E /* Event.storyboard */; };
 		F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731E7227F68FA0059233E /* EventInfoViewController.swift */; };
 		F3A731EA227F70440059233E /* SiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731E9227F70440059233E /* SiteTableViewCell.swift */; };
+		F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731EC227FADC60059233E /* AuthProvider.swift */; };
+		F3A731EF227FADF00059233E /* QueueAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731EE227FADF00059233E /* QueueAPIProvider.swift */; };
+		F3A731F1227FAE060059233E /* UserAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F0227FAE060059233E /* UserAPIProvider.swift */; };
+		F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F3227FAED00059233E /* AuthEnums.swift */; };
+		F3A731F6227FAF6E0059233E /* QueueEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F5227FAF6E0059233E /* QueueEnums.swift */; };
+		F3A731F8227FAF7C0059233E /* UserEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F7227FAF7C0059233E /* UserEnums.swift */; };
 		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
@@ -91,6 +97,12 @@
 		F3A731E5227F60550059233E /* Event.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
 		F3A731E7227F68FA0059233E /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		F3A731E9227F70440059233E /* SiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteTableViewCell.swift; sourceTree = "<group>"; };
+		F3A731EC227FADC60059233E /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		F3A731EE227FADF00059233E /* QueueAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPIProvider.swift; sourceTree = "<group>"; };
+		F3A731F0227FAE060059233E /* UserAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIProvider.swift; sourceTree = "<group>"; };
+		F3A731F3227FAED00059233E /* AuthEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEnums.swift; sourceTree = "<group>"; };
+		F3A731F5227FAF6E0059233E /* QueueEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueEnums.swift; sourceTree = "<group>"; };
+		F3A731F7227FAF7C0059233E /* UserEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnums.swift; sourceTree = "<group>"; };
 		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
@@ -336,9 +348,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F3A731EB227FADA00059233E /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				F3A731EC227FADC60059233E /* AuthProvider.swift */,
+				F3A731EE227FADF00059233E /* QueueAPIProvider.swift */,
+				F3A731F0227FAE060059233E /* UserAPIProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		F3A731F2227FAEBD0059233E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F3A731F3227FAED00059233E /* AuthEnums.swift */,
+				F3A731F5227FAF6E0059233E /* QueueEnums.swift */,
+				F3A731F7227FAF7C0059233E /* UserEnums.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		F3DE2E5B226748CA002E5810 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F3A731F2227FAEBD0059233E /* Enums */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,6 +379,7 @@
 		F3DE2E5C226748D1002E5810 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F3A731EB227FADA00059233E /* Providers */,
 				F36DB3DD2258A673002A8B71 /* APIs */,
 			);
 			path = Networking;
@@ -521,10 +555,12 @@
 				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
 				F319F8E0225BCAFF009DDA7B /* Token.swift in Sources */,
 				F3A731E2227EDA300059233E /* UIViewControllerExt.swift in Sources */,
+				F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */,
 				F319F8DC225BC25E009DDA7B /* Queue.swift in Sources */,
 				F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */,
 				F3A731D4227E26FA0059233E /* UpdateProfileViewModel.swift in Sources */,
 				F319F8FC225C9207009DDA7B /* WebSocketApi.swift in Sources */,
+				F3A731F8227FAF7C0059233E /* UserEnums.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */,
@@ -538,8 +574,10 @@
 				F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */,
 				F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */,
 				F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */,
+				F3A731F1227FAE060059233E /* UserAPIProvider.swift in Sources */,
 				F3A731EA227F70440059233E /* SiteTableViewCell.swift in Sources */,
 				F319F91D225CAC44009DDA7B /* SettingsViewController.swift in Sources */,
+				F3A731EF227FADF00059233E /* QueueAPIProvider.swift in Sources */,
 				F319F8DA225BC11C009DDA7B /* User.swift in Sources */,
 				F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */,
 				F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */,
@@ -549,8 +587,10 @@
 				F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */,
 				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
+				F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,
 				F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */,
+				F3A731F6227FAF6E0059233E /* QueueEnums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

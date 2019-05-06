@@ -9,12 +9,6 @@
 import Foundation
 import Mapper
 
-enum TokenType: String {
-	case authentication = "AUTHENTICATION_TOKEN"
-	case refresh = "REFRESH_TOKEN"
-	case undefined = "UNDEFINED_TOKEN"
-}
-
 struct Token: Mappable {
     
 	let token: String

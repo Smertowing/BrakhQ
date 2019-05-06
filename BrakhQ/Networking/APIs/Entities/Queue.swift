@@ -9,11 +9,6 @@
 import Foundation
 import Mapper
 
-enum QueueType: String {
-	case random = "Random"
-	case def = "Default"
-}
-
 struct Queue: Mappable {
 	
 	let busy_places: [Place]
