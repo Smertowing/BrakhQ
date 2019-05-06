@@ -11,7 +11,8 @@ import Moya
 enum UserAPIProvider {
 	case getUser(id: Int)
 	case getUserByUsername(username: String)
-	case updateUser(name: String?, password: String?, email: String?)
+	case updateUser(name: String, email: String)
+	case updatePassword(password: String)
 	case getQueuesCreatedBy(userId: Int)
 	case getQueuesUsedBy(userId: Int)
 	case register(username: String, password: String, email: String, name: String)
@@ -29,7 +30,7 @@ extension UserAPIProvider: TargetType {
 			return "/api/user"
 		case .getUserByUsername:
 			return "/api/user"
-		case .updateUser:
+		case .updateUser, .updatePassword:
 			return "/api/user"
 		case .getQueuesCreatedBy(let userId):
 			return "/api/users/\(userId)/queues/created"
@@ -44,7 +45,7 @@ extension UserAPIProvider: TargetType {
 		switch self {
 		case .getUser, .getUserByUsername, .getQueuesCreatedBy, .getQueuesUsedBy:
 			return .get
-		case .updateUser:
+		case .updateUser, .updatePassword:
 			return .put
 		case .register:
 			return .post
@@ -73,12 +74,18 @@ extension UserAPIProvider: TargetType {
 				],
 				encoding: URLEncoding.default
 			)
-		case .updateUser(let name, let password, let email):
+		case .updateUser(let name, let email):
 			return .requestParameters(
 				parameters: [
-					"name": name ?? NSNull(),
-					"password": password ?? NSNull(),
-					"email": email ?? NSNull()
+					"name": name,
+					"email": email
+				],
+				encoding: JSONEncoding.default
+			)
+		case .updatePassword(let password):
+			return .requestParameters(
+				parameters: [
+					"password": password
 				],
 				encoding: JSONEncoding.default
 			)
@@ -102,9 +109,12 @@ extension UserAPIProvider: TargetType {
 	var headers: [String : String]? {
 		switch self {
 		case .register:
-			return nil
-		case .getUser, .getUserByUsername, .updateUser, .getQueuesCreatedBy, .getQueuesUsedBy:
-			return ["token": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
+			return ["Content-Type": "application/json"]
+		case .getUser, .getUserByUsername,  .getQueuesCreatedBy, .getQueuesUsedBy:
+			return ["Authorization": "\(UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String)"]
+		case .updateUser, .updatePassword:
+			return ["Authorization": "\(UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String)",
+							"Content-Type": "application/json"]
 		}
 	}
 	

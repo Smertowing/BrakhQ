@@ -34,8 +34,22 @@ class SettingsViewController: FormViewController {
 		initializeForm()
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		updateFormValues()
+	}
+	
 	private func setupViewModel() {
 		viewModel.delegate = self
+	}
+	
+	private func updateFormValues() {
+		DispatchQueue.main.async() {
+			let name: LabelRow! = self.form.rowBy(tag: "Name")
+			name.updateCell()
+			let email: LabelRow! = self.form.rowBy(tag: "Email")
+			email.updateCell()
+		}
 	}
 
 	private func initializeForm() {
@@ -44,19 +58,23 @@ class SettingsViewController: FormViewController {
 			Section("My Profile") {
 				$0.header = HeaderFooterView<BrakhQLogoView>(.class)
 			}
-			<<< LabelRow() {
-				$0.title = "Username"
-				$0.value = "Smertowing"
+			<<< LabelRow("Username") {
+				$0.title = $0.tag
+				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.username.rawValue) as? String
 			}
 			
-			<<< LabelRow() {
-				$0.title = "Name"
-				$0.value = "Kiryl Holubeu"
+			<<< LabelRow("Name") {
+				$0.title = $0.tag
+				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.name.rawValue) as? String
+				}.cellUpdate {_, row in
+					row.value = UserDefaults.standard.object(forKey: UserDefaultKeys.name.rawValue) as? String
 			}
 			
-			<<< LabelRow() {
-				$0.title = "Email"
-				$0.value = "kiryla.go@gmail.com"
+			<<< LabelRow("Email") {
+				$0.title = $0.tag
+				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.email.rawValue) as? String
+				}.cellUpdate {_, row in
+					row.value = UserDefaults.standard.object(forKey: UserDefaultKeys.email.rawValue) as? String
 			}
 			
 			<<< ButtonRow("Update profile") { (row: ButtonRow) -> Void in
@@ -99,7 +117,7 @@ class SettingsViewController: FormViewController {
 	}
 
 	@objc func exitButtonClicked() {
-		let alert = UIAlertController(title: "exitTitle", message: "exitMessage", preferredStyle: .alert)
+		let alert = UIAlertController(title: "Exut", message: "Do you really want to exit your account?", preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
 		alert.addAction(UIAlertAction(title: "yes", style: .destructive, handler: { action in
 			self.viewModel.exit()

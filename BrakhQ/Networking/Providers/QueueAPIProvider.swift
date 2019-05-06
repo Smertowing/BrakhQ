@@ -106,9 +106,14 @@ extension QueueAPIProvider: TargetType {
 		switch self {
 		case .getQueue:
 			return nil
-		case .createQueue, .updateQueue, .takeQueueSite, .freeUpQueueSite, .takeFirstQueueSite:
-			return ["token": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
+		case .takeQueueSite, .freeUpQueueSite, .takeFirstQueueSite:
+			return ["Authorization": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
+		case .createQueue, .updateQueue:
+			return ["Authorization": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String,
+							"Content-Type": "application/json"]
 		}
+		
+		
 	}
 	
 	var validationType: ValidationType {
