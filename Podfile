@@ -7,10 +7,10 @@ target 'BrakhQ' do
 
   # Pods for BrakhQ
   pod 'Moya', '~> 13.0'
-  pod 'Moya-ModelMapper', '~> 9.0'
   pod 'Starscream', '~> 3.1'
   pod 'CalendarKit'
   pod 'Eureka'
+  pod 'DataCache'
 end
 
 post_install do |installer|

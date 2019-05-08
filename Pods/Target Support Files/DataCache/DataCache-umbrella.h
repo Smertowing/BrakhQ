@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double MapperVersionNumber;
-FOUNDATION_EXPORT const unsigned char MapperVersionString[];
+FOUNDATION_EXPORT double DataCacheVersionNumber;
+FOUNDATION_EXPORT const unsigned char DataCacheVersionString[];
 

@@ -46,6 +46,10 @@
 		F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F3227FAED00059233E /* AuthEnums.swift */; };
 		F3A731F6227FAF6E0059233E /* QueueEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F5227FAF6E0059233E /* QueueEnums.swift */; };
 		F3A731F8227FAF7C0059233E /* UserEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731F7227FAF7C0059233E /* UserEnums.swift */; };
+		F3CCDB1D228313900049AF51 /* FeedCashe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCDB1C228313900049AF51 /* FeedCashe.swift */; };
+		F3CCDB1F2283161D0049AF51 /* QueueCashe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCDB1E2283161D0049AF51 /* QueueCashe.swift */; };
+		F3CCDB21228316280049AF51 /* PlaceCashe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCDB20228316280049AF51 /* PlaceCashe.swift */; };
+		F3CCDB232283163D0049AF51 /* UserCashe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCDB222283163D0049AF51 /* UserCashe.swift */; };
 		F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */; };
 		F3DB0EFE2280741100A9F436 /* FailureInfoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */; };
 		F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */; };
@@ -109,6 +113,10 @@
 		F3A731F3227FAED00059233E /* AuthEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEnums.swift; sourceTree = "<group>"; };
 		F3A731F5227FAF6E0059233E /* QueueEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueEnums.swift; sourceTree = "<group>"; };
 		F3A731F7227FAF7C0059233E /* UserEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnums.swift; sourceTree = "<group>"; };
+		F3CCDB1C228313900049AF51 /* FeedCashe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCashe.swift; sourceTree = "<group>"; };
+		F3CCDB1E2283161D0049AF51 /* QueueCashe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCashe.swift; sourceTree = "<group>"; };
+		F3CCDB20228316280049AF51 /* PlaceCashe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCashe.swift; sourceTree = "<group>"; };
+		F3CCDB222283163D0049AF51 /* UserCashe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCashe.swift; sourceTree = "<group>"; };
 		F3DB0EFB2280738A00A9F436 /* FailureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FailureInfoView.swift; path = ../FailureInfoView.swift; sourceTree = "<group>"; };
 		F3DB0EFD2280741100A9F436 /* FailureInfoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = FailureInfoView.storyboard; path = ../FailureInfoView.storyboard; sourceTree = "<group>"; };
 		F3DB0F01228076EA00A9F436 /* FormViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewControllerExt.swift; sourceTree = "<group>"; };
@@ -387,6 +395,17 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		F3CCDB1B228313740049AF51 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F3CCDB1C228313900049AF51 /* FeedCashe.swift */,
+				F3CCDB1E2283161D0049AF51 /* QueueCashe.swift */,
+				F3CCDB20228316280049AF51 /* PlaceCashe.swift */,
+				F3CCDB222283163D0049AF51 /* UserCashe.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		F3DB0EFF2280753A00A9F436 /* FailureInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +426,7 @@
 		F3DE2E5B226748CA002E5810 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F3CCDB1B228313740049AF51 /* Data */,
 				F3DB0F07228097CF00A9F436 /* User */,
 				F36DB3DD2258A673002A8B71 /* APIs */,
 				F3A731F2227FAEBD0059233E /* Enums */,
@@ -532,11 +552,10 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CalendarKit/CalendarKit.framework",
+				"${BUILT_PRODUCTS_DIR}/DataCache/DataCache.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-ModelMapper/Moya_ModelMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Neon/Neon.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
@@ -547,11 +566,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalendarKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ModelMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Neon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
@@ -593,6 +611,7 @@
 				F319F8EA225BD7F3009DDA7B /* LoginViewController.swift in Sources */,
 				F301AB2522573DD800FA5412 /* StartViewController.swift in Sources */,
 				F3DB0F02228076EA00A9F436 /* FormViewControllerExt.swift in Sources */,
+				F3CCDB1D228313900049AF51 /* FeedCashe.swift in Sources */,
 				F3A731E2227EDA300059233E /* UIViewControllerExt.swift in Sources */,
 				F3DB0F0B2280A35000A9F436 /* DateExt.swift in Sources */,
 				F3A731F4227FAED00059233E /* AuthEnums.swift in Sources */,
@@ -623,8 +642,10 @@
 				F3A731EF227FADF00059233E /* QueueAPIProvider.swift in Sources */,
 				F319F8DA225BC11C009DDA7B /* User.swift in Sources */,
 				F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */,
+				F3CCDB21228316280049AF51 /* PlaceCashe.swift in Sources */,
 				F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */,
 				F3DE2E7622674C0D002E5810 /* LoginViewModel.swift in Sources */,
+				F3CCDB1F2283161D0049AF51 /* QueueCashe.swift in Sources */,
 				F3DE2E7C22674C33002E5810 /* SettingsNavigationController.swift in Sources */,
 				F3A731D9227E3C760059233E /* EventTableViewCell.swift in Sources */,
 				F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */,
@@ -632,6 +653,7 @@
 				F3DB0EFC2280738A00A9F436 /* FailureInfoView.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
 				F3DB0F09228097DF00A9F436 /* UserStructs.swift in Sources */,
+				F3CCDB232283163D0049AF51 /* UserCashe.swift in Sources */,
 				F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,
 				F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */,

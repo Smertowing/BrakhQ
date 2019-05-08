@@ -11,8 +11,8 @@ import Foundation
 struct User: Codable {
     
 	var avatar: String?
-	var id: Int?
-	var name: String?
+	var id: Int
+	var name: String
 	var email: String?
 	var username: String?
 

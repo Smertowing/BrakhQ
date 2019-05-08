@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TokenType: String, Codable {
+public enum TokenType: String, Codable {
 	case authentication = "AUTHENTICATION_TOKEN"
 	case refresh = "REFRESH_TOKEN"
 	case undefined = "UNDEFINED_TOKEN"

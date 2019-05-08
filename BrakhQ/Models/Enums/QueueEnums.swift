@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum QueueType: String, Codable {
+public enum QueueType: String, Codable {
 	case random = "Random"
 	case def = "Default"
 }
