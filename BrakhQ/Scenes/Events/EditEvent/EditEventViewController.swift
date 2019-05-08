@@ -70,7 +70,7 @@ class EditEventViewController: FormViewController {
 			
 			+++
 			Section("Desription (optional)")
-			<<< TextAreaRow("Description (optional)")
+			<<< TextAreaRow("Description")
 				.cellSetup { cell, row in
 					cell.textView.text = ""
 			}

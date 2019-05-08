@@ -41,13 +41,18 @@ class CreateEventViewController: FormViewController {
 		form
 			+++
 			Section("Event Info")
-			<<< TextRow("Title")
+			<<< TextRow("Title") {
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
+				}
 				.cellSetup { cell, row in
 				cell.textField.placeholder = row.tag
 			}
 			<<< DateTimeInlineRow("Event Date"){
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60*24)
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.onChange { [weak self] row in
 					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
@@ -75,22 +80,29 @@ class CreateEventViewController: FormViewController {
 	
 			+++
 			Section("Description (optional)")
-			<<< TextAreaRow()
+			<<< TextAreaRow("Description")
+				.cellSetup { cell, row in
+					cell.textView.text = ""
+			}
 			
 			+++
 			Section("Queue Settings")
-			<<< SegmentedRow<String>(){
-				$0.title = "Allocation"
-				$0.options = ["Default", "Random"]
-				$0.value = "Default"
+			<<< SegmentedRow<String>("Allocation"){
+				$0.title = $0.tag
+				$0.options = [QueueType.def.rawValue, QueueType.random.rawValue]
+				$0.value = QueueType.def.rawValue
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.onChange { row in
 					
 			}
 			
-			<<< StepperRow() {
-				$0.title = "Number of Sites"
+			<<< StepperRow("Number of Sites") {
+				$0.title = $0.tag
 				$0.value = 2
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				$0.cell.stepper.stepValue = 1
 				$0.cell.stepper.maximumValue = 1000
 				$0.cell.stepper.minimumValue = 2
@@ -105,6 +117,8 @@ class CreateEventViewController: FormViewController {
 			<<< DateTimeInlineRow("Starts") {
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60)
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.onChange { [weak self] row in
 					let endRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Ends")
@@ -133,6 +147,8 @@ class CreateEventViewController: FormViewController {
 			<<< DateTimeInlineRow("Ends"){
 				$0.title = $0.tag
 				$0.value = Date().addingTimeInterval(60*60*24)
+				$0.add(rule: RuleRequired())
+				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.onChange { [weak self] row in
 					let startRow: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
@@ -163,24 +179,50 @@ class CreateEventViewController: FormViewController {
 			<<< ButtonRow("Create") { (row: ButtonRow) -> Void in
 				row.title = "Create Queue"
 				}
-				.onCellSelection { [weak self] (cell, row) in
+				.onCellSelection { (cell, row) in
+					self.createButtonClicked()
 			}
 		
 	}
 	
 	@objc func createButtonClicked() {
-		
+		if form.validate().isEmpty {
+			let title: TextRow! = form.rowBy(tag: "Title")
+			let description: TextAreaRow! = form.rowBy(tag: "Description")
+			let eventDate: DateTimeInlineRow! = form.rowBy(tag: "Event Date")
+			let queueType: SegmentedRow<String>! = form.rowBy(tag: "Allocation")
+			let regStart: DateTimeInlineRow! = form.rowBy(tag: "Starts")
+			let regEnd: DateTimeInlineRow! = form.rowBy(tag: "Ends")
+			let placesCount: StepperRow! = form.rowBy(tag: "Number of Sites")
+			viewModel.createEvent(name: title.value!,
+														description: description.value,
+														queueType: QueueType(rawValue: queueType.value!)!,
+														regStart: regStart.value!,
+														eventDate: eventDate.value!,
+														regEnd: regEnd.value!,
+														placesCount: Int(placesCount.value!))
+		}
 	}
 }
 
 extension CreateEventViewController: CreateEventViewModelDelegate {
 	
 	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
-		
+		if isSuccess {
+			let alert = UIAlertController(title: "Successfull", message: "You've created event queue!", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+				_ = self.navigationController?.popViewController(animated: true)
+			})
+			self.present(alert, animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController(title: "Failure", message: message ?? "There was an error, try again", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			self.present(alert, animated: true, completion: nil)
+		}
 	}
 	
 	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isLoading: Bool) {
-		
+		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
 }

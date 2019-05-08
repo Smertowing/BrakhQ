@@ -1,5 +1,5 @@
 //
-//  NetworkingError.swift
+//  FeedEnums.swift
 //  BrakhQ
 //
 //  Created by Kiryl Holubeu on 5/6/19.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+enum FeedKeys: String {
+	case feed = "feed"
+}

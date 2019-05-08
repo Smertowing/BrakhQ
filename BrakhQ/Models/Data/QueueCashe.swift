@@ -10,7 +10,7 @@ import Foundation
 
 open class QueueCashe: NSObject, NSCoding {
 	open var busyPlaces: [PlaceCashe]
-	open var descript: String
+	open var descript: String?
 	open var eventDate: Date
 	open var isFull: Bool
 	open var id: Int
@@ -50,7 +50,7 @@ open class QueueCashe: NSObject, NSCoding {
 	
 	public required init?(coder aDecoder: NSCoder) {
 		self.busyPlaces = aDecoder.decodeObject(forKey: "busyPlaces") as! [PlaceCashe]
-		self.descript = aDecoder.decodeObject(forKey: "description") as! String
+		self.descript = aDecoder.decodeObject(forKey: "description") as? String
 		self.eventDate = aDecoder.decodeObject(forKey: "eventDate") as! Date
 		self.isFull = aDecoder.decodeBool(forKey: "isFull")
 		self.id = aDecoder.decodeInteger(forKey: "id")

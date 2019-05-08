@@ -32,9 +32,13 @@ class LaunchViewController: UIViewController {
 							}
 							let diffDate = Date(dateString: expires, format: Date.iso8601Format)
 							if diffDate.timeIntervalSinceNow < 60*60*24*7 {
-								AuthManager.shared.update(token: .refresh)
+								AuthManager.shared.update(token: .refresh) { success in
+									print(success)
+								}
 							}
-							AuthManager.shared.update(token: .authentication)
+							AuthManager.shared.update(token: .authentication) { success in
+								print(success)
+							}
 							self.segueToAppllication()
 						} else {
 							AuthManager.shared.logout()

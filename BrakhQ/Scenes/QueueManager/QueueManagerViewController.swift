@@ -16,8 +16,6 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 	@IBOutlet weak var eventsTable: UITableView!
 	@IBOutlet weak var searchBar:UISearchBar!
 	
-	private var feed: FeedCashe? = DataCache.instance.readObject(forKey: "feed") as? FeedCashe
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
@@ -64,7 +62,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return feed?.queues.count ?? 0
+		return 4
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -114,8 +114,8 @@ class RegistrationViewController: FormViewController {
 			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
 				row.title = "Register"
-				}.onCellSelection { [weak self] (cell, row) in
-					self?.registerButtonClicked()
+				}.onCellSelection { (cell, row) in
+					self.registerButtonClicked()
 			}
 	}
 	

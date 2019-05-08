@@ -32,9 +32,15 @@ final class UpdateProfileViewModel {
 			self.delegate?.updateProfileViewModel(self, isLoading: false)
 			switch result {
 			case .success(_):
-				UserDefaults.standard.set(name, forKey: UserDefaultKeys.name.rawValue)
-				UserDefaults.standard.set(email, forKey: UserDefaultKeys.email.rawValue)
-				self.delegate?.updateProfileViewModel(self, updateSuccessfull: true)
+				if let user = AuthManager.shared.user {
+					AuthManager.shared.user = User(avatar: user.avatar,
+																				 id: user.id,
+																				 name: name,
+																				 email: email,
+																				 username: user.username)
+					self.delegate?.updateProfileViewModel(self, updateSuccessfull: true)
+				}
+				self.delegate?.updateProfileViewModel(self, updateSuccessfull: false)
 			case .failure(_):
 				self.delegate?.updateProfileViewModel(self, updateSuccessfull: false)
 			}

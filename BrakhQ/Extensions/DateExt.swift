@@ -14,10 +14,10 @@ extension Date {
 	
 	var iso8601: String {
 		let dateFormatter = DateFormatter()
-		dateFormatter.timeZone = TimeZone(abbreviation: "GMT+3")
-		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+		dateFormatter.timeZone = .autoupdatingCurrent
+		dateFormatter.dateFormat = Date.iso8601Format
 		
-		return dateFormatter.string(from: self).appending("Z")
+		return dateFormatter.string(from: self)
 	}
 	
 	var displayDate: String {

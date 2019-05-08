@@ -22,7 +22,7 @@ final class CreateEventViewModel {
 	weak var delegate: CreateEventViewModelDelegate?
 	let provider = MoyaProvider<QueueAPIProvider>()
 	
-	func createEvent(name: String, description: String, queueType: QueueType, regStart: Date, eventDate: Date, regEnd: Date, placesCount: Int) {
+	func createEvent(name: String, description: String?, queueType: QueueType, regStart: Date, eventDate: Date, regEnd: Date, placesCount: Int) {
 		
 		delegate?.createEventViewModel(self, isLoading: true)
 		
@@ -32,22 +32,28 @@ final class CreateEventViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
-						self.addNewQueue(queue)
+						DataManager.shared.addNewQueue(queue)
 						self.delegate?.createEventViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 					} else {
 						self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
+				} else {
+					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
 				}
 			case .failure(let error):
 				if error.errorCode == 401 {
-					
+					AuthManager.shared.update(token: .authentication) { success in
+						if success {
+							self.createEvent(name: name, description: description, queueType: queueType, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)
+						} else {
+							self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+						}
+					}
+				} else {
+					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
 				}
 			}
 		}
-		
-	}
-	
-	private func addNewQueue(_ queue: Queue) {
 		
 	}
 	

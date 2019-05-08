@@ -65,7 +65,9 @@ final class AuthManager {
 		defaults.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
 	}
 	
-	func update(token tokenType: TokenType) {
+	typealias CompletionHandler = (_ success:Bool) -> Void
+	
+	func update(token tokenType: TokenType, completionHandler: @escaping CompletionHandler) {
 		if let refreshToken = defaults.object(forKey: UserDefaultKeys.refreshToken.rawValue) as? String {
 			provider.request(.updateToken(refreshToken: refreshToken, tokenType: tokenType)) { result in
 				if case .success(let response) = result {
@@ -77,10 +79,14 @@ final class AuthManager {
 							self.defaults.set(newToken.token, forKey: UserDefaultKeys.refreshToken.rawValue)
 						case .undefined:
 							print("undefined token refreshed")
+							return completionHandler(false)
 						}
+						return completionHandler(true)
 					}
 				}
 			}
+		} else {
+			return completionHandler(false)
 		}
 	}
 }

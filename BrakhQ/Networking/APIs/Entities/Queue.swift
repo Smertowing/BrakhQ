@@ -11,7 +11,7 @@ import Foundation
 struct Queue: Codable {
 	
 	var busy_places: [Place]
-	var description: String
+	var description: String?
 	var event_date: String
 	var full: Bool
 	var id: Int
