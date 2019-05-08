@@ -12,7 +12,7 @@ class EventCalendarNavigationController: UINavigationController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let viewModel = EventCalendarViewModel()
+		let viewModel = QueueManagerViewModel()
 
 		self.pushViewController(EventCalendarViewController(viewModel: viewModel), animated: false)
 	}

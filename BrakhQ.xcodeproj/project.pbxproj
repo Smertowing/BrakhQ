@@ -59,7 +59,6 @@
 		F3DB0F0622808D7100A9F436 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0522808D7100A9F436 /* LaunchViewController.swift */; };
 		F3DB0F0B2280A35000A9F436 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0A2280A35000A9F436 /* DateExt.swift */; };
 		F3DB0F0D2280AC8B00A9F436 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DB0F0C2280AC8A00A9F436 /* Token.swift */; };
-		F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */; };
 		F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */; };
 		F3DE2E6622674B86002E5810 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */; };
 		F3DE2E6E22674BCD002E5810 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */; };
@@ -127,7 +126,6 @@
 		F3DB0F0522808D7100A9F436 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		F3DB0F0A2280A35000A9F436 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		F3DB0F0C2280AC8A00A9F436 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6122674B5D002E5810 /* EditEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6522674B86002E5810 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		F3DE2E6D22674BCD002E5810 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
@@ -284,9 +282,8 @@
 		F319F93B225CAF23009DDA7B /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */,
 				F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */,
-				F3DE2E5D22674ACE002E5810 /* EventCalendarViewModel.swift */,
+				F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -632,7 +629,6 @@
 				F3A731CC227DADFB0059233E /* QueueManagerViewModel.swift in Sources */,
 				F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */,
 				F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */,
-				F3DE2E5E22674ACE002E5810 /* EventCalendarViewModel.swift in Sources */,
 				F3A731F1227FAE060059233E /* UserAPIProvider.swift in Sources */,
 				F3A731EA227F70440059233E /* SiteTableViewCell.swift in Sources */,
 				F3CCDB2C22833FE80049AF51 /* FailureInfoView.swift in Sources */,

@@ -31,4 +31,11 @@ extension Date {
 		dateFormatter.timeStyle = .short
 		return dateFormatter.string(from: self)
 	}
+	
+	func compareTo(date: Date, toGranularity: Calendar.Component ) -> ComparisonResult  {
+		var cal = Calendar.current
+		cal.timeZone = .autoupdatingCurrent
+		return cal.compare(self, to: date, toGranularity: toGranularity)
+	}
+
 }

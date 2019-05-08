@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QueueManagerViewController: UIViewController, UISearchBarDelegate {
+class QueueManagerViewController: UIViewController {
 
 	private let viewModel: QueueManagerViewModel = QueueManagerViewModel()
 	
@@ -94,7 +94,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	
 }
 
-extension QueueManagerViewController {
+extension QueueManagerViewController: UISearchBarDelegate, UISearchDisplayDelegate {
 	
 	
 	func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

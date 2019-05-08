@@ -12,9 +12,9 @@ import DateToolsSwift
 
 class EventCalendarViewController: DayViewController {
 
-	private let viewModel: EventCalendarViewModel
+	private let viewModel: QueueManagerViewModel
 	
-	init(viewModel: EventCalendarViewModel) {
+	init(viewModel: QueueManagerViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -34,8 +34,42 @@ class EventCalendarViewController: DayViewController {
 		reloadData()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		viewModel.updateUsedEvents()
+		viewModel.updateCreatedEvents()
+	}
+	
+	private func setupViewModel() {
+		viewModel.delegate = self
+	}
+	
 	override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-		return viewModel.events(for: date)
+		var events = [Event]()
+		for queue in DataManager.shared.feed.queues {
+			if queue.eventDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
+				let event = Event()
+				event.startDate = queue.eventDate
+				event.endDate = queue.eventDate.addingTimeInterval(60*60)
+				event.text = queue.name + " - Event date"
+				events.append(event)
+			}
+			if queue.regStartDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
+				let event = Event()
+				event.startDate = queue.regStartDate
+				event.endDate = queue.regStartDate.addingTimeInterval(60*60)
+				event.text = queue.name + " - Registration starts"
+				events.append(event)
+			}
+			if queue.regEndDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
+				let event = Event()
+				event.startDate = queue.regEndDate
+				event.endDate = queue.regEndDate.addingTimeInterval(60*60)
+				event.text = queue.name + " - Registration ends"
+				events.append(event)
+			}
+		}
+		return events
 	}
 	
 	//Delegate
@@ -64,3 +98,18 @@ class EventCalendarViewController: DayViewController {
 	
 }
 
+extension EventCalendarViewController: QueueManagerViewModelDelegate {
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+		if isSuccess {
+			reloadData()
+		} else {
+			print(message as Any)
+		}
+	}
+	
+}
