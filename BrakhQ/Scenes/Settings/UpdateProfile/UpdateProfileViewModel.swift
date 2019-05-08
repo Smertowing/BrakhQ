@@ -46,14 +46,14 @@ final class UpdateProfileViewModel {
 		
 		delegate?.updateProfileViewModel(self, isLoading: true)
 		
-		providerAuth.request(.auth(password: currentPassword, username: UserDefaults.standard.object(forKey: UserDefaultKeys.username.rawValue) as! String)) { (result) in
+		providerAuth.request(.auth(password: currentPassword, username: AuthManager.shared.user?.username ?? "")) { (result) in
 			self.delegate?.updateProfileViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
 				if let answer = try? response.map(AuthResponse.self) {
 					if let token = answer.token, let refreshToken = answer.refreshToken {
-						UserDefaults.standard.set(token, forKey: UserDefaultKeys.token.rawValue)
-						UserDefaults.standard.set(refreshToken, forKey: UserDefaultKeys.refreshToken.rawValue)
+						AuthManager.shared.token = token
+						AuthManager.shared.refreshToken = refreshToken
 						self.updatePassword(password: newPassword)
 					} else {
 						self.delegate?.updateProfileViewModel(self, updateSuccessfull: false)

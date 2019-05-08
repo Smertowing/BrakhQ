@@ -111,9 +111,9 @@ extension UserAPIProvider: TargetType {
 		case .register:
 			return ["Content-Type": "application/json"]
 		case .getUser, .getUserByUsername,  .getQueuesCreatedBy, .getQueuesUsedBy:
-			return ["Authorization": "\(UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String)"]
+			return ["Authorization": "\(AuthManager.shared.token ?? "")"]
 		case .updateUser, .updatePassword:
-			return ["Authorization": "\(UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String)",
+			return ["Authorization": "\(AuthManager.shared.token ?? "")",
 							"Content-Type": "application/json"]
 		}
 	}

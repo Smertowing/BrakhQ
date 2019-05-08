@@ -25,14 +25,7 @@ final class SettingsViewModel {
 	
 	func exit() {
 		
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.username.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.name.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.email.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.id.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.avatar.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.token.rawValue)
-		UserDefaults.standard.set(nil, forKey: UserDefaultKeys.refreshToken.rawValue)
-		UserDefaults.standard.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
+		AuthManager.shared.logout()
 		
 		delegate?.settingsViewModel(self, readyToExit: true)
 		

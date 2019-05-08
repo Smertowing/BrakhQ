@@ -1,5 +1,5 @@
 //
-//  UserEnums.swift
+//  NetworkingError.swift
 //  BrakhQ
 //
 //  Created by Kiryl Holubeu on 5/6/19.
@@ -7,4 +7,3 @@
 //
 
 import Foundation
-

@@ -64,28 +64,38 @@ extension QueueAPIProvider: TargetType {
 				encoding: URLEncoding.default
 			)
 		case .createQueue(let name, let description, let queueType, let regStart, let eventDate, let regEnd, let placesCount):
+			var params: [String:Any] = ["name": name,
+																			"queue_type": queueType,
+																			"reg_start": regStart,
+																			"event_date": eventDate,
+																			"reg_end": regEnd,
+																			"places_count": placesCount]
+			if let descript = description {
+				params["description"] = descript
+			}
 			return .requestParameters(
-				parameters: [
-					"name": name,
-					"description": description ?? NSNull(),
-					"queue_type": queueType,
-					"reg_start": regStart,
-					"event_date": eventDate,
-					"reg_end": regEnd,
-					"places_count": placesCount
-				],
+				parameters: params,
 				encoding: JSONEncoding.default
 			)
 		case .updateQueue(let id, let description, let regStart, let eventDate, let regEnd, let placesCount):
+			var params: [String:Any] = ["id": id]
+			if let desript = description {
+				params["description"] = desript
+			}
+			if let start = regStart {
+				params["reg_start"] = start
+			}
+			if let event = eventDate {
+				params["event_date"] = event
+			}
+			if let end = regEnd {
+				params["reg_end"] = end
+			}
+			if let places = placesCount {
+				params["places_count"] = places
+			}
 			return .requestParameters(
-				parameters: [
-					"id": id,
-					"description": description ?? NSNull(),
-					"reg_start": regStart ?? NSNull(),
-					"event_date": eventDate ?? NSNull(),
-					"reg_end": regEnd ?? NSNull(),
-					"places_count": placesCount ?? NSNull()
-				],
+				parameters: params,
 				encoding: JSONEncoding.default
 			)
 		case .takeQueueSite(let site, _):
@@ -107,9 +117,9 @@ extension QueueAPIProvider: TargetType {
 		case .getQueue:
 			return nil
 		case .takeQueueSite, .freeUpQueueSite, .takeFirstQueueSite:
-			return ["Authorization": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String]
+			return ["Authorization": AuthManager.shared.token ?? ""]
 		case .createQueue, .updateQueue:
-			return ["Authorization": UserDefaults.standard.object(forKey: UserDefaultKeys.token.rawValue) as! String,
+			return ["Authorization": AuthManager.shared.token ?? "",
 							"Content-Type": "application/json"]
 		}
 		

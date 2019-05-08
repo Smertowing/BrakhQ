@@ -33,8 +33,8 @@ final class LoginViewModel {
 			case .success(let response):
 				if let answer = try? response.map(AuthResponse.self) {
 					if let token = answer.token, let refreshToken = answer.refreshToken {
-						UserDefaults.standard.set(token, forKey: UserDefaultKeys.token.rawValue)
-						UserDefaults.standard.set(refreshToken, forKey: UserDefaultKeys.refreshToken.rawValue)
+						AuthManager.shared.token = token
+						AuthManager.shared.refreshToken = refreshToken
 						self.getUserBy(username: username, token: token)
 					} else {
 						self.delegate?.loginViewModel(self, isSuccess: false, user: nil)
@@ -58,12 +58,8 @@ final class LoginViewModel {
 			if case .success(let response) = result  {
 				if let answer = try? response.map(ModelResponseUser.self) {
 					if let user = answer.response {
-						UserDefaults.standard.set(user.username, forKey: UserDefaultKeys.username.rawValue)
-						UserDefaults.standard.set(user.name, forKey: UserDefaultKeys.name.rawValue)
-						UserDefaults.standard.set(user.email, forKey: UserDefaultKeys.email.rawValue)
-						UserDefaults.standard.set(user.id, forKey: UserDefaultKeys.id.rawValue)
-						UserDefaults.standard.set(user.avatar, forKey: UserDefaultKeys.avatar.rawValue)
-						UserDefaults.standard.set(true, forKey: UserDefaultKeys.isLogged.rawValue)
+						AuthManager.shared.user = user
+						AuthManager.shared.login()
 						self.delegate?.loginViewModel(self, isSuccess: true, user: user)
 					} else {
 						self.delegate?.loginViewModel(self, isSuccess: false, user: nil)

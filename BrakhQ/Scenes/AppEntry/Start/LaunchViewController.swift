@@ -21,36 +21,23 @@ class LaunchViewController: UIViewController {
 			self.loadingIndicator.startAnimating()
 		}
 		
-		if UserDefaults.standard.bool(forKey: UserDefaultKeys.isLogged.rawValue) {
-			let refreshToken = UserDefaults.standard.object(forKey: UserDefaultKeys.refreshToken.rawValue) as! String
-			provider.request(.checkToken(token: refreshToken)) { result in
+		if AuthManager.shared.isAuthenticated {
+			provider.request(.checkToken(token: AuthManager.shared.refreshToken ?? "")) { result in
 				if case .success(let response) = result {
 					if let answer = try? response.map(TokenValidationResponse.self) {
 						if answer.valid, let expired = answer.expired, let expires = answer.expires {
 							if expired {
-								UserDefaults.standard.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
+								AuthManager.shared.logout()
 								self.segueToStartScreen()
 							}
 							let diffDate = Date(dateString: expires, format: Date.iso8601Format)
 							if diffDate.timeIntervalSinceNow < 60*60*24*7 {
-								self.provider.request(.updateToken(refreshToken: refreshToken, tokenType: .refresh)) { result in
-									if case .success(let response) = result {
-										if let newRefreshToken = try? response.map(Token.self) {
-											UserDefaults.standard.set(newRefreshToken.token, forKey: UserDefaultKeys.refreshToken.rawValue)
-										}
-									}
-								}
+								AuthManager.shared.update(token: .refresh)
 							}
-							self.provider.request(.updateToken(refreshToken: refreshToken, tokenType: .authentication)) { result in
-								if case .success(let response) = result {
-									if let newToken = try? response.map(Token.self) {
-										UserDefaults.standard.set(newToken.token, forKey: UserDefaultKeys.token.rawValue)
-									}
-								}
-							}
+							AuthManager.shared.update(token: .authentication)
 							self.segueToAppllication()
 						} else {
-							UserDefaults.standard.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
+							AuthManager.shared.logout()
 							self.segueToStartScreen()
 						}
 					}

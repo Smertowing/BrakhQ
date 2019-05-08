@@ -43,14 +43,14 @@ class UpdateProfileViewController: FormViewController {
 			Section("Change Profile")
 			<<< NameRow("Name") {
 				$0.title = $0.tag
-				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.name.rawValue) as? String
+				$0.value = AuthManager.shared.user?.name
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 			}
 			
 			<<< EmailRow("Email") {
 				$0.title = $0.tag
-				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.email.rawValue) as? String
+				$0.value = AuthManager.shared.user?.email
 				
 				$0.add(rule: RuleRequired())
 				var ruleSet = RuleSet<String>()

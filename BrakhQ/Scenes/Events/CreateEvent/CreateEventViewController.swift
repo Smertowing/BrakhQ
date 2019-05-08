@@ -27,7 +27,13 @@ class CreateEventViewController: FormViewController {
 		hideKeyboardWhenTappedAround()
 		title = "New Queue"
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		
+		setupViewModel()
 		initializeForm()
+	}
+	
+	private func setupViewModel() {
+		viewModel.delegate = self
 	}
 	
 	private func initializeForm() {
@@ -165,4 +171,16 @@ class CreateEventViewController: FormViewController {
 	@objc func createButtonClicked() {
 		
 	}
+}
+
+extension CreateEventViewController: CreateEventViewModelDelegate {
+	
+	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+		
+	}
+	
+	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isLoading: Bool) {
+		
+	}
+	
 }

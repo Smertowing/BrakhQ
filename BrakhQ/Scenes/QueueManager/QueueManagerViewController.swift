@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import DataCache
 
 class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 
 	private let viewModel: QueueManagerViewModel = QueueManagerViewModel()
 	
 	@IBOutlet weak var eventsTable: UITableView!
-	
 	@IBOutlet weak var searchBar:UISearchBar!
+	
+	private var feed: FeedCashe? = DataCache.instance.readObject(forKey: "feed") as? FeedCashe
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -62,7 +64,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return feed?.queues.count ?? 0
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -76,7 +78,6 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
-		
 		return cell
 	}
 	

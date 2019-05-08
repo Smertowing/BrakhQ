@@ -42,7 +42,7 @@ struct TokenValidationResponse: Codable {
 
 struct ModelResponseQueue: Codable {
     
-	var message: String
+	var message: String?
 	var response: Queue?
 	var success: Bool
     
@@ -58,7 +58,7 @@ struct ModelResponseUser: Codable {
 
 struct ModelResponseCollectionQueue: Codable {
     
-	var message: String
+	var message: String?
 	var response: [Queue]?
 	var success: Bool
 

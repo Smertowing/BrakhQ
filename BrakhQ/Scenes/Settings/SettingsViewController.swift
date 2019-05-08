@@ -60,21 +60,21 @@ class SettingsViewController: FormViewController {
 			}
 			<<< LabelRow("Username") {
 				$0.title = $0.tag
-				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.username.rawValue) as? String
+				$0.value = AuthManager.shared.user?.username
 			}
 			
 			<<< LabelRow("Name") {
 				$0.title = $0.tag
-				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.name.rawValue) as? String
+				$0.value = AuthManager.shared.user?.name
 				}.cellUpdate {_, row in
-					row.value = UserDefaults.standard.object(forKey: UserDefaultKeys.name.rawValue) as? String
+					row.value = AuthManager.shared.user?.name
 			}
 			
 			<<< LabelRow("Email") {
 				$0.title = $0.tag
-				$0.value = UserDefaults.standard.object(forKey: UserDefaultKeys.email.rawValue) as? String
+				$0.value = AuthManager.shared.user?.email
 				}.cellUpdate {_, row in
-					row.value = UserDefaults.standard.object(forKey: UserDefaultKeys.email.rawValue) as? String
+					row.value = AuthManager.shared.user?.email
 			}
 			
 			<<< ButtonRow("Update profile") { (row: ButtonRow) -> Void in
