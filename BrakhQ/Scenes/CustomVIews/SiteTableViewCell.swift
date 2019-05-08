@@ -17,6 +17,23 @@ class SiteTableViewCell: UITableViewCell {
 	@IBAction func actionButtonClicked(_ sender: Any) {
 	}
 	
+	func set(user: UserCashe?, to position: Int) {
+		numberLabel.text = "\(position)."
+		if let user = user {
+			nameLabel.text = user.name
+			if user.id == AuthManager.shared.user?.id {
+				backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+				actionButtom.titleLabel?.text = "Release"
+			} else {
+				backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+				actionButtom.titleLabel?.text = "Engaged"
+			}
+		} else {
+			backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+			nameLabel.text = "Free"
+		}
+	}
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code

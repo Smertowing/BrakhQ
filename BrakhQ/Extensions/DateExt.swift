@@ -28,7 +28,7 @@ extension Date {
 	
 	var displayTime: String {
 		let dateFormatter = DateFormatter()
-		dateFormatter.timeStyle = .long
+		dateFormatter.timeStyle = .short
 		return dateFormatter.string(from: self)
 	}
 }

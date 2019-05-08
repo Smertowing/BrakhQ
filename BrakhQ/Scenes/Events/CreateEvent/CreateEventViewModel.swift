@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import DataCache
 
 protocol CreateEventViewModelDelegate: class {
 	
@@ -32,8 +31,9 @@ final class CreateEventViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
-						DataManager.shared.addNewQueue(queue)
-						self.delegate?.createEventViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
+						DataManager.shared.addNewQueue(queue) {
+							self.delegate?.createEventViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
+						}
 					} else {
 						self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}

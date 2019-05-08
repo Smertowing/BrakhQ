@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DataCache
 
 class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 
@@ -62,20 +61,23 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 4
+		return DataManager.shared.feed.queues.count
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		tableView.cellForRow(at: indexPath)?.isSelected = false
+		let cell = tableView.cellForRow(at: indexPath) as! EventTableViewCell
+		cell.isSelected = false
 		
 		let storyBoard = UIStoryboard(name: "Event", bundle: nil)
 		let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
-		viewController.viewModel = EventViewModel()
+		viewController.viewModel = EventViewModel(for: cell.currentQueue)
 		self.navigationController?.pushViewController(viewController, animated: true)
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
+		cell.setQueue(DataManager.shared.feed.queues[indexPath.row])
+		
 		return cell
 	}
 	

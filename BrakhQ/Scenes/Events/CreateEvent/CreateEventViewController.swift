@@ -207,6 +207,10 @@ class CreateEventViewController: FormViewController {
 
 extension CreateEventViewController: CreateEventViewModelDelegate {
 	
+	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isLoading: Bool) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
 	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
 			let alert = UIAlertController(title: "Successfull", message: "You've created event queue!", preferredStyle: UIAlertController.Style.alert)
@@ -220,9 +224,5 @@ extension CreateEventViewController: CreateEventViewModelDelegate {
 			self.present(alert, animated: true, completion: nil)
 		}
 	}
-	
-	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isLoading: Bool) {
-		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
-	}
-	
+
 }
