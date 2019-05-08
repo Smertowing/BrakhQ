@@ -102,7 +102,6 @@ class EventViewController: UIViewController {
 	@IBAction func additionalInfoClicked(_ sender: Any) {
 		let eventInfoViewController = EventInfoViewController()
 		eventInfoViewController.viewModel = viewModel
-		eventInfoViewController.delegate = self
 		self.show(eventInfoViewController, sender: self)
 	}
 	
@@ -147,14 +146,6 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
 		cell.clipsToBounds = true
 		
 		return cell
-	}
-	
-}
-
-extension EventViewController: EventInfoViewControllerDelegate {
-	
-	func EventInfoViewControllerDidUpdated(_ controller: EventInfoViewController) {
-		
 	}
 	
 }

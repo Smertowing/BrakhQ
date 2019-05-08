@@ -9,14 +9,15 @@
 import UIKit
 import Eureka
 
-protocol EventInfoViewControllerDelegate: class {
-	func EventInfoViewControllerDidUpdated(_ controller: EventInfoViewController)
+protocol EventInfoViewControllerDelegate {
+
+	func eventUpdated()
+	
 }
 
 class EventInfoViewController: FormViewController {
 
-	weak var viewModel: EventViewModel?
-	weak var delegate: EventInfoViewControllerDelegate?
+	weak var viewModel: EventViewModel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,16 +32,24 @@ class EventInfoViewController: FormViewController {
 			+++
 			Section("Event Info")
 			<<< LabelRow("Title") {
-				$0.title = "Event Title"
+				$0.title = $0.tag
+				$0.value = viewModel?.queue.name
 			}
 			
 			<<< LabelRow("Event Date") {
-				$0.title = "\(Date().addingTimeInterval(60*60*25))"
+				$0.title = $0.tag
+				$0.value = viewModel.queue.eventDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 			}
 			
 			+++
 			Section("Description")
-			<<< TextAreaRow()
+			<<< TextAreaRow() {
+				$0.value = viewModel.queue.descript
+				$0.resetValue = viewModel.queue.descript
+				}
+				.onChange { row in
+					row.resetRowValue()
+				}
 				.cellSetup { cell, row in
 					cell.textView.text = "Description?"
 			}
@@ -49,12 +58,12 @@ class EventInfoViewController: FormViewController {
 			Section("Queue")
 			<<< LabelRow("Owner") {
 				$0.title = $0.tag
-				$0.value = "Kiryl Holubeu"
+				$0.value = viewModel.queue.owner.name
 			}
 			
 			<<< LabelRow("Sites") {
 				$0.title = $0.tag
-				$0.value = "\(0)/\(0)"
+				$0.value = "\(viewModel.queue.busyPlaces.count)/\(viewModel.queue.placesCount)"
 			}
 			
 			<<< ButtonRow("URL") { (row: ButtonRow) -> Void in
@@ -67,31 +76,40 @@ class EventInfoViewController: FormViewController {
 			Section("Queue Settings")
 			<<< LabelRow("Type") {
 				$0.title = $0.tag
-				$0.value = "Default"
+				$0.value = viewModel.queue.queueType.rawValue
 			}
 			
 			<<< LabelRow("Number of Sites") {
 				$0.title = $0.tag
-				$0.value = "\(7)"
+				$0.value = "\(viewModel.queue.placesCount)"
 			}
 			
 			+++
 			Section("Registration Dates")
 			<<< LabelRow("Starts") {
 				$0.title = $0.tag
-				$0.value = "\(Date().addingTimeInterval(60*60))"
+				$0.value = viewModel.queue.regStartDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 			}
 			
 			<<< LabelRow("Ends"){
 				$0.title = $0.tag
-				$0.value = "\(Date().addingTimeInterval(60*60*24))"
+				$0.value = viewModel.queue.regEndDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 			}
 		
 	}
 	
 	@objc func editButtonClicked() {
-		let viewModel = EditEventViewModel()
-		self.show(EditEventViewController(viewModel: viewModel), sender: self)
+		let viewModel = EditEventViewModel(for: self.viewModel.queue)
+		let editEventViewController = EditEventViewController(viewModel: viewModel, delegate: self)
+		self.show(editEventViewController, sender: self)
+	}
+	
+}
+
+extension EventInfoViewController: EventInfoViewControllerDelegate {
+	
+	func eventUpdated() {
+		_ = self.navigationController?.popViewController(animated: true)
 	}
 	
 }

@@ -36,6 +36,7 @@ final class DataManager {
 			feed.queues.append(QueueCashe(queue: queue))
 		}
 		DataCache.instance.write(object: feed, forKey: FeedKeys.feed.rawValue)
+		completionHandler()
 	}
 	
 }

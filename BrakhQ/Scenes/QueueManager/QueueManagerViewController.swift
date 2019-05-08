@@ -23,8 +23,19 @@ class QueueManagerViewController: UIViewController, UISearchBarDelegate {
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
 		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		setupViewModel()
 		configureEventsTable()
 		configureSearchBar()
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		viewModel.updateUsedEvents()
+		viewModel.updateCreatedEvents()
+	}
+	
+	private func setupViewModel() {
+		viewModel.delegate = self
 	}
 	
 	func configureEventsTable() {
@@ -104,6 +115,22 @@ extension QueueManagerViewController {
 	
 	func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
 		
+	}
+	
+}
+
+extension QueueManagerViewController: QueueManagerViewModelDelegate {
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+		if isSuccess {
+			eventsTable.reloadData()
+		} else {
+			print(message as Any)
+		}
 	}
 	
 }
