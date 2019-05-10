@@ -134,12 +134,12 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "siteCell", for: indexPath) as! SiteTableViewCell
 		let filteredQueue = viewModel.queue.busyPlaces.filter { $0.place == indexPath.section }
+		cell.viewModel = self.viewModel
 		if filteredQueue.count > 0{
 			cell.set(user: filteredQueue[0].user, to: indexPath.section)
 		} else {
 			cell.set(user: nil, to: indexPath.section)
 		}
-		
 		cell.layer.borderColor = UIColor.clear.cgColor
 		cell.layer.borderWidth = 1
 		cell.layer.cornerRadius = 8

@@ -26,6 +26,7 @@ final class SettingsViewModel {
 	func exit() {
 		
 		AuthManager.shared.logout()
+		DataManager.shared.logout()
 		
 		delegate?.settingsViewModel(self, readyToExit: true)
 		

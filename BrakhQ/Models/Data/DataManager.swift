@@ -20,6 +20,10 @@ final class DataManager {
 		}
 	}
 	
+	func logout() {
+		DataCache.instance.cleanAll()
+	}
+	
 	func addNewQueue(_ queue: Queue, completionHandler: @escaping ()->Void) {
 		let feed = (DataCache.instance.readObject(forKey: FeedKeys.feed.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
 		var isNew = true

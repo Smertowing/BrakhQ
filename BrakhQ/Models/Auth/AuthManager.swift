@@ -67,7 +67,7 @@ final class AuthManager {
 	
 	typealias CompletionHandler = (_ success:Bool) -> Void
 	
-	func update(token tokenType: TokenType, completionHandler: @escaping CompletionHandler) {
+	func update(token tokenType: TokenType, completionHandler: @escaping (CompletionHandler)) {
 		if let refreshToken = defaults.object(forKey: UserDefaultKeys.refreshToken.rawValue) as? String {
 			provider.request(.updateToken(refreshToken: refreshToken, tokenType: tokenType)) { result in
 				if case .success(let response) = result {
@@ -89,4 +89,5 @@ final class AuthManager {
 			return completionHandler(false)
 		}
 	}
+
 }

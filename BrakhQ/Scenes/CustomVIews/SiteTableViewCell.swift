@@ -14,7 +14,10 @@ class SiteTableViewCell: UITableViewCell {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var actionButtom: UIButton!
 	
+	weak var viewModel: EventViewModel!
+	
 	@IBAction func actionButtonClicked(_ sender: Any) {
+		
 	}
 	
 	func set(user: UserCashe?, to position: Int) {
@@ -31,6 +34,11 @@ class SiteTableViewCell: UITableViewCell {
 		} else {
 			backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 			nameLabel.text = "Free"
+		}
+		if viewModel.queue.regStarted && !viewModel.queue.regEnded {
+			actionButtom.isHidden = false
+		} else {
+			actionButtom.isHidden = true
 		}
 	}
 	
