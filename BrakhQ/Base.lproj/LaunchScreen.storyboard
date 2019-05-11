@@ -28,9 +28,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="BQLabel" translatesAutoresizingMaskIntoConstraints="NO" id="ysP-a1-qEG">
-                                        <rect key="frame" x="52.5" y="94.5" width="215" height="215"/>
+                                        <rect key="frame" x="80" y="149.5" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ysP-a1-qEG" secondAttribute="height" multiplier="1:1" id="MrF-rI-GR8"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="uZ9-g5-ejN"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Очереди в каждый дом!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-Qt-5cn">
@@ -45,7 +46,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ysP-a1-qEG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yyL-38-jlj" secondAttribute="top" constant="50" id="5AU-vx-XmI"/>
+                                    <constraint firstItem="ysP-a1-qEG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yyL-38-jlj" secondAttribute="top" constant="48" id="5AU-vx-XmI"/>
                                     <constraint firstAttribute="width" constant="320" id="8Br-ad-c7K"/>
                                     <constraint firstItem="MFC-Qt-5cn" firstAttribute="centerX" secondItem="yyL-38-jlj" secondAttribute="centerX" id="9AD-vb-UcR"/>
                                     <constraint firstItem="V9u-nI-8q4" firstAttribute="centerY" secondItem="yyL-38-jlj" secondAttribute="centerY" constant="-54" id="Gb4-TA-WSh"/>
