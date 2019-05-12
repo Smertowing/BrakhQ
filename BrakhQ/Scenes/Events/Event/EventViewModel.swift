@@ -36,24 +36,44 @@ final class EventViewModel {
 	}
 	
 	func setPlaceConfigs() {
-		var interactable = true
-		queue.busyPlaces.forEach { (placeCache) in
-			places[placeCache.place-1].username = placeCache.user!.name
-			if placeCache.user!.id == AuthManager.shared.user!.id {
-				interactable = false
-				places[placeCache.place-1].accessability = .release
-			} else {
-				places[placeCache.place-1].accessability = .engaged
+		places = []
+		for i in 1...queue.placesCount {
+			places.append(SiteConfig(accessability: .free,
+															 username: "Free",
+															 position: i,
+															 interactable: true))
+		}
+		
+		
+		if queue.regActive {
+			var interactable = true
+			
+			queue.busyPlaces.forEach { (placeCache) in
+				places[placeCache.place-1].username = placeCache.user!.name
+				if placeCache.user!.id == AuthManager.shared.user!.id {
+					interactable = false
+					places[placeCache.place-1].accessability = .release
+				} else {
+					places[placeCache.place-1].accessability = .engaged
+				}
+			}
+		
+			places = places.map { (place) -> SiteConfig in
+				return SiteConfig(accessability: place.accessability,
+													username: place.username,
+													position: place.position,
+													interactable: place.accessability == .release ? true : interactable)
+			}
+		} else {
+			places = places.map { (place) -> SiteConfig in
+				return SiteConfig(accessability: place.accessability,
+													username: place.username,
+													position: place.position,
+													interactable: false)
 			}
 		}
 		
-		places = places.map { (place) -> SiteConfig in
-				return SiteConfig(accessability: place.accessability,
-													 username: place.username,
-													 position: place.position,
-													 interactable: place.accessability == .release ? true : interactable)
-		}
-		
+		delegate?.eventViewModel(self, endConfigurating: true)
 	}
 	
 	func updateEvent(refresher: Bool) {
@@ -95,8 +115,100 @@ final class EventViewModel {
 	
 	func interactPlace(_ site: Int) {
 		delegate?.eventViewModel(self, isLoading: true)
-		provider.request(.takeQueueSite(site: site, queueId: self.queue.id)) { success in
-			
+		
+		switch places[site-1].accessability {
+		case .release:
+			provider.request(.freeUpQueueSite(queueId: queue.id)) { result in
+				self.delegate?.eventViewModel(self, isLoading: false)
+				switch result {
+				case .success(let response):
+					if let answer = try? response.map(ResponseState.self) {
+						if answer.success {
+							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+							self.updateEvent(refresher: false)
+						} else {
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
+						}
+					} else {
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					}
+				case .failure(let error):
+					if error.errorCode == 401 {
+						AuthManager.shared.update(token: .authentication) { success in
+							if success {
+								self.interactPlace(site)
+							} else {
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							}
+						}
+					} else {
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					}
+				}
+			}
+		case .engaged:
+			break
+		case .free:
+			provider.request(.takeQueueSite(site: site, queueId: queue.id)) { result in
+				self.delegate?.eventViewModel(self, isLoading: false)
+				switch result {
+				case .success(let response):
+					if let answer = try? response.map(ResponseState.self) {
+						if answer.success {
+							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+							self.updateEvent(refresher: false)
+						} else {
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
+						}
+					} else {
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					}
+				case .failure(let error):
+					if error.errorCode == 401 {
+						AuthManager.shared.update(token: .authentication) { success in
+							if success {
+								self.interactPlace(site)
+							} else {
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							}
+						}
+					} else {
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					}
+				}
+			}
+		}
+	}
+	
+	func takeSequent() {
+		delegate?.eventViewModel(self, isLoading: true)
+		provider.request(.takeFirstQueueSite(queueId: queue.id)) { result in
+			self.delegate?.eventViewModel(self, isLoading: false)
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ResponseState.self) {
+					if answer.success {
+						self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+						self.updateEvent(refresher: false)
+					} else {
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
+					}
+				} else {
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+				}
+			case .failure(let error):
+				if error.errorCode == 401 {
+					AuthManager.shared.update(token: .authentication) { success in
+						if success {
+							self.takeSequent()
+						} else {
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+						}
+					}
+				} else {
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+				}
+			}
 		}
 	}
 	

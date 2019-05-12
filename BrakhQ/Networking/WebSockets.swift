@@ -19,10 +19,10 @@ protocol WebSocketModelDelegate: class {
 	func webSocketModel(isListening: Bool)
 	func regStarts()
 	func regEnds()
-	func take(place: PlaceCashe)
-	func free(place: PlaceCashe)
-	func changed(queue: QueueCashe)
-	func mixed(queue: QueueCashe)
+	func take(place: Place)
+	func free(place: Place)
+	func changed(queue: Queue)
+	func mixed(queue: Queue)
 	func webSocketModel(didRecievedError: String)
 }
 
@@ -85,13 +85,13 @@ final class WebSocketModel: WebSocketDelegate {
 			case .regEnd:
 				delegate?.regEnds()
 			case .placeTake:
-				delegate?.take(place: PlaceCashe(place: result.place!))
+				delegate?.take(place: result.place!)
 			case .placeFree:
-				delegate?.free(place: PlaceCashe(place: result.place!))
+				delegate?.free(place: result.place!)
 			case .queueChange:
-				delegate?.changed(queue: QueueCashe(queue: result.queue!))
+				delegate?.changed(queue: result.queue!)
 			case .queueMix:
-				delegate?.mixed(queue: QueueCashe(queue: result.queue!))
+				delegate?.mixed(queue: result.queue!)
 			}
 		} else {
 			delegate?.webSocketModel(didRecievedError: "Invalid server response")
@@ -99,25 +99,7 @@ final class WebSocketModel: WebSocketDelegate {
 	}
 	
 	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		do {
-			let result = try JSONDecoder().decode(WebSocketResponse.self, from: data)
-			switch result.event {
-			case .regStart:
-				delegate?.regStarts()
-			case .regEnd:
-				delegate?.regEnds()
-			case .placeTake:
-				delegate?.take(place: PlaceCashe(place: result.place!))
-			case .placeFree:
-				delegate?.free(place: PlaceCashe(place: result.place!))
-			case .queueChange:
-				delegate?.changed(queue: QueueCashe(queue: result.queue!))
-			case .queueMix:
-				delegate?.mixed(queue: QueueCashe(queue: result.queue!))
-			}
-		} catch {
-			delegate?.webSocketModel(didRecievedError: "Invalid server response")
-		}
+		print(data)
 	}
-	
+
 }

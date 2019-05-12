@@ -48,6 +48,19 @@ open class QueueCashe: NSObject, NSCoding {
 		url = queue.url
 	}
 	
+	func remove(_ place: Place) {
+		for i in 0..<busyPlaces.count {
+			if busyPlaces[i].place == place.place {
+				busyPlaces.remove(at: i)
+				return
+			}
+		}
+	}
+	
+	func add(_ place: Place) {
+		busyPlaces.append(PlaceCashe(place: place))
+	}
+	
 	public required init?(coder aDecoder: NSCoder) {
 		self.busyPlaces = aDecoder.decodeObject(forKey: "busyPlaces") as! [PlaceCashe]
 		self.descript = aDecoder.decodeObject(forKey: "description") as? String

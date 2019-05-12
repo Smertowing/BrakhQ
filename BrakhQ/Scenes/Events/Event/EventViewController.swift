@@ -47,6 +47,7 @@ class EventViewController: UIViewController {
 	@IBOutlet weak var sitesLabel: UILabel!
 	@IBOutlet weak var randomLabel: UILabel!
 	
+	@IBOutlet weak var takeSequentButton: UIButton!
 	@IBOutlet weak var queueTableView: UITableView!
 	
 	private func setupViewModel() {
@@ -62,15 +63,18 @@ class EventViewController: UIViewController {
 		}
 		if viewModel.queue.regActive {
 			runCountdown()
-			untilLabel.isHidden = false
+			untilLabel.isEnabled = false
 			untilLabel.text = "Until end of registration:"
+			takeSequentButton.isEnabled = true
 		} else if viewModel.queue.regEnded {
 			counterLabel.text = "Registration is over"
-			untilLabel.isHidden = true
+			untilLabel.isEnabled = true
+			takeSequentButton.isEnabled = false
 		} else {
 			runCountdown()
-			untilLabel.isHidden = false
+			untilLabel.isEnabled = false
 			untilLabel.text = "Until start of registration"
+			takeSequentButton.isEnabled = false
 		}
 	}
 	
@@ -130,7 +134,7 @@ class EventViewController: UIViewController {
 	}
 	
 	@IBAction func takeSequent(_ sender: Any) {
-		
+		viewModel.takeSequent()
 	}
 	
 	@objc func copyLinkButtonClicked() {
@@ -227,31 +231,41 @@ extension EventViewController: WebSocketModelDelegate {
 	}
 	
 	func regStarts() {
-		
+		viewModel.updateEvent(refresher: false)
 	}
 	
 	func regEnds() {
-		
+		viewModel.updateEvent(refresher: false)
 	}
 	
-	func take(place: PlaceCashe) {
-		
+	func take(place: Place) {
+		viewModel.queue.add(place)
+		viewModel.setPlaceConfigs()
+		viewModel.updateEvent(refresher: false)
 	}
 	
-	func free(place: PlaceCashe) {
-		
+	func free(place: Place) {
+		viewModel.queue.remove(place)
+		viewModel.setPlaceConfigs()
+		viewModel.updateEvent(refresher: false)
 	}
 	
-	func changed(queue: QueueCashe) {
-		
+	func changed(queue: Queue) {
+		viewModel.queue = QueueCashe(queue: queue)
+		viewModel.setPlaceConfigs()
+		DataManager.shared.addNewQueue(queue) {}
 	}
 	
-	func mixed(queue: QueueCashe) {
-		
+	func mixed(queue: Queue) {
+		viewModel.queue = QueueCashe(queue: queue)
+		viewModel.setPlaceConfigs()
+		DataManager.shared.addNewQueue(queue) {}
 	}
 	
 	func webSocketModel(didRecievedError: String) {
-		
+		let alert = UIAlertController(title: "Failure", message: didRecievedError, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	
