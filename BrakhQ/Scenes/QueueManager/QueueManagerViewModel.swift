@@ -14,22 +14,45 @@ protocol QueueManagerViewModelDelegate: class {
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool)
-	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?)
 }
 
 final class QueueManagerViewModel {
 	
 	weak var delegate: QueueManagerViewModelDelegate?
-	let provider = MoyaProvider<UserAPIProvider>()
+	let providerUser = MoyaProvider<UserAPIProvider>()
+	let providerQueue = MoyaProvider<QueueAPIProvider>()
+	
+	var queues: [QueueCashe]!
+	
+	func searchBy(_ link: String) {
+		do {
+			let regex = try NSRegularExpression(pattern: "queue.brakh.men/[a-zA-Z0-9]+")
+			let results = regex.matches(in: link,
+																	range: NSRange(link.startIndex..., in: link))
+			var links = results.map {
+				String(link[Range($0.range, in: link)!])
+			}
+			if links.isEmpty {
+				self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input")
+			} else {
+				var url: String = links[0]
+				url.removeFirst("queue.brakh.men/".count)
+				
+				getQueue(by: url)
+			}
+		} catch {
+			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input")
+		}
+	}
 	
 	func refresh(refresher: Bool) {
 		updateUsedEvents(with: refresher)
 	}
 	
-	
 	private func updateUsedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		provider.request(.getQueuesUsedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
+		providerUser.request(.getQueuesUsedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
@@ -70,7 +93,7 @@ final class QueueManagerViewModel {
 
 	private func updateCreatedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		provider.request(.getQueuesCreatedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
+		providerUser.request(.getQueuesCreatedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
@@ -105,6 +128,39 @@ final class QueueManagerViewModel {
 				}
 			}
 			
+		}
+	}
+	
+	func getQueue(by url: String) {
+		delegate?.queueManagerViewModel(self, isLoading: true)
+		providerQueue.request(.getQueue(url: url)) { result in
+			self.delegate?.queueManagerViewModel(self, isLoading: true)
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ModelResponseQueue.self) {
+					if answer.success, let queue = answer.response {
+						DataManager.shared.addNewQueue(queue) {
+							self.delegate?.queueManagerViewModel(self, found: true, queue: QueueCashe(queue: queue), didRecieveMessage: nil)
+						}
+					} else {
+						self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: answer.message)
+					}
+				} else {
+					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Unexpected response")
+				}
+			case .failure(let error):
+				if error.errorCode == 401 {
+					AuthManager.shared.update(token: .authentication) { success in
+						if success {
+							self.getQueue(by: url)
+						} else {
+							self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Authorization error, try to restart application")
+						}
+					}
+				} else {
+					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Internet connection error")
+				}
+			}
 		}
 	}
 	

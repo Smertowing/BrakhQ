@@ -62,7 +62,7 @@ final class EventViewModel {
 				return SiteConfig(accessability: place.accessability,
 													username: place.username,
 													position: place.position,
-													interactable: place.accessability == .release ? true : interactable)
+													interactable: place.accessability == .release ? true : place.accessability == .engaged ? false : interactable )
 			}
 		} else {
 			places = places.map { (place) -> SiteConfig in

@@ -23,6 +23,7 @@ class QueueManagerViewController: UIViewController {
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
 		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(self.searchButtonClicked)), animated: false)
 		setupViewModel()
 		configureEventsTable()
 		configureSearchBar()
@@ -59,7 +60,7 @@ class QueueManagerViewController: UIViewController {
 		searchBar.backgroundImage = UIImage()
 		searchBar.sizeToFit()
 		searchBar.isTranslucent = false
-		searchBar.placeholder = "Search by name or url"
+		searchBar.placeholder = "Filter my queues by..."
 		
 		searchBar.scopeBarBackgroundImage = UIImage()
 		searchBar.showsScopeBar = true
@@ -69,6 +70,32 @@ class QueueManagerViewController: UIViewController {
 	@objc func createButtonClicked() {
 		let viewModel = CreateEventViewModel()
 		self.show(CreateEventViewController(viewModel: viewModel), sender: self)
+	}
+	
+	@objc func searchButtonClicked() {
+		alertWithTextField(title: "Search queue", message: "Enter link to the queue to enter it", placeholder: "queue.brakh.men/...") { result in
+			if !result.isEmpty {
+				self.viewModel.searchBy(result)
+			}
+		}
+	}
+	
+	public func alertWithTextField(title: String? = nil, message: String? = nil, placeholder: String? = nil, completion: @escaping ((String) -> Void) = { _ in }) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addTextField() { newTextField in
+			newTextField.placeholder = placeholder
+		}
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in completion("") })
+		alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+			if
+				let textFields = alert.textFields,
+				let tf = textFields.first,
+				let result = tf.text
+			{ completion(result) }
+			else
+			{ completion("") }
+		})
+		navigationController?.present(alert, animated: true)
 	}
 	
 }
@@ -129,6 +156,19 @@ extension QueueManagerViewController: UISearchBarDelegate, UISearchDisplayDelega
 }
 
 extension QueueManagerViewController: QueueManagerViewModelDelegate {
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {
+		if found {
+			let storyBoard = UIStoryboard(name: "Event", bundle: nil)
+			let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
+			viewController.viewModel = EventViewModel(for: queue!)
+			self.navigationController?.pushViewController(viewController, animated: true)
+		} else {
+			let alert = UIAlertController(title: "Failure", message: message ?? "There was an error, try again", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading

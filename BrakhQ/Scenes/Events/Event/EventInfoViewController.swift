@@ -22,8 +22,9 @@ class EventInfoViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonClicked)), animated: false)
-		
+		if viewModel.queue.owner.id == AuthManager.shared.user?.id {
+			self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonClicked)), animated: false)
+		}
 		configureForm()
 	}
 	

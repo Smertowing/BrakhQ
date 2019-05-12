@@ -48,6 +48,7 @@ class EventCalendarViewController: DayViewController {
 		for queue in DataManager.shared.feed.queues {
 			if queue.eventDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
 				let event = Event()
+				event.userInfo = queue
 				event.startDate = queue.eventDate
 				event.endDate = queue.eventDate.addingTimeInterval(60*60)
 				event.text = queue.name + " - Event date"
@@ -55,6 +56,7 @@ class EventCalendarViewController: DayViewController {
 			}
 			if queue.regStartDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
 				let event = Event()
+				event.userInfo = queue
 				event.startDate = queue.regStartDate
 				event.endDate = queue.regStartDate.addingTimeInterval(60*60)
 				event.text = queue.name + " - Registration starts"
@@ -62,6 +64,7 @@ class EventCalendarViewController: DayViewController {
 			}
 			if queue.regEndDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
 				let event = Event()
+				event.userInfo = queue
 				event.startDate = queue.regEndDate
 				event.endDate = queue.regEndDate.addingTimeInterval(60*60)
 				event.text = queue.name + " - Registration ends"
@@ -77,6 +80,10 @@ class EventCalendarViewController: DayViewController {
 		guard let descriptor = eventView.descriptor as? Event else {
 			return
 		}
+		let storyBoard = UIStoryboard(name: "Event", bundle: nil)
+		let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
+		viewController.viewModel = EventViewModel(for: descriptor.userInfo as! QueueCashe)
+		self.navigationController?.pushViewController(viewController, animated: true)
 		print("Event has been selected: \(descriptor) \(String(describing: descriptor.userInfo))")
 	}
 	
@@ -98,6 +105,10 @@ class EventCalendarViewController: DayViewController {
 }
 
 extension EventCalendarViewController: QueueManagerViewModelDelegate {
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {
+		
+	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
