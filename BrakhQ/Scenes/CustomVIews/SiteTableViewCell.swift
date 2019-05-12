@@ -8,6 +8,22 @@
 
 import UIKit
 
+enum SiteActionButtonText: String {
+	case release = "Release"
+	case engaged = "Engaded"
+	case free = "Take"
+}
+
+struct SiteConfig {
+	
+	var accessability: SiteActionButtonText
+	var username: String
+	var position: Int
+	var interactable: Bool
+	
+}
+
+
 class SiteTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var numberLabel: UILabel!
@@ -15,30 +31,28 @@ class SiteTableViewCell: UITableViewCell {
 	@IBOutlet weak var actionButtom: UIButton!
 	
 	weak var viewModel: EventViewModel!
-	var position: Int!
+	var config: SiteConfig!
 	
 	@IBAction func actionButtonClicked(_ sender: Any) {
-		viewModel.interactPlace(position)
+		viewModel.interactPlace(config.position)
 	}
 	
-	func set(user: UserCashe?, to position: Int, interactable: Bool) {
-		self.position = position
-		numberLabel.text = "\(position)."
-		if let user = user {
-			nameLabel.text = user.name
-			if user.id == AuthManager.shared.user?.id {
-				backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-				actionButtom.setTitle("Release", for: .normal)
-			} else {
-				backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-				actionButtom.setTitle("Engaged", for: .normal)
-			}
-		} else {
+	func set(config: SiteConfig) {
+		self.config = config
+		numberLabel.text = "\(config.position)."
+		nameLabel.text = config.username
+		switch config.accessability {
+		case .release:
+			backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+			actionButtom.setTitle(config.accessability.rawValue, for: .normal)
+		case .engaged:
+			backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+			actionButtom.setTitle(config.accessability.rawValue, for: .normal)
+		case .free:
 			backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-			nameLabel.text = "Free"
-			actionButtom.setTitle("Take", for: .normal)
+			actionButtom.setTitle(config.accessability.rawValue, for: .normal)
 		}
-		actionButtom.isHidden = !interactable
+		actionButtom.isHidden = !config.interactable
 	}
 	
 	override func awakeFromNib() {

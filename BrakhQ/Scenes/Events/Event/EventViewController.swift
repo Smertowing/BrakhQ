@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EventViewController: UIViewController {
 
 	var viewModel: EventViewModel!
@@ -139,6 +140,10 @@ class EventViewController: UIViewController {
 		self.present(alert, animated: true, completion: nil)
 	}
 	
+	func prepareForReloadTable() {
+		viewModel.setPlaceConfigs()
+	}
+
 }
 
 extension EventViewController: UITableViewDelegate, UITableViewDataSource {
@@ -160,16 +165,13 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
 		headerView.backgroundColor = UIColor.clear
 		return headerView
 	}
-	
+
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "siteCell", for: indexPath) as! SiteTableViewCell
-		let filteredQueue = viewModel.queue.busyPlaces.filter { $0.place == (indexPath.section + 1) }
+
 		cell.viewModel = self.viewModel
-		if filteredQueue.count > 0 {
-			cell.set(user: filteredQueue[0].user, to: indexPath.section + 1, interactable: true)
-		} else {
-			cell.set(user: nil, to: indexPath.section + 1, interactable: true)
-		}
+		cell.set(config: viewModel.places[indexPath.section])
+
 		cell.layer.borderColor = UIColor.clear.cgColor
 		cell.layer.borderWidth = 1
 		cell.layer.cornerRadius = 8
@@ -188,7 +190,7 @@ extension EventViewController: EventViewModelDelegate {
 	
 	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
-			queueTableView.reloadData()
+			prepareForReloadTable()
 			configureQueueInfo()
 		} else {
 			print(message as Any)
@@ -198,8 +200,12 @@ extension EventViewController: EventViewModelDelegate {
 	func eventViewModel(_ eventViewModel: EventViewModel, endRefreshing: Bool) {
 		if endRefreshing {
 			self.queueTableView.refreshControl?.endRefreshing()
-			self.queueTableView.reloadData()
+			self.prepareForReloadTable()
 		}
+	}
+	
+	func eventViewModel(_ eventViewModel: EventViewModel, endConfigurating: Bool) {
+		queueTableView.reloadData()
 	}
 
 }

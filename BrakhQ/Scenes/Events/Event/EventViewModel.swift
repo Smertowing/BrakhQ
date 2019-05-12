@@ -14,6 +14,7 @@ protocol EventViewModelDelegate: class {
 	func eventViewModel(_ eventViewModel: EventViewModel, isLoading: Bool)
 	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?)
 	func eventViewModel(_ eventViewModel: EventViewModel, endRefreshing: Bool)
+	func eventViewModel(_ eventViewModel: EventViewModel, endConfigurating: Bool)
 }
 
 final class EventViewModel {
@@ -21,9 +22,39 @@ final class EventViewModel {
 	weak var delegate: EventViewModelDelegate?
 	let provider = MoyaProvider<QueueAPIProvider>()
 	var queue: QueueCashe
-
+	var places: [SiteConfig] = []
+	
 	init (for queue: QueueCashe) {
 		self.queue = queue
+		for i in 1...queue.placesCount {
+			places.append(SiteConfig(accessability: .free,
+															 username: "Free",
+															 position: i,
+															 interactable: true))
+		}
+		setPlaceConfigs()
+	}
+	
+	func setPlaceConfigs() {
+		var interactable = true
+		queue.busyPlaces.forEach { (placeCache) in
+			places[placeCache.place].username = placeCache.user!.name
+			if placeCache.user!.id == AuthManager.shared.user!.id {
+				interactable = false
+				places[placeCache.place].accessability = .release
+			} else {
+				places[placeCache.place].accessability = .engaged
+			}
+		}
+		
+		for var place in places {
+			if place.accessability == .release {
+				place.interactable = true
+			} else {
+				place.interactable = interactable
+			}
+		}
+		
 	}
 	
 	func updateEvent(refresher: Bool) {

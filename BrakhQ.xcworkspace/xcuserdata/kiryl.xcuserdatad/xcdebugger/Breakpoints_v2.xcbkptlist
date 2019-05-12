@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.2316639"
+            timestampString = "579373977.957485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.237169"
+            timestampString = "579373977.958349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.237348"
+            timestampString = "579373977.958877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "configureEventsTable()"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.2375439"
+            timestampString = "579373977.959348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "additionalInfoClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -842,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.239432"
+            timestampString = "579373977.960586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "countdown"
             landmarkType = "24">
          </BreakpointContent>
@@ -858,12 +858,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewModel.swift"
-            timestampString = "579369191.432586"
+            timestampString = "579373977.961293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "updateEvent(refresher:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "setPlaceConfigs()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -874,12 +874,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewModel.swift"
-            timestampString = "579369191.4327689"
+            timestampString = "579373977.961465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "updateEvent(refresher:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "setPlaceConfigs()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -922,12 +922,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewModel.swift"
-            timestampString = "579369191.432923"
+            timestampString = "579373977.961602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "updateEvent(refresher:)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "setPlaceConfigs()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -938,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.239961"
+            timestampString = "579373977.961731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "eventViewModel(_:isSuccess:didRecieveMessage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1210,11 +1210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.241228"
+            timestampString = "579373977.962689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1226,11 +1226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/CustomVIews/SiteTableViewCell.swift"
-            timestampString = "579369191.4352781"
+            timestampString = "579373977.964269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "actionButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1578,11 +1578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.242489"
+            timestampString = "579373977.9655811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "webSocketModel(isListening:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1610,11 +1610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/Event/EventViewController.swift"
-            timestampString = "579370966.242784"
+            timestampString = "579373977.96735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "eventViewModel(_:endRefreshing:)"
             landmarkType = "7">
          </BreakpointContent>
