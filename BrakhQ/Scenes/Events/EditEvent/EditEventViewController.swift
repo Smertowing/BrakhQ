@@ -42,7 +42,7 @@ class EditEventViewController: FormViewController {
 		form
 			+++
 			Section("Event Info")
-			<<< LabelRow("Title") {
+			<<< TextRow("Title") {
 				$0.title = $0.tag
 				$0.value = viewModel.queue.name
 				$0.add(rule: RuleRequired())
@@ -55,9 +55,8 @@ class EditEventViewController: FormViewController {
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
-				.onChange { [weak self] row in
-					let startDate: DateTimeInlineRow! = self?.form.rowBy(tag: "Starts")
-					if (row.value?.compare(Date()) == .orderedAscending) || (row.value?.compare(startDate.value!) == .orderedAscending) {
+				.onChange { row in
+					if (row.value?.compare(Date()) == .orderedAscending) || (row.value?.compare(self.viewModel.queue.regStartDate) == .orderedAscending) {
 						row.cell!.detailTextLabel?.textColor = .red
 					} else {
 						row.cell!.detailTextLabel?.textColor = row.cell!.tintColor
@@ -87,7 +86,7 @@ class EditEventViewController: FormViewController {
 				.cellSetup { cell, row in
 					cell.textView.text = ""
 			}
-			
+			/*
 			+++
 			Section("Queue Settings")
 			
@@ -166,6 +165,7 @@ class EditEventViewController: FormViewController {
 						cell.detailTextLabel?.textColor = cell.tintColor
 					}
 			}
+*/
 			
 			+++
 			Section()
@@ -180,16 +180,18 @@ class EditEventViewController: FormViewController {
 	
 	@objc func saveButtonClicked() {
 		if form.validate().isEmpty {
+			let title: TextRow! = form.rowBy(tag: "Title")
 			let description: TextAreaRow! = form.rowBy(tag: "Description")
 			let eventDate: DateTimeInlineRow! = form.rowBy(tag: "Event Date")
-			let regStart: DateTimeInlineRow! = form.rowBy(tag: "Starts")
-			let regEnd: DateTimeInlineRow! = form.rowBy(tag: "Ends")
-			let placesCount: StepperRow! = form.rowBy(tag: "Number of Sites")
-			viewModel.editEvent(description: description.value,
-													regStart: regStart.value,
+			//let regStart: DateTimeInlineRow! = form.rowBy(tag: "Starts")
+			//let regEnd: DateTimeInlineRow! = form.rowBy(tag: "Ends")
+			//let placesCount: StepperRow! = form.rowBy(tag: "Number of Sites")
+			viewModel.editEvent(name: title.value!,
+													description: description.value,
+													regStart: nil,
 													eventDate: eventDate.value,
-													regEnd: regEnd.value,
-													placesCount: Int(placesCount.value!))
+													regEnd: nil,
+													placesCount: nil)
 		}
 	}
 

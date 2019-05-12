@@ -26,11 +26,11 @@ final class EditEventViewModel {
 		self.queue = queue
 	}
 	
-	func editEvent(description: String?, regStart: Date?, eventDate: Date?, regEnd: Date?, placesCount: Int?) {
+	func editEvent(name: String?, description: String?, regStart: Date?, eventDate: Date?, regEnd: Date?, placesCount: Int?) {
 		
 		delegate?.editEventViewModel(self, isLoading: true)
 		
-		provider.request(.updateQueue(id: queue.id, description: description, regStart: regStart?.iso8601, eventDate: eventDate?.iso8601, regEnd: regEnd?.iso8601, placesCount: placesCount)) { result in
+		provider.request(.updateQueue(id: queue.id, name: name, description: description, regStart: regStart?.iso8601, eventDate: eventDate?.iso8601, regEnd: regEnd?.iso8601, placesCount: placesCount)) { result in
 			self.delegate?.editEventViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
@@ -49,7 +49,7 @@ final class EditEventViewModel {
 				if error.errorCode == 401 {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
-							self.editEvent(description: description, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)
+							self.editEvent(name: name, description: description, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)
 						} else {
 							self.delegate?.editEventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
 						}

@@ -38,21 +38,20 @@ final class EventViewModel {
 	func setPlaceConfigs() {
 		var interactable = true
 		queue.busyPlaces.forEach { (placeCache) in
-			places[placeCache.place].username = placeCache.user!.name
+			places[placeCache.place-1].username = placeCache.user!.name
 			if placeCache.user!.id == AuthManager.shared.user!.id {
 				interactable = false
-				places[placeCache.place].accessability = .release
+				places[placeCache.place-1].accessability = .release
 			} else {
-				places[placeCache.place].accessability = .engaged
+				places[placeCache.place-1].accessability = .engaged
 			}
 		}
 		
-		for var place in places {
-			if place.accessability == .release {
-				place.interactable = true
-			} else {
-				place.interactable = interactable
-			}
+		places = places.map { (place) -> SiteConfig in
+				return SiteConfig(accessability: place.accessability,
+													 username: place.username,
+													 position: place.position,
+													 interactable: place.accessability == .release ? true : interactable)
 		}
 		
 	}

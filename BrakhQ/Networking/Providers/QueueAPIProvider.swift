@@ -11,7 +11,7 @@ import Moya
 enum QueueAPIProvider {
 	case getQueue(url: String)
 	case createQueue(name: String, description: String?, queueType: String, regStart: String, eventDate: String, regEnd: String, placesCount: Int)
-	case updateQueue(id: Int, description: String?, regStart: String?, eventDate: String?, regEnd: String?, placesCount: Int?)
+	case updateQueue(id: Int, name: String?, description: String?, regStart: String?, eventDate: String?, regEnd: String?, placesCount: Int?)
 	case takeQueueSite(site: Int, queueId: Int)
 	case freeUpQueueSite(queueId: Int)
 	case takeFirstQueueSite(queueId: Int)
@@ -77,8 +77,11 @@ extension QueueAPIProvider: TargetType {
 				parameters: params,
 				encoding: JSONEncoding.default
 			)
-		case .updateQueue(let id, let description, let regStart, let eventDate, let regEnd, let placesCount):
+		case .updateQueue(let id, let name, let description, let regStart, let eventDate, let regEnd, let placesCount):
 			var params: [String:Any] = ["id": id]
+			if let name = name {
+				params["name"] = name
+			}
 			if let desript = description {
 				params["description"] = desript
 			}

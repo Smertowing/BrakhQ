@@ -25,7 +25,7 @@ class RegistrationViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Edit Queue"
+		title = "Register"
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(self.registerButtonClicked)), animated: false)
 		
 		setupViewModel()

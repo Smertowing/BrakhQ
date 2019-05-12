@@ -40,6 +40,11 @@ class SiteTableViewCell: UITableViewCell {
 	func set(config: SiteConfig) {
 		self.config = config
 		numberLabel.text = "\(config.position)."
+		if viewModel.queue.queueType == .random {
+			numberLabel.isHidden = true
+		} else {
+			numberLabel.isHidden = false
+		}
 		nameLabel.text = config.username
 		switch config.accessability {
 		case .release:
