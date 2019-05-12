@@ -6,6 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>queue-api.brakh.men</string>
 		<string>queue2.brakh.men</string>
 		<string>queue.brakh.men</string>
 	</array>

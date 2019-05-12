@@ -15,31 +15,30 @@ class SiteTableViewCell: UITableViewCell {
 	@IBOutlet weak var actionButtom: UIButton!
 	
 	weak var viewModel: EventViewModel!
+	var position: Int!
 	
 	@IBAction func actionButtonClicked(_ sender: Any) {
-		
+		viewModel.interactPlace(position)
 	}
 	
-	func set(user: UserCashe?, to position: Int) {
+	func set(user: UserCashe?, to position: Int, interactable: Bool) {
+		self.position = position
 		numberLabel.text = "\(position)."
 		if let user = user {
 			nameLabel.text = user.name
 			if user.id == AuthManager.shared.user?.id {
 				backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-				actionButtom.titleLabel?.text = "Release"
+				actionButtom.setTitle("Release", for: .normal)
 			} else {
 				backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-				actionButtom.titleLabel?.text = "Engaged"
+				actionButtom.setTitle("Engaged", for: .normal)
 			}
 		} else {
 			backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 			nameLabel.text = "Free"
+			actionButtom.setTitle("Take", for: .normal)
 		}
-		if viewModel.queue.regStarted && !viewModel.queue.regEnded {
-			actionButtom.isHidden = false
-		} else {
-			actionButtom.isHidden = true
-		}
+		actionButtom.isHidden = !interactable
 	}
 	
 	override func awakeFromNib() {

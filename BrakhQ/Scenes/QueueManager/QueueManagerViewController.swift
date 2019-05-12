@@ -30,6 +30,7 @@ class QueueManagerViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		self.view.isUserInteractionEnabled = true
 		viewModel.refresh(refresher: false)
 	}
 	
@@ -83,6 +84,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		self.view.isUserInteractionEnabled = false
 		let cell = tableView.cellForRow(at: indexPath) as! EventTableViewCell
 		cell.isSelected = false
 		

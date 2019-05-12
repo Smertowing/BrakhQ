@@ -10,7 +10,7 @@ import Foundation
 
 open class PlaceCashe: NSObject, NSCoding {
 	open var place: Int
-	open var user: UserCashe
+	open var user: UserCashe?
 	
 	init(place: Place) {
 		self.place = place.place
@@ -19,7 +19,7 @@ open class PlaceCashe: NSObject, NSCoding {
 	
 	public required init?(coder aDecoder: NSCoder) {
 		self.place = aDecoder.decodeInteger(forKey: "place")
-		self.user = aDecoder.decodeObject(forKey: "user") as! UserCashe
+		self.user = aDecoder.decodeObject(forKey: "user") as? UserCashe
 	}
 	
 	open func encode(with aCoder: NSCoder) {

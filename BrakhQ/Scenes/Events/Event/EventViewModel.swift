@@ -11,9 +11,9 @@ import Moya
 
 protocol EventViewModelDelegate: class {
 	
-	func eventViewModelDelegate(_ eventViewModelDelegate: EventViewModel, isLoading: Bool)
-	func eventViewModelDelegate(_ eventViewModelDelegate: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?)
-	
+	func eventViewModel(_ eventViewModel: EventViewModel, isLoading: Bool)
+	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?)
+	func eventViewModel(_ eventViewModel: EventViewModel, endRefreshing: Bool)
 }
 
 final class EventViewModel {
@@ -26,37 +26,47 @@ final class EventViewModel {
 		self.queue = queue
 	}
 	
-	func updateEvent() {
-		delegate?.eventViewModelDelegate(self, isLoading: true)
+	func updateEvent(refresher: Bool) {
+		delegate?.eventViewModel(self, isLoading: true)
 		provider.request(.getQueue(url: queue.url)) { result in
-			self.delegate?.eventViewModelDelegate(self, isLoading: false)
+			self.delegate?.eventViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
 						DataManager.shared.addNewQueue(queue) {
 							self.queue = QueueCashe(queue: queue)
-							self.delegate?.eventViewModelDelegate(self, isSuccess: true, didRecieveMessage: nil)
+							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
 						}
 					} else {
-						self.delegate?.eventViewModelDelegate(self, isSuccess: false, didRecieveMessage: answer.message)
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
 				} else {
-					self.delegate?.eventViewModelDelegate(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
 				}
+				if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 			case .failure(let error):
 				if error.errorCode == 401 {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
-							self.updateEvent()
+							self.updateEvent(refresher: refresher)
 						} else {
-							self.delegate?.eventViewModelDelegate(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
-					self.delegate?.eventViewModelDelegate(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 				}
 			}
+		}
+	}
+	
+	func interactPlace(_ site: Int) {
+		delegate?.eventViewModel(self, isLoading: true)
+		provider.request(.takeQueueSite(site: site, queueId: self.queue.id)) { success in
+			
 		}
 	}
 	

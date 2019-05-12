@@ -19,7 +19,7 @@ enum QueueAPIProvider {
 
 extension QueueAPIProvider: TargetType {
 	var baseURL: URL {
-		return URL(string: "http://queue2.brakh.men")!
+		return URL(string: "https://queue-api.brakh.men")!
 	}
 	
 	var path: String {

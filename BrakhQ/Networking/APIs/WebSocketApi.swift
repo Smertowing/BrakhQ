@@ -8,19 +8,22 @@
 
 import Foundation
 
-enum WSEvents: String, Codable {
-	case regStart = "REG_START"
-	case regEnd = "REG_END"
-	case placeTake = "PLACE_TAKE"
-	case placeFree = "PLACE_FREE"
-	case queueChange = "QUEUE_CHANGE"
-	case queueMix = "QUEUE_MIX"
-}
-
-struct WebSockerResponse: Codable {
+struct WebSocketResponse: Codable {
     
 	var event: WSEvents
 	var queue: Queue?
 	var place: Place?
+	
+}
+
+struct WebSocketConnectById: Codable {
+	
+	var id: Int
+	
+}
+
+struct WebSocketConnectByURL: Codable {
+	
+	var url: String
 	
 }

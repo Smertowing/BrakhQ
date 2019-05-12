@@ -11,6 +11,8 @@ import UIKit
 class EventViewController: UIViewController {
 
 	var viewModel: EventViewModel!
+	var webSocketModel: WebSocketModel?
+	var shown: Bool!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -19,17 +21,21 @@ class EventViewController: UIViewController {
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Copy Link", style: .plain, target: self, action: #selector(self.copyLinkButtonClicked)), animated: false)
 		
 		setupViewModel()
-		configureQueueInfo()
 		configureEventsTable()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		viewModel.updateEvent()
+		viewModel.updateEvent(refresher: false)
+		shown = true
+		configureWebSocketModel()
+		configureQueueInfo()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+		webSocketModel?.disconnect()
+		shown = false
 		timer?.invalidate()
 	}
 	
@@ -97,12 +103,33 @@ class EventViewController: UIViewController {
 		queueTableView.dataSource = self
 		queueTableView.tableFooterView = UIView()
 		queueTableView.allowsSelection = false
+		
+		queueTableView.refreshControl = UIRefreshControl()
+		queueTableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating...")
+		queueTableView.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+	}
+	
+	@objc func refresh(sender:AnyObject) {
+		viewModel.updateEvent(refresher: true)
+	}
+	
+	@IBOutlet weak var webSocketConnection: UIImageView!
+	
+	func configureWebSocketModel() {
+		webSocketConnection.backgroundColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+		webSocketConnection.layer.cornerRadius = webSocketConnection.layer.width/2
+		webSocketModel = WebSocketModel(queueId: viewModel.queue.id)
+		webSocketModel?.delegate = self
 	}
 	
 	@IBAction func additionalInfoClicked(_ sender: Any) {
 		let eventInfoViewController = EventInfoViewController()
 		eventInfoViewController.viewModel = viewModel
 		self.show(eventInfoViewController, sender: self)
+	}
+	
+	@IBAction func takeSequent(_ sender: Any) {
+		
 	}
 	
 	@objc func copyLinkButtonClicked() {
@@ -133,12 +160,12 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "siteCell", for: indexPath) as! SiteTableViewCell
-		let filteredQueue = viewModel.queue.busyPlaces.filter { $0.place == indexPath.section }
+		let filteredQueue = viewModel.queue.busyPlaces.filter { $0.place == (indexPath.section + 1) }
 		cell.viewModel = self.viewModel
-		if filteredQueue.count > 0{
-			cell.set(user: filteredQueue[0].user, to: indexPath.section)
+		if filteredQueue.count > 0 {
+			cell.set(user: filteredQueue[0].user, to: indexPath.section + 1, interactable: true)
 		} else {
-			cell.set(user: nil, to: indexPath.section)
+			cell.set(user: nil, to: indexPath.section + 1, interactable: true)
 		}
 		cell.layer.borderColor = UIColor.clear.cgColor
 		cell.layer.borderWidth = 1
@@ -152,11 +179,11 @@ extension EventViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension EventViewController: EventViewModelDelegate {
 	
-	func eventViewModelDelegate(_ eventViewModelDelegate: EventViewModel, isLoading: Bool) {
+	func eventViewModel(_ eventViewModel: EventViewModel, isLoading: Bool) {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func eventViewModelDelegate(_ eventViewModelDelegate: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
 			queueTableView.reloadData()
 			configureQueueInfo()
@@ -164,5 +191,61 @@ extension EventViewController: EventViewModelDelegate {
 			print(message as Any)
 		}
 	}
+	
+	func eventViewModel(_ eventViewModel: EventViewModel, endRefreshing: Bool) {
+		if endRefreshing {
+			self.queueTableView.refreshControl?.endRefreshing()
+			self.queueTableView.reloadData()
+		}
+	}
 
+}
+
+extension EventViewController: WebSocketModelDelegate {
+	
+	func webSocketModel(isListening: Bool) {
+		if isListening {
+			self.webSocketConnection.backgroundColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)
+		} else {
+			self.webSocketConnection.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+			self.webSocketModel = nil
+			if shown {
+				let alert = UIAlertController(title: "Disconnected", message: "Real-time connection lost", preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive))
+				self.present(alert, animated: true, completion: nil)
+			}
+		}
+	}
+	
+	func regStarts() {
+		
+	}
+	
+	func regEnds() {
+		
+	}
+	
+	func take(place: PlaceCashe) {
+		
+	}
+	
+	func free(place: PlaceCashe) {
+		
+	}
+	
+	func changed(queue: QueueCashe) {
+		
+	}
+	
+	func mixed(queue: QueueCashe) {
+		
+	}
+	
+	func webSocketModel(didRecievedError: String) {
+		
+	}
+	
+	
+	
+	
 }
