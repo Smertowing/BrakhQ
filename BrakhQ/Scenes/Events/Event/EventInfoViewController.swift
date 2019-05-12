@@ -67,9 +67,13 @@ class EventInfoViewController: FormViewController {
 			}
 			
 			<<< ButtonRow("URL") { (row: ButtonRow) -> Void in
-				row.title = "Copy URL"
+				row.title = "Copy Link"
 				}
-				.onCellSelection { [weak self] (cell, row) in
+				.onCellSelection { (cell, row) in
+					UIPasteboard.general.string = "queue.brakh.men/\(self.viewModel.queue.url)"
+					let alert = UIAlertController(title: "Done", message: "Link to this queue successfully copied to your clipboard!", preferredStyle: UIAlertController.Style.alert)
+					alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+					self.present(alert, animated: true, completion: nil)
 			}
 			
 			+++

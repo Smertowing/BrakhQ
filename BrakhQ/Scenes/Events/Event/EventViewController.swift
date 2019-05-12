@@ -133,7 +133,10 @@ class EventViewController: UIViewController {
 	}
 	
 	@objc func copyLinkButtonClicked() {
-		
+		UIPasteboard.general.string = "queue.brakh.men/\(viewModel.queue.url)"
+		let alert = UIAlertController(title: "Done", message: "Link to this queue successfully copied to your clipboard!", preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 }
