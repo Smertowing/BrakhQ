@@ -30,8 +30,7 @@ class QueueManagerViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		viewModel.updateUsedEvents()
-		viewModel.updateCreatedEvents()
+		viewModel.refresh(refresher: false)
 	}
 	
 	private func setupViewModel() {
@@ -42,6 +41,14 @@ class QueueManagerViewController: UIViewController {
 		eventsTable.delegate = self
 		eventsTable.dataSource = self
 		eventsTable.tableFooterView = UIView()
+		
+		eventsTable.refreshControl = UIRefreshControl()
+		eventsTable.refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
+		eventsTable.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+	}
+	
+	@objc func refresh(sender:AnyObject) {
+		viewModel.refresh(refresher: true)
 	}
 	
 	func configureSearchBar() {
@@ -123,6 +130,12 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool) {
+		if endRefreshing {
+			self.eventsTable.refreshControl?.endRefreshing()
+		}
 	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {

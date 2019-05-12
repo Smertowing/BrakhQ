@@ -36,8 +36,7 @@ class EventCalendarViewController: DayViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		viewModel.updateUsedEvents()
-		viewModel.updateCreatedEvents()
+		viewModel.refresh(refresher: false)
 	}
 	
 	private func setupViewModel() {
@@ -102,6 +101,10 @@ extension EventCalendarViewController: QueueManagerViewModelDelegate {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+	}
+	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool) {
+		
 	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {

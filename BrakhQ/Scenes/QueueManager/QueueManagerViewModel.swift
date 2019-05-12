@@ -13,6 +13,7 @@ protocol QueueManagerViewModelDelegate: class {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?)
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool)
 	
 }
 
@@ -21,7 +22,12 @@ final class QueueManagerViewModel {
 	weak var delegate: QueueManagerViewModelDelegate?
 	let provider = MoyaProvider<UserAPIProvider>()
 	
-	func updateUsedEvents() {
+	func refresh(refresher: Bool) {
+		updateUsedEvents(with: refresher)
+	}
+	
+	
+	private func updateUsedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
 		provider.request(.getQueuesUsedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
@@ -34,30 +40,35 @@ final class QueueManagerViewModel {
 								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 							}
 						}
+						self.updateCreatedEvents(with: refresher)
 					} else {
 						self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
+						if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 					}
 				} else {
 					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			case .failure(let error):
 				if error.errorCode == 401 {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
-							self.updateUsedEvents()
+							self.updateUsedEvents(with: refresher)
 						} else {
 							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
 					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			}
 			
 		}
 	}
-	
-	func updateCreatedEvents() {
+
+	private func updateCreatedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
 		provider.request(.getQueuesCreatedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
@@ -70,23 +81,27 @@ final class QueueManagerViewModel {
 								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 							}
 						}
+						
 					} else {
 						self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
 				} else {
 					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
 				}
+				if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 			case .failure(let error):
 				if error.errorCode == 401 {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
-							self.updateCreatedEvents()
+							self.updateCreatedEvents(with: refresher)
 						} else {
 							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
 					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			}
 			
