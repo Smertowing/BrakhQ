@@ -8,52 +8,63 @@
 
 import Foundation
 import Moya
+import KeychainSwift
 
 final class AuthManager {
 	static let shared = AuthManager()
 	
 	private let provider = MoyaProvider<AuthProvider>()
-	private let defaults = UserDefaults.standard
+	private let defaults = KeychainSwift()
 	private init() { }
 	
 	var isAuthenticated: Bool {
 		get {
-			return defaults.bool(forKey: UserDefaultKeys.isLogged.rawValue)
+			return defaults.getBool(UserDefaultKeys.isLogged.rawValue) ?? false
 		}
 	}
 	
 	var token: String? {
 		get {
-			return defaults.object(forKey: UserDefaultKeys.token.rawValue) as? String
+			return defaults.get(UserDefaultKeys.token.rawValue)
 		}
 		set {
-			defaults.set(newValue, forKey: UserDefaultKeys.token.rawValue)
+			defaults.set(newValue ?? "", forKey: UserDefaultKeys.token.rawValue)
 		}
 	}
 	
 	var refreshToken: String? {
 		get {
-			return defaults.object(forKey: UserDefaultKeys.refreshToken.rawValue) as? String
+			return defaults.get(UserDefaultKeys.refreshToken.rawValue)
 		}
 		set {
-			defaults.set(newValue, forKey: UserDefaultKeys.refreshToken.rawValue)
+			defaults.set(newValue ?? "", forKey: UserDefaultKeys.refreshToken.rawValue)
 		}
-	}
+	}//Int(defaults.getData(UserDefaultKeys.id.rawValue)
 	
 	var user: User? {
 		get {
-			return User(avatar: defaults.object(forKey: UserDefaultKeys.avatar.rawValue) as? String,
-									id: defaults.integer(forKey: UserDefaultKeys.id.rawValue),
-									name: (defaults.object(forKey: UserDefaultKeys.name.rawValue) as? String) ?? "",
-									email: defaults.object(forKey: UserDefaultKeys.email.rawValue) as? String,
-									username: defaults.object(forKey: UserDefaultKeys.username.rawValue) as? String)
+			return User(avatar: defaults.get(UserDefaultKeys.avatar.rawValue),
+									id: Int(defaults.get(UserDefaultKeys.id.rawValue)!)!,
+									name: (defaults.get(UserDefaultKeys.name.rawValue))!,
+									email: defaults.get(UserDefaultKeys.email.rawValue),
+									username: defaults.get(UserDefaultKeys.username.rawValue))
 		}
 		set {
-			defaults.set(newValue?.username, forKey: UserDefaultKeys.username.rawValue)
-			defaults.set(newValue?.name, forKey: UserDefaultKeys.name.rawValue)
-			defaults.set(newValue?.email, forKey: UserDefaultKeys.email.rawValue)
-			defaults.set(newValue?.id, forKey: UserDefaultKeys.id.rawValue)
-			defaults.set(newValue?.avatar, forKey: UserDefaultKeys.avatar.rawValue)
+			if let username = newValue?.username {
+				defaults.set(username, forKey: UserDefaultKeys.username.rawValue)
+			}
+			if let name = newValue?.name {
+				defaults.set(name, forKey: UserDefaultKeys.name.rawValue)
+			}
+			if let email = newValue?.email {
+				defaults.set(email, forKey: UserDefaultKeys.email.rawValue)
+			}
+			if let id = newValue?.id {
+				defaults.set(String(id), forKey: UserDefaultKeys.id.rawValue)
+			}
+			if let avatar = newValue?.avatar {
+				defaults.set(avatar, forKey: UserDefaultKeys.avatar.rawValue)
+			}
 		}
 	}
 	
@@ -62,13 +73,14 @@ final class AuthManager {
 	}
 	
 	func logout() {
+		defaults.clear()
 		defaults.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
 	}
 	
 	typealias CompletionHandler = (_ success:Bool) -> Void
 	
 	func update(token tokenType: TokenType, completionHandler: @escaping (CompletionHandler)) {
-		if let refreshToken = defaults.object(forKey: UserDefaultKeys.refreshToken.rawValue) as? String {
+		if let refreshToken = defaults.get(UserDefaultKeys.refreshToken.rawValue) {
 			provider.request(.updateToken(refreshToken: refreshToken, tokenType: tokenType)) { result in
 				if case .success(let response) = result {
 					if let newToken = try? response.map(Token.self) {
