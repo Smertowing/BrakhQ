@@ -34,10 +34,10 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="uZ9-g5-ejN"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Очереди в каждый дом!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-Qt-5cn">
-                                        <rect key="frame" x="90" y="409" width="140" height="48"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modern solution for everyday routine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-Qt-5cn">
+                                        <rect key="frame" x="80" y="397" width="160" height="72"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="140" id="knh-Mr-Rd4"/>
+                                            <constraint firstAttribute="width" constant="160" id="knh-Mr-Rd4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>

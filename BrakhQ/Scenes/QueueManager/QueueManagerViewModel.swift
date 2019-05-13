@@ -15,6 +15,7 @@ protocol QueueManagerViewModelDelegate: class {
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?)
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, reload: Bool)
 }
 
 final class QueueManagerViewModel {
@@ -23,7 +24,18 @@ final class QueueManagerViewModel {
 	let providerUser = MoyaProvider<UserAPIProvider>()
 	let providerQueue = MoyaProvider<QueueAPIProvider>()
 	
-	var queues: [QueueCashe]!
+	var queues: [QueueCashe] = DataManager.shared.feed.queues
+	
+	func filterQueues(restrictToManaged: Bool) {
+		queues = DataManager.shared.feed.queues
+		if restrictToManaged {
+			queues = queues.filter { (queue) -> Bool in
+				return queue.owner.id == AuthManager.shared.user?.id
+			}
+		}
+		queues.reverse()
+		delegate?.queueManagerViewModel(self, reload: true)
+	}
 	
 	func searchBy(_ link: String) {
 		do {

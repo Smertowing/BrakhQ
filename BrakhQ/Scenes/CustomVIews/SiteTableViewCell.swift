@@ -10,7 +10,7 @@ import UIKit
 
 enum SiteActionButtonText: String {
 	case release = "Release"
-	case engaged = "Engaded"
+	case engaged = "Engaged"
 	case free = "Take"
 }
 

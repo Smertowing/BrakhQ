@@ -23,10 +23,11 @@ class QueueManagerViewController: UIViewController {
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
 		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createButtonClicked)), animated: false)
-		self.navigationItem.setLeftBarButton(UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(self.searchButtonClicked)), animated: false)
+		self.navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(self.searchButtonClicked)), animated: false)
 		setupViewModel()
 		configureEventsTable()
-		configureSearchBar()
+	//	configureSearchBar()
+		configureScopeBar()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,17 @@ class QueueManagerViewController: UIViewController {
 	
 	@objc func refresh(sender:AnyObject) {
 		viewModel.refresh(refresher: true)
+	}
+	
+	@IBOutlet weak var scopeSegmentedControl: UISegmentedControl!
+	
+	func configureScopeBar() {
+		scopeSegmentedControl.setTitle("All", forSegmentAt: 0)
+		scopeSegmentedControl.setTitle("Managed", forSegmentAt: 1)
+	}
+	
+	@IBAction func segmentChanged(_ sender: Any) {
+		viewModel.filterQueues(restrictToManaged: scopeSegmentedControl.selectedSegmentIndex == 1)
 	}
 	
 	func configureSearchBar() {
@@ -107,7 +119,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return DataManager.shared.feed.queues.count
+		return viewModel.queues.count
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -123,7 +135,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
-		cell.setQueue(DataManager.shared.feed.queues[indexPath.row])
+		cell.setQueue(viewModel.queues[indexPath.row])
 		
 		return cell
 	}
@@ -157,6 +169,12 @@ extension QueueManagerViewController: UISearchBarDelegate, UISearchDisplayDelega
 
 extension QueueManagerViewController: QueueManagerViewModelDelegate {
 	
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, reload: Bool) {
+		if reload {
+			eventsTable.reloadData()
+		}
+	}
+	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {
 		if found {
 			let storyBoard = UIStoryboard(name: "Event", bundle: nil)
@@ -176,13 +194,13 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool) {
 		if endRefreshing {
-			self.eventsTable.refreshControl?.endRefreshing()
+			eventsTable.refreshControl?.endRefreshing()
 		}
 	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
-			eventsTable.reloadData()
+			viewModel.filterQueues(restrictToManaged: scopeSegmentedControl.selectedSegmentIndex == 1)
 		} else {
 			print(message as Any)
 		}

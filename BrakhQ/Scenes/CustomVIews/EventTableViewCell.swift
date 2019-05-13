@@ -41,14 +41,21 @@ class EventTableViewCell: UITableViewCell {
 			statusImageView.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
 			counterLabel.isHidden = true
 		}
-		
+	/*
 		if queue.owner.id == AuthManager.shared.user?.id {
 			userConditionLabel.text = "Owner"
 		} else {
 			userConditionLabel.text = ""
 		}
+	*/
+		if queue.owner.id == AuthManager.shared.user?.id {
+			typeImageView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+		} else {
+			typeImageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+		}
 		
-		typeImageView.isHidden = true
+		statusImageView.layer.cornerRadius = statusImageView.layer.width/2
+		typeImageView.isHidden = false
 		
 	}
 	
