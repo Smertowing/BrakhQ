@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "Take sequent place"; ObjectID = "681-r6-X2K"; */
+"681-r6-X2K.normalTitle" = "Занять ближайшее место";
+
+/* Class = "UILabel"; text = "1."; ObjectID = "PaU-WF-5iJ"; */
+"PaU-WF-5iJ.text" = "1.";
+
+/* Class = "UILabel"; text = "01.01.2000"; ObjectID = "TBP-gH-G6F"; */
+"TBP-gH-G6F.text" = "01.01.2000";
+
+/* Class = "UILabel"; text = "Event Name"; ObjectID = "YKx-lz-eUN"; */
+"YKx-lz-eUN.text" = "Название события";
+
+/* Class = "UILabel"; text = "Random"; ObjectID = "aMG-mw-94f"; */
+"aMG-mw-94f.text" = "Случайно";
+
+/* Class = "UILabel"; text = " "; ObjectID = "efO-mf-Cvr"; */
+"efO-mf-Cvr.text" = " ";
+
+/* Class = "UILabel"; text = " "; ObjectID = "fN4-UK-IOK"; */
+"fN4-UK-IOK.text" = " ";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "nme-bE-Ok1"; */
+"nme-bE-Ok1.text" = "Название";
+
+/* Class = "UILabel"; text = "Event Date:"; ObjectID = "qzW-4X-70D"; */
+"qzW-4X-70D.text" = "Дата события:";
+
+/* Class = "UILabel"; text = "0/0"; ObjectID = "wIV-YS-YmL"; */
+"wIV-YS-YmL.text" = "0/0";
