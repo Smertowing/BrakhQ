@@ -74,7 +74,7 @@ final class UpdateProfileViewModel {
 		
 	}
 	
-	private func updatePassword(password: String) {
+	func updatePassword(password: String) {
 		
 		delegate?.updateProfileViewModel(self, isLoading: true)
 		

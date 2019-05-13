@@ -255,13 +255,11 @@ extension EventViewController: WebSocketModelDelegate {
 	func changed(queue: Queue) {
 		viewModel.queue = QueueCashe(queue: queue)
 		viewModel.setPlaceConfigs()
-		DataManager.shared.addNewQueue(queue) {}
 	}
 	
 	func mixed(queue: Queue) {
 		viewModel.queue = QueueCashe(queue: queue)
 		viewModel.setPlaceConfigs()
-		DataManager.shared.addNewQueue(queue) {}
 	}
 	
 	func webSocketModel(didRecievedError: String) {

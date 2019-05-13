@@ -45,7 +45,7 @@ class EventCalendarViewController: DayViewController {
 	
 	override func eventsForDate(_ date: Date) -> [EventDescriptor] {
 		var events = [Event]()
-		for queue in DataManager.shared.feed.queues {
+		for queue in DataManager.shared.createdFeed.queues + DataManager.shared.createdFeed.queues {
 			if queue.eventDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
 				let event = Event()
 				event.userInfo = queue

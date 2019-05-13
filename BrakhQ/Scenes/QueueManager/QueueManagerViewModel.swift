@@ -24,16 +24,20 @@ final class QueueManagerViewModel {
 	let providerUser = MoyaProvider<UserAPIProvider>()
 	let providerQueue = MoyaProvider<QueueAPIProvider>()
 	
-	var queues: [QueueCashe] = DataManager.shared.feed.queues
+	var createdQueues: [QueueCashe] = DataManager.shared.createdFeed.queues
+	var usedQueues: [QueueCashe] = DataManager.shared.usedFeed.queues
 	
-	func filterQueues(restrictToManaged: Bool) {
-		queues = DataManager.shared.feed.queues
-		if restrictToManaged {
-			queues = queues.filter { (queue) -> Bool in
-				return queue.owner.id == AuthManager.shared.user?.id
-			}
+	func filterQueues(type: FeedKeys) {
+		switch type {
+		case .usedFeed:
+			usedQueues = DataManager.shared.usedFeed.queues.sorted(by: { (prev, next) -> Bool in
+				return prev.id > next.id
+			})
+		case .createdFeed:
+			createdQueues = DataManager.shared.createdFeed.queues.sorted(by: { (prev, next) -> Bool in
+				return prev.id > next.id
+			})
 		}
-		queues.reverse()
 		delegate?.queueManagerViewModel(self, reload: true)
 	}
 	
@@ -70,8 +74,9 @@ final class QueueManagerViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseCollectionQueue.self) {
 					if answer.success, let queues = answer.response {
+						DataManager.shared.usedFeed = FeedCashe(queues: [])
 						for queue in queues {
-							DataManager.shared.addNewQueue(queue) {
+							DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
 								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 							}
 						}
@@ -111,8 +116,9 @@ final class QueueManagerViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseCollectionQueue.self) {
 					if answer.success, let queues = answer.response {
+						DataManager.shared.createdFeed = FeedCashe(queues: [])
 						for queue in queues {
-							DataManager.shared.addNewQueue(queue) {
+							DataManager.shared.addNew(queue, to: FeedKeys.createdFeed) {
 								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 							}
 						}
@@ -151,7 +157,7 @@ final class QueueManagerViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
-						DataManager.shared.addNewQueue(queue) {
+						DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
 							self.delegate?.queueManagerViewModel(self, found: true, queue: QueueCashe(queue: queue), didRecieveMessage: nil)
 						}
 					} else {

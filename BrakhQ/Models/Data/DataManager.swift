@@ -14,9 +14,23 @@ final class DataManager {
 
 	private init() {}
 	
-	var feed: FeedCashe {
+	var usedFeed: FeedCashe {
 		get {
-			return (DataCache.instance.readObject(forKey: FeedKeys.feed.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
+			return (DataCache.instance.readObject(forKey: FeedKeys.usedFeed.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
+		}
+		set {
+			DataCache.instance.clean(byKey: FeedKeys.usedFeed.rawValue)
+			DataCache.instance.write(object: newValue, forKey: FeedKeys.usedFeed.rawValue)
+		}
+	}
+	
+	var createdFeed: FeedCashe {
+		get {
+			return (DataCache.instance.readObject(forKey: FeedKeys.createdFeed.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
+		}
+		set {
+			DataCache.instance.clean(byKey: FeedKeys.createdFeed.rawValue)
+			DataCache.instance.write(object: newValue, forKey: FeedKeys.createdFeed.rawValue)
 		}
 	}
 	
@@ -24,8 +38,8 @@ final class DataManager {
 		DataCache.instance.cleanAll()
 	}
 	
-	func addNewQueue(_ queue: Queue, completionHandler: @escaping ()->Void) {
-		let feed = (DataCache.instance.readObject(forKey: FeedKeys.feed.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
+	func addNew(_ queue: Queue, to feedType: FeedKeys, completionHandler: @escaping ()->Void) {
+		let feed = (DataCache.instance.readObject(forKey: feedType.rawValue) as? FeedCashe) ?? FeedCashe(queues: [])
 		var isNew = true
 		let updatedQueues = feed.queues.map { (prevQueue) -> QueueCashe in
 			if prevQueue.id == queue.id {
@@ -39,7 +53,7 @@ final class DataManager {
 		if isNew {
 			feed.queues.append(QueueCashe(queue: queue))
 		}
-		DataCache.instance.write(object: feed, forKey: FeedKeys.feed.rawValue)
+		DataCache.instance.write(object: feed, forKey: feedType.rawValue)
 		completionHandler()
 	}
 	

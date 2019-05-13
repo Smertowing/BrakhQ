@@ -62,7 +62,7 @@ class QueueManagerViewController: UIViewController {
 	}
 	
 	@IBAction func segmentChanged(_ sender: Any) {
-		viewModel.filterQueues(restrictToManaged: scopeSegmentedControl.selectedSegmentIndex == 1)
+		viewModel.filterQueues(type: scopeSegmentedControl.selectedSegmentIndex == 0 ? FeedKeys.usedFeed : FeedKeys.createdFeed)
 	}
 	
 	func configureSearchBar() {
@@ -119,7 +119,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return viewModel.queues.count
+		return scopeSegmentedControl.selectedSegmentIndex == 0 ? viewModel.usedQueues.count : viewModel.createdQueues.count
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -135,7 +135,7 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
-		cell.setQueue(viewModel.queues[indexPath.row])
+		cell.setQueue(scopeSegmentedControl.selectedSegmentIndex == 0 ? viewModel.usedQueues[indexPath.row] : viewModel.createdQueues[indexPath.row])
 		
 		return cell
 	}
@@ -200,7 +200,7 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
-			viewModel.filterQueues(restrictToManaged: scopeSegmentedControl.selectedSegmentIndex == 1)
+			viewModel.filterQueues(type: scopeSegmentedControl.selectedSegmentIndex == 0 ? FeedKeys.usedFeed : FeedKeys.createdFeed)
 		} else {
 			print(message as Any)
 		}

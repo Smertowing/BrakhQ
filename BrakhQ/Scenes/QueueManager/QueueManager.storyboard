@@ -123,6 +123,7 @@
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="5rq-ti-DLg" firstAttribute="centerX" secondItem="MOp-W1-eb0" secondAttribute="centerX" id="3s6-dl-t8e"/>
                             <constraint firstItem="r5O-XT-EfI" firstAttribute="trailing" secondItem="i4M-3d-0sM" secondAttribute="trailing" id="F4j-3F-K1a"/>

@@ -9,5 +9,6 @@
 import Foundation
 
 enum FeedKeys: String {
-	case feed = "feed"
+	case usedFeed = "used"
+	case createdFeed = "created"
 }

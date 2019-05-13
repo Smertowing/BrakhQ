@@ -84,10 +84,10 @@ final class EventViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
-						DataManager.shared.addNewQueue(queue) {
-							self.queue = QueueCashe(queue: queue)
-							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
-						}
+				
+						self.queue = QueueCashe(queue: queue)
+						self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+					
 					} else {
 						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}

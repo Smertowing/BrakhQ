@@ -31,7 +31,7 @@ final class CreateEventViewModel {
 			case .success(let response):
 				if let answer = try? response.map(ModelResponseQueue.self) {
 					if answer.success, let queue = answer.response {
-						DataManager.shared.addNewQueue(queue) {
+						DataManager.shared.addNew(queue, to: FeedKeys.createdFeed) {
 							self.delegate?.createEventViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
 						}
 					} else {

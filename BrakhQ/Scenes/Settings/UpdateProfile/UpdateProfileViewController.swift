@@ -76,7 +76,7 @@ class UpdateProfileViewController: FormViewController {
 		form
 			+++
 			Section(header: "Change Password", footer: "Length must be greater than 6")
-			
+			/*
 			<<< PasswordRow("Current password") {
 				$0.title = $0.tag
 				$0.add(rule: RuleRequired())
@@ -87,7 +87,7 @@ class UpdateProfileViewController: FormViewController {
 						cell.titleLabel?.textColor = .red
 					}
 			}
-			
+			*/
 			<<< PasswordRow("New password") {
 				$0.title = $0.tag
 				$0.add(rule: RuleRequired())
@@ -116,11 +116,11 @@ class UpdateProfileViewController: FormViewController {
 				row.title = "Submit New Password"
 				}
 				.onCellSelection { (cell, row) in
-					let currentRow: PasswordRow! = self.form.rowBy(tag: "Current password")
+					//let currentRow: PasswordRow! = self.form.rowBy(tag: "Current password")
 					let newRow: PasswordRow! = self.form.rowBy(tag: "New password")
 					let confirmRow: PasswordRow! = self.form.rowBy(tag: "Confirm new password")
-					if currentRow.validate().isEmpty && newRow.validate().isEmpty && confirmRow.validate().isEmpty {
-						self.viewModel.changePassword(currentPassword: currentRow.value!, newPassword: newRow.value!)
+					if newRow.validate().isEmpty && confirmRow.validate().isEmpty {
+						self.viewModel.updatePassword(password: newRow.value!)
 					}
 				}
 				.cellSetup { (cell, row) in

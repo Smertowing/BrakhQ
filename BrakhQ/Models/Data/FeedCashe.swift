@@ -9,6 +9,7 @@
 import Foundation
 
 open class FeedCashe: NSObject, NSCoding {
+	
 	open var queues: [QueueCashe]
 	
 	init(queues: [Queue]) {
