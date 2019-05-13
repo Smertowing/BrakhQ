@@ -15,6 +15,7 @@ class VKLoginViewController: UIViewController, UIWebViewDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		title = "VK Login".localized
     navigationController?.isNavigationBarHidden = false
 		webkitView.delegate = self
 		activityIndicator.hidesWhenStopped = true

@@ -19,7 +19,7 @@ class EventViewController: UIViewController {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
 		title = nil
-		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Copy Link", style: .plain, target: self, action: #selector(self.copyLinkButtonClicked)), animated: false)
+		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Copy Link".localized, style: .plain, target: self, action: #selector(self.copyLinkButtonClicked)), animated: false)
 		
 		setupViewModel()
 		configureEventsTable()
@@ -64,16 +64,16 @@ class EventViewController: UIViewController {
 		if viewModel.queue.regActive {
 			runCountdown()
 			untilLabel.isEnabled = false
-			untilLabel.text = "Until end of registration:"
+			untilLabel.text = "Until end of registration:".localized
 			takeSequentButton.isEnabled = true
 		} else if viewModel.queue.regEnded {
-			counterLabel.text = "Registration is over"
+			counterLabel.text = "Registration is over".localized
 			untilLabel.isEnabled = true
 			takeSequentButton.isEnabled = false
 		} else {
 			runCountdown()
 			untilLabel.isEnabled = false
-			untilLabel.text = "Until start of registration"
+			untilLabel.text = "Until start of registration:".localized
 			takeSequentButton.isEnabled = false
 		}
 	}
@@ -110,7 +110,7 @@ class EventViewController: UIViewController {
 		queueTableView.allowsSelection = false
 		
 		queueTableView.refreshControl = UIRefreshControl()
-		queueTableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating...")
+		queueTableView.refreshControl?.attributedTitle = NSAttributedString(string: "Updating...".localized)
 		queueTableView.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
 	}
 	
@@ -141,8 +141,8 @@ class EventViewController: UIViewController {
 	
 	@objc func copyLinkButtonClicked() {
 		UIPasteboard.general.string = "queue.brakh.men/\(viewModel.queue.url)"
-		let alert = UIAlertController(title: "Done", message: "Link to this queue successfully copied to your clipboard!", preferredStyle: UIAlertController.Style.alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+		let alert = UIAlertController(title: "Done".localized, message: "Link to this queue successfully copied to your clipboard!".localized, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 		self.present(alert, animated: true, completion: nil)
 	}
 	
@@ -225,8 +225,8 @@ extension EventViewController: WebSocketModelDelegate {
 			self.webSocketConnection.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
 			self.webSocketModel = nil
 			if shown {
-				let alert = UIAlertController(title: "Disconnected", message: "Real-time connection lost", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive))
+				let alert = UIAlertController(title: "Disconnected".localized, message: "Real-time connection lost".localized, preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive))
 				self.present(alert, animated: true, completion: nil)
 			}
 		}
@@ -263,8 +263,8 @@ extension EventViewController: WebSocketModelDelegate {
 	}
 	
 	func webSocketModel(didRecievedError: String) {
-		let alert = UIAlertController(title: "Failure", message: didRecievedError, preferredStyle: UIAlertController.Style.alert)
-		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive))
+		let alert = UIAlertController(title: "Failure".localized, message: didRecievedError, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive))
 		self.present(alert, animated: true, completion: nil)
 	}
 	

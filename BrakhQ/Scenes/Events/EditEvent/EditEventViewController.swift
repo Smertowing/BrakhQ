@@ -27,7 +27,7 @@ class EditEventViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Edit Queue"
+		title = "Edit Queue".localized
 		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveButtonClicked)), animated: false)
 		setupViewModel()
 		initializeForm()
@@ -41,16 +41,16 @@ class EditEventViewController: FormViewController {
 		
 		form
 			+++
-			Section("Event Info")
+			Section("Event Info".localized)
 			<<< TextRow("Title") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = viewModel.queue.name
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 			}
 		
 			<<< DateTimeInlineRow("Event Date"){
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = viewModel.queue.eventDate
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -79,7 +79,7 @@ class EditEventViewController: FormViewController {
 			}
 			
 			+++
-			Section("Desription (optional)")
+			Section("Desription (optional)".localized)
 			<<< TextAreaRow("Description") {
 				$0.value = viewModel.queue.descript
 				}
@@ -170,7 +170,7 @@ class EditEventViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow("Save") { (row: ButtonRow) -> Void in
-				row.title = "Save Changes"
+				row.title = "Save Changes".localized
 				}
 				.onCellSelection { (cell, row) in
 					self.saveButtonClicked()
@@ -205,15 +205,15 @@ extension EditEventViewController: EditEventViewModelDelegate {
 	
 	func editEventViewModel(_ editEventViewModel: EditEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
-			let alert = UIAlertController(title: "Successfull", message: "You've created event queue!", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+			let alert = UIAlertController(title: "Successfull".localized, message: "You've edited event queue".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
 				_ = self.navigationController?.popViewController(animated: true)
 				self.delegate.eventUpdated()
 			})
 			self.present(alert, animated: true, completion: nil)
 		} else {
-			let alert = UIAlertController(title: "Failure", message: message ?? "There was an error, try again", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 			self.present(alert, animated: true, completion: nil)
 		}
 	}

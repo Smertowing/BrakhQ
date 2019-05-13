@@ -25,8 +25,8 @@ class RegistrationViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Register"
-		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(self.registerButtonClicked)), animated: false)
+		title = "Register".localized
+		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.registerButtonClicked)), animated: false)
 		
 		setupViewModel()
 		initializeForm()
@@ -45,9 +45,9 @@ class RegistrationViewController: FormViewController {
 		form
 			
 			+++
-			Section("Change Profile")
+			Section("Change Profile".localized)
 			<<< NameRow("Username") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
@@ -58,7 +58,7 @@ class RegistrationViewController: FormViewController {
 			}
 			
 			<<< NameRow("Name") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
@@ -69,7 +69,7 @@ class RegistrationViewController: FormViewController {
 			}
 			
 			<<< EmailRow("Email") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				var ruleSet = RuleSet<String>()
 				ruleSet.add(rule: RuleRequired())
@@ -84,10 +84,10 @@ class RegistrationViewController: FormViewController {
 			}
 		
 			+++
-			Section(header: "Create Password", footer: "Length must be greater than 6")
+			Section(header: "Create Password".localized, footer: "Length must be greater than 6".localized)
 			
 			<<< PasswordRow("New password") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleMinLength(minLength: 6))
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -99,7 +99,7 @@ class RegistrationViewController: FormViewController {
 			}
 			
 			<<< PasswordRow("Confirm new password") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleEqualsToRow(form: form, tag: "New password"))
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -113,7 +113,7 @@ class RegistrationViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
-				row.title = "Register"
+				row.title = "Register".localized
 				}.onCellSelection { (cell, row) in
 					self.registerButtonClicked()
 			}
@@ -144,8 +144,8 @@ extension RegistrationViewController: RegistrationViewModelDelegate {
 		if isSuccess {
 			if message!.success {
 				
-				let alert = UIAlertController(title: "Successfull", message: "You've created account!", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+				let alert = UIAlertController(title: "Successfull".localized, message: "You've created account".localized, preferredStyle: UIAlertController.Style.alert)
+				alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
 					_ = self.navigationController?.popViewController(animated: true)
 				})
 				self.present(alert, animated: true, completion: nil)

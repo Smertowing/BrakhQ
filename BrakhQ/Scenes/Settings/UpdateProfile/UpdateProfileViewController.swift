@@ -25,7 +25,7 @@ class UpdateProfileViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Update Profile"
+		title = "Update Profile".localized
 		self.navigationController?.title = nil
 		
 		setupViewModel()
@@ -40,16 +40,16 @@ class UpdateProfileViewController: FormViewController {
 		form
 			
 			+++
-			Section("Change Profile")
+			Section("Change Profile".localized)
 			<<< NameRow("Name") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.name
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 			}
 			
 			<<< EmailRow("Email") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.email
 				
 				$0.add(rule: RuleRequired())
@@ -63,7 +63,7 @@ class UpdateProfileViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
-				row.title = "Save"
+				row.title = "Save".localized
 				}.onCellSelection { (cell, row) in
 					let emailRow: EmailRow! = self.form.rowBy(tag: "Email")
 					let nameRow: NameRow! = self.form.rowBy(tag: "Name")
@@ -75,7 +75,7 @@ class UpdateProfileViewController: FormViewController {
 	
 		form
 			+++
-			Section(header: "Change Password", footer: "Length must be greater than 6")
+			Section(header: "Change Password".localized, footer: "Length must be greater than 6".localized)
 			/*
 			<<< PasswordRow("Current password") {
 				$0.title = $0.tag
@@ -89,7 +89,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			*/
 			<<< PasswordRow("New password") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleMinLength(minLength: 6))
 				}
@@ -100,7 +100,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			
 			<<< PasswordRow("Confirm new password") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleEqualsToRow(form: form, tag: "New password"))
 				}
@@ -113,7 +113,7 @@ class UpdateProfileViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
-				row.title = "Submit New Password"
+				row.title = "Submit New Password".localized
 				}
 				.onCellSelection { (cell, row) in
 					//let currentRow: PasswordRow! = self.form.rowBy(tag: "Current password")
@@ -139,12 +139,12 @@ extension UpdateProfileViewController: UpdateProfileViewModelDelegate {
 	func updateProfileViewModel(_ updateProfileViewModel: UpdateProfileViewModel, updateSuccessfull: Bool) {
 		
 		if updateSuccessfull {
-			let alert = UIAlertController(title: "Successfull", message: "You've updated account", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			let alert = UIAlertController(title: "Successfull".localized, message: "You've updated account".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 			self.present(alert, animated: true, completion: nil)
 		} else {
-			let alert = UIAlertController(title: "Failure", message: "There was an error", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive))
+			let alert = UIAlertController(title: "Failure".localized, message: "There was an error", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive))
 			self.present(alert, animated: true, completion: nil)
 		}
 		

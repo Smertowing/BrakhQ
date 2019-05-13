@@ -1,0 +1,111 @@
+/* 
+  Localizable.strings
+  BrakhQ
+
+  Created by Kiryl Holubeu on 4/6/19.
+  Copyright © 2019 brakhmen. All rights reserved.
+*/
+
+"Cancel" = "Отмена";
+"Yes" = "Да";
+"Save" = "Сохранить";
+"Successfull" = "Успех";
+"OK" = "ОК";
+"Failure" = "Неудача";
+"Done" = "Готово";
+
+"There was an error" = "Произошла ошибка";
+"Unexpected response" = "Неизвестный ответ сервера";
+"Authorization error, try to restart application" = "Ошибка аутентификации, перезайдите в свой аккаунт";
+"Internet connection error" = "Ошибка интернет-соединения";
+"Wrong input" = "Неверный ввод";
+
+"You've entered accoount via VK" = "Вы вошли в аккаунт с помощью VK";
+
+"Active" = "Активно";
+"Ended" = "Окончено";
+"Expected" = "Ожидается";
+
+"Release" = "Освободить";
+"Engaged" = "Занято";
+"Take" = "Занять";
+
+"My Queues" = "Мои Очереди";
+"Loading..." = "Загрузка...";
+"Used" = "Участие";
+"Managed" = "Управление";
+"Filter my queues by..." = "Отфильтровать очереди...";
+"Search queue" = "Поиск очереди";
+"Enter link to the queue to enter it" = "Введите ссылку на очередь";
+
+"Calendar" = "Календарь";
+"Registration starts" = "Регистрация начинается";
+"Registration ends" = "Регистрация заканчиваетсяя";
+
+"Edit Queue" = "Изменить Очередь";
+"Save Changes" = "Сохранить Изменения";
+"You've edited event queue" = "Вы изменили очередь на событие";
+
+"Create" = "Создать";
+"New Queue" = "Новая Очередь";
+"Create Queue" = "Создать Очередь";
+"You've created event queue" = "Вы создали очередь на событие";
+
+"Updating..." = "Обновление...";
+"Until end of registration:" = "До завершения регистрации:";
+"Registration is over" = "Регистрация окончена";
+"Until start of registration:" = "До начала регистрации:";
+
+"Disconnected" = "Отключение";
+"Real-time connection lost" = "Постоянное соединение разорвано";
+
+"Event Info" = "Информация о событии";
+"Title" = "Заголовок";
+"Event Date" = "Дата события";
+"Description" = "Описание";
+"Description (optional)" = "Описание (опционально)";
+"Queue" = "Очередь";
+"Owner" = "Владелец";
+"Sites" = "Места";
+"Copy Link" = "Ссылка";
+"Link to this queue successfully copied to your clipboard!" = "Ссылка на эту очередь успешно сохранена в буфер обмена";
+"Queue Settings" = "Настройки очереди";
+"Allocation" = "Расположение";
+"Type" = "Тип";
+"Number of Sites" = "Количество мест";
+"Registration Dates" = "Даты регистрации";
+"Starts" = "Начало";
+"Ends" = "Конец";
+
+"Free" = "Свободно";
+
+"Register" = "Регистрация";
+"Create Password" = "Создать пароль";
+"Update Profile" = "Обновить профиль";
+"Change Profile" = "Изменить профиль";
+"Change Password" = "Изменить пароль";
+"Length must be greater than 6" = "Длина должна превышать 6";
+"New password" = "Новый пароль";
+"Confirm new password" = "Подтвердите новый пароль";
+"Submit New Password" = "Отправить";
+"You've updated account" = "Вы обновили аккаунт";
+"You've entered account" = "Вы вошли в аккаунт";
+"You've created account" = "Вы создали аккаунт";
+
+"My Profile" = "Мой Профиль";
+"Username" = "Никнейм";
+"Name" = "Имя";
+"Email" = "Email";
+"Update profile" = "Обновить профиль";
+"Application Settings" = "Настройки приложения";
+"Appearance" = "Внешний вид";
+"Light" = "Светлый";
+"Dark" = "Тёмный";
+"Log Out" = "Выйти";
+"Settings" = "Настройки";
+"Exit" = "Выход";
+"Do you really want to exit your account?" = "Вы действительно хотите выйти из аккаунта?";
+
+"Random" = "Случайно";
+"Default" = "Стандарт";
+"VK Login" = "Вход через VK";

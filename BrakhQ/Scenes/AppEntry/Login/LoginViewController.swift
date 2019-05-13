@@ -56,14 +56,14 @@ extension LoginViewController: LoginViewModelDelegate {
 	func loginViewModel(_ loginViewModel: LoginViewModel, isSuccess: Bool, user: User?) {
 		if isSuccess {
 			let mainViewController = self.storyboard!.instantiateViewController(withIdentifier: "mainTabVC")
-			let alert = UIAlertController(title: "Successfull", message: "You've entered \(user?.username ?? "account")", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+			let alert = UIAlertController(title: "Successfull".localized, message: "You've entered account".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
 				self.present(mainViewController, animated: true, completion: nil)
 			})
 			self.present(alert, animated: true, completion: nil)
 		} else {
-			let alert = UIAlertController(title: "Failure", message: "There was an error", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			let alert = UIAlertController(title: "Failure".localized, message: "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 			self.present(alert, animated: true, completion: nil)
 		}
 	}

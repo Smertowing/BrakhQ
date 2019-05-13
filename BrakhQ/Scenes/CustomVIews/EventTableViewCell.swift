@@ -28,15 +28,15 @@ class EventTableViewCell: UITableViewCell {
 		counterLabel.text = "\(queue.busyPlaces.count)/\(queue.placesCount)"
 		
 		if queue.regActive {
-			statusLabel.text = "Active"
+			statusLabel.text = "Active".localized
 			statusImageView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
 			counterLabel.isHidden = false
 		} else if queue.regEnded {
-			statusLabel.text = "Ended"
+			statusLabel.text = "Ended".localized
 			statusImageView.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
 			counterLabel.isHidden = false
 		} else {
-			statusLabel.text = "Expected"
+			statusLabel.text = "Expected".localized
 			statusImageView.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
 			counterLabel.isHidden = true
 		}

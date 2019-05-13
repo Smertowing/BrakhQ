@@ -119,6 +119,9 @@
                         <viewLayoutGuide key="safeArea" id="A4e-XG-lig"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZFw-Pp-dFK"/>
+                    <connections>
+                        <outlet property="logoImageView" destination="RZJ-ya-7Rl" id="6Ku-ea-SPM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeG-g4-yqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,7 +248,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="BQLabel" translatesAutoresizingMaskIntoConstraints="NO" id="5fr-nq-Tul">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="BQLabelBlue" translatesAutoresizingMaskIntoConstraints="NO" id="5fr-nq-Tul">
                                         <rect key="frame" x="102" y="48" width="116.5" height="116.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5fr-nq-Tul" secondAttribute="height" multiplier="1:1" id="H36-EQ-BkH"/>
@@ -366,31 +369,20 @@
                                         </constraints>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HVa-md-XKd">
-                                        <rect key="frame" x="150" y="366" width="20" height="20"/>
+                                        <rect key="frame" x="150" y="288" width="20" height="20"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modern solution for everyday routine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4v-60-Eqe">
-                                        <rect key="frame" x="80" y="262" width="160" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="qMJ-Xg-fJr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="6ps-GF-2rZ" firstAttribute="centerX" secondItem="iwX-RD-Ujq" secondAttribute="centerX" id="4QH-tY-cmg"/>
-                                    <constraint firstItem="c4v-60-Eqe" firstAttribute="centerY" secondItem="iwX-RD-Ujq" secondAttribute="centerY" constant="24" id="5Ew-c3-0j0"/>
-                                    <constraint firstItem="c4v-60-Eqe" firstAttribute="centerX" secondItem="iwX-RD-Ujq" secondAttribute="centerX" id="V8m-ub-p8C"/>
                                     <constraint firstItem="uB9-M5-ubZ" firstAttribute="centerY" secondItem="iwX-RD-Ujq" secondAttribute="centerY" constant="-54" id="XMm-Ix-T1z"/>
                                     <constraint firstItem="uB9-M5-ubZ" firstAttribute="top" secondItem="6ps-GF-2rZ" secondAttribute="bottom" constant="24" id="aX8-a9-d4r"/>
                                     <constraint firstItem="HVa-md-XKd" firstAttribute="centerX" secondItem="iwX-RD-Ujq" secondAttribute="centerX" id="baU-gq-BeU"/>
                                     <constraint firstItem="6ps-GF-2rZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iwX-RD-Ujq" secondAttribute="top" constant="48" id="bzN-4b-Hi3"/>
-                                    <constraint firstItem="HVa-md-XKd" firstAttribute="top" secondItem="c4v-60-Eqe" secondAttribute="bottom" constant="32" id="hF2-ZK-3Mr"/>
                                     <constraint firstAttribute="width" constant="320" id="hql-P3-pm7"/>
                                     <constraint firstItem="uB9-M5-ubZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iwX-RD-Ujq" secondAttribute="leading" constant="24" id="hx4-YL-F5U"/>
                                     <constraint firstItem="uB9-M5-ubZ" firstAttribute="centerX" secondItem="iwX-RD-Ujq" secondAttribute="centerX" id="o0Z-TI-mwk"/>
+                                    <constraint firstItem="HVa-md-XKd" firstAttribute="centerY" secondItem="iwX-RD-Ujq" secondAttribute="centerY" constant="24" id="wbM-zb-Vke"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -405,6 +397,7 @@
                     <navigationItem key="navigationItem" id="xKx-NX-krD"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="HVa-md-XKd" id="YAI-Oa-iIG"/>
+                        <outlet property="logoImageView" destination="6ps-GF-2rZ" id="iNX-Dm-YBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drn-d6-VnB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,6 +407,7 @@
     </scenes>
     <resources>
         <image name="BQLabel" width="215" height="215"/>
+        <image name="BQLabelBlue" width="215" height="215"/>
         <image name="calendarTabItem" width="30" height="30"/>
         <image name="managerTabItem" width="30" height="30"/>
         <image name="settingsTabItem" width="30" height="30"/>

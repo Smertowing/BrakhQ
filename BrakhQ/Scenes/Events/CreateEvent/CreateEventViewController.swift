@@ -25,8 +25,8 @@ class CreateEventViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "New Queue"
-		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(self.createButtonClicked)), animated: false)
+		title = "New Queue".localized
+		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Create".localized, style: .plain, target: self, action: #selector(self.createButtonClicked)), animated: false)
 		
 		setupViewModel()
 		initializeForm()
@@ -40,16 +40,16 @@ class CreateEventViewController: FormViewController {
 		
 		form
 			+++
-			Section("Event Info")
+			Section("Event Info".localized)
 			<<< TextRow("Title") {
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
 				}
 				.cellSetup { cell, row in
-				cell.textField.placeholder = row.tag
+				cell.textField.placeholder = row.tag?.localized
 			}
 			<<< DateTimeInlineRow("Event Date"){
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = Date().addingTimeInterval(60*60*24)
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -79,16 +79,16 @@ class CreateEventViewController: FormViewController {
 			}
 	
 			+++
-			Section("Description (optional)")
+			Section("Description (optional)".localized)
 			<<< TextAreaRow("Description")
 				.cellSetup { cell, row in
 					cell.textView.text = ""
 			}
 			
 			+++
-			Section("Queue Settings")
+			Section("Queue Settings".localized)
 			<<< SegmentedRow<String>("Allocation"){
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.options = [QueueType.def.rawValue, QueueType.random.rawValue]
 				$0.value = QueueType.def.rawValue
 				$0.add(rule: RuleRequired())
@@ -99,7 +99,7 @@ class CreateEventViewController: FormViewController {
 			}
 			
 			<<< StepperRow("Number of Sites") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = 2
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -113,9 +113,9 @@ class CreateEventViewController: FormViewController {
 			}
 			
 			+++
-			Section("Registration Dates")
+			Section("Registration Dates".localized)
 			<<< DateTimeInlineRow("Starts") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = Date().addingTimeInterval(60*60)
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -145,7 +145,7 @@ class CreateEventViewController: FormViewController {
 			}
 			
 			<<< DateTimeInlineRow("Ends"){
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = Date().addingTimeInterval(60*60*24)
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -177,7 +177,7 @@ class CreateEventViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow("Create") { (row: ButtonRow) -> Void in
-				row.title = "Create Queue"
+				row.title = "Create Queue".localized
 				}
 				.onCellSelection { (cell, row) in
 					self.createButtonClicked()
@@ -213,14 +213,14 @@ extension CreateEventViewController: CreateEventViewModelDelegate {
 	
 	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
 		if isSuccess {
-			let alert = UIAlertController(title: "Successfull", message: "You've created event queue!", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+			let alert = UIAlertController(title: "Successfull".localized, message: "You've created event queue".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
 				_ = self.navigationController?.popViewController(animated: true)
 			})
 			self.present(alert, animated: true, completion: nil)
 		} else {
-			let alert = UIAlertController(title: "Failure", message: message ?? "There was an error, try again", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 			self.present(alert, animated: true, completion: nil)
 		}
 	}

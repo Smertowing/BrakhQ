@@ -11,6 +11,7 @@ target 'BrakhQ' do
   pod 'CalendarKit'
   pod 'Eureka'
   pod 'DataCache'
+  pod 'KeychainSwift', '~> 15.0'
 end
 
 post_install do |installer|

@@ -25,7 +25,7 @@ class SettingsViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Settings"
+		title = "Settings".localized
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
@@ -55,71 +55,65 @@ class SettingsViewController: FormViewController {
 	private func initializeForm() {
 		form
 			+++
-			Section("My Profile") {
+			Section("My Profile".localized) {
 				$0.header = HeaderFooterView<BrakhQLogoView>(.class)
 			}
 			<<< LabelRow("Username") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.username
 			}
 			
 			<<< LabelRow("Name") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.name
 				}.cellUpdate {_, row in
 					row.value = AuthManager.shared.user?.name
 			}
 			
 			<<< LabelRow("Email") {
-				$0.title = $0.tag
+				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.email
 				}.cellUpdate {_, row in
 					row.value = AuthManager.shared.user?.email
 			}
 			
 			<<< ButtonRow("Update profile") { (row: ButtonRow) -> Void in
-				row.title = row.tag
+				row.title = row.tag?.localized
 				row.presentationMode = .show(controllerProvider: ControllerProvider.callback(builder: viewModel.getUpdateViewController), onDismiss: nil)
 			}
 			
 		form
+			/*
 			+++
-			Section("Application Settings")
+			Section("Application Settings".localized)
 			
-			<<< PickerInlineRow<String>("Appearance") { (row : PickerInlineRow<String>) -> Void in
-				row.title = row.tag
+			<<< PickerInlineRow<String>("Appearance".localized) { (row : PickerInlineRow<String>) -> Void in
+				row.title = row.tag?.localized
 				row.displayValueFor = { (rowValue: String?) in
 					return rowValue.map { (rowValue: String?) in
 						"\(rowValue ?? "Error")"
 					}
 				}
-				row.options = ["Light", "Dark"]
+				row.options = ["Light".localized, "Dark".localized]
 				row.value = row.options[0]
 			}
-			
+			*/
 			+++
 			Section()
 			
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
-				row.title = "Log Out"
+				row.title = "Log Out".localized
 				}.onCellSelection { [weak self] (cell, row) in
 					self?.exitButtonClicked()
 				}.cellSetup { (cell, row) in
 					cell.tintColor = .red
 		}
 	}
-	
-	@IBAction func showAlert() {
-		let alertController = UIAlertController(title: "OnCellSelection", message: "Button Row Action", preferredStyle: .alert)
-		let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-		alertController.addAction(defaultAction)
-		present(alertController, animated: true)
-	}
 
 	@objc func exitButtonClicked() {
-		let alert = UIAlertController(title: "Exut", message: "Do you really want to exit your account?", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
-		alert.addAction(UIAlertAction(title: "yes", style: .destructive, handler: { action in
+		let alert = UIAlertController(title: "Exit".localized, message: "Do you really want to exit your account?".localized, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: "Yes".localized, style: .destructive, handler: { action in
 			self.viewModel.exit()
 		}))
 		self.present(alert, animated: true)

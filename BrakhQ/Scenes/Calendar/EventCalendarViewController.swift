@@ -26,7 +26,7 @@ class EventCalendarViewController: DayViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Calendar"
+		title = "Calendar".localized
 		self.navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
@@ -51,7 +51,8 @@ class EventCalendarViewController: DayViewController {
 				event.userInfo = queue
 				event.startDate = queue.eventDate
 				event.endDate = queue.eventDate.addingTimeInterval(60*60)
-				event.text = queue.name + " - Event date"
+				event.text = queue.name + " -  " + "Event Date".localized
+				event.color = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
 				events.append(event)
 			}
 			if queue.regStartDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
@@ -59,7 +60,8 @@ class EventCalendarViewController: DayViewController {
 				event.userInfo = queue
 				event.startDate = queue.regStartDate
 				event.endDate = queue.regStartDate.addingTimeInterval(60*60)
-				event.text = queue.name + " - Registration starts"
+				event.text = queue.name + " - " + "Registration starts".localized
+				event.color = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 				events.append(event)
 			}
 			if queue.regEndDate.compareTo(date: date, toGranularity: .day) == .orderedSame {
@@ -67,7 +69,8 @@ class EventCalendarViewController: DayViewController {
 				event.userInfo = queue
 				event.startDate = queue.regEndDate
 				event.endDate = queue.regEndDate.addingTimeInterval(60*60)
-				event.text = queue.name + " - Registration ends"
+				event.text = queue.name + " -  " + "Registration ends".localized
+				event.color = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
 				events.append(event)
 			}
 		}

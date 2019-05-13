@@ -28,7 +28,7 @@ final class EventViewModel {
 		self.queue = queue
 		for i in 1...queue.placesCount {
 			places.append(SiteConfig(accessability: .free,
-															 username: "Free",
+															 username: "Free".localized,
 															 position: i,
 															 interactable: true))
 		}
@@ -39,7 +39,7 @@ final class EventViewModel {
 		places = []
 		for i in 1...queue.placesCount {
 			places.append(SiteConfig(accessability: .free,
-															 username: "Free",
+															 username: "Free".localized,
 															 position: i,
 															 interactable: true))
 		}
@@ -65,6 +65,15 @@ final class EventViewModel {
 													interactable: place.accessability == .release ? true : place.accessability == .engaged ? false : interactable )
 			}
 		} else {
+			queue.busyPlaces.forEach { (placeCache) in
+				places[placeCache.place-1].username = placeCache.user!.name
+				if placeCache.user!.id == AuthManager.shared.user!.id {
+					places[placeCache.place-1].accessability = .release
+				} else {
+					places[placeCache.place-1].accessability = .engaged
+				}
+			}
+			
 			places = places.map { (place) -> SiteConfig in
 				return SiteConfig(accessability: place.accessability,
 													username: place.username,
@@ -92,7 +101,7 @@ final class EventViewModel {
 						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
 				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 				}
 				if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 			case .failure(let error):
@@ -101,12 +110,12 @@ final class EventViewModel {
 						if success {
 							self.updateEvent(refresher: refresher)
 						} else {
-							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 							if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 					if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 				}
 			}
@@ -130,7 +139,7 @@ final class EventViewModel {
 							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 						}
 					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 					}
 				case .failure(let error):
 					if error.errorCode == 401 {
@@ -138,11 +147,11 @@ final class EventViewModel {
 							if success {
 								self.interactPlace(site)
 							} else {
-								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 							}
 						}
 					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 					}
 				}
 			}
@@ -161,7 +170,7 @@ final class EventViewModel {
 							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 						}
 					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 					}
 				case .failure(let error):
 					if error.errorCode == 401 {
@@ -169,11 +178,11 @@ final class EventViewModel {
 							if success {
 								self.interactPlace(site)
 							} else {
-								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 							}
 						}
 					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 					}
 				}
 			}

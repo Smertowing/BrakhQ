@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "5Iu-h1-Xvr"; */
+"5Iu-h1-Xvr.normalTitle" = "Sign Up";
+
+/* Class = "UITextField"; placeholder = "Login"; ObjectID = "7QB-mL-kp2"; */
+"7QB-mL-kp2.placeholder" = "Login";
+
+/* Class = "UILabel"; text = "BrakhQueue"; ObjectID = "JD9-i7-HCr"; */
+"JD9-i7-HCr.text" = "BrakhQueue";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Laq-s4-EDS"; */
+"Laq-s4-EDS.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Authorization via VK"; ObjectID = "Omi-xB-y9j"; */
+"Omi-xB-y9j.normalTitle" = "Authorization via VK";
+
+/* Class = "UILabel"; text = "BrakhQueue"; ObjectID = "U0d-Rs-3H7"; */
+"U0d-Rs-3H7.text" = "BrakhQueue";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "Xax-EM-FfY"; */
+"Xax-EM-FfY.normalTitle" = "Log In";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "b9m-WA-Vnb"; */
+"b9m-WA-Vnb.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Modern solution for everyday routine"; ObjectID = "c4v-60-Eqe"; */
+"c4v-60-Eqe.text" = "Modern solution for everyday routine";
+
+/* Class = "UILabel"; text = "BrakhQueue"; ObjectID = "uB9-M5-ubZ"; */
+"uB9-M5-ubZ.text" = "BrakhQueue";
+
+/* Class = "UIButton"; normalTitle = "Return"; ObjectID = "w29-Tk-8V9"; */
+"w29-Tk-8V9.normalTitle" = "Return";

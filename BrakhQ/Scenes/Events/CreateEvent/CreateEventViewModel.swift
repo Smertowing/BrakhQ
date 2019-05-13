@@ -38,7 +38,7 @@ final class CreateEventViewModel {
 						self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
 				} else {
-					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 				}
 			case .failure(let error):
 				if error.errorCode == 401 {
@@ -46,11 +46,11 @@ final class CreateEventViewModel {
 						if success {
 							self.createEvent(name: name, description: description, queueType: queueType, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)
 						} else {
-							self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 						}
 					}
 				} else {
-					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 				}
 			}
 		}

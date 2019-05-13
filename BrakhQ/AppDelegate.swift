@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 						if let user = answer.response {
 							AuthManager.shared.user = user
 							AuthManager.shared.login()
-							let alertController = UIAlertController(title: "Success", message: "You've entered accoount via VK", preferredStyle: .alert)
-							let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { _ in
+							let alertController = UIAlertController(title: "Success".localized, message: "You've entered accoount via VK".localized, preferredStyle: .alert)
+							let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive, handler: { _ in
 								let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
 								self.window?.rootViewController?.present(mainViewController, animated: true)
 							})
@@ -47,27 +47,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 							
 							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 						} else {
-							let alertController = UIAlertController(title: "Failure", message: answer.message ?? "Unknown response from the server", preferredStyle: .alert)
-							let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+							let alertController = UIAlertController(title: "Failure".localized, message: answer.message ?? "Unexpected response".localized, preferredStyle: .alert)
+							let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
 							alertController.addAction(okAction)
 							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 						}
 					} else {
-						let alertController = UIAlertController(title: "Failure", message: "Unknown response from the server", preferredStyle: .alert)
-						let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+						let alertController = UIAlertController(title: "Failure".localized, message: "Unexpected response".localized, preferredStyle: .alert)
+						let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
 						alertController.addAction(okAction)
 						self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 					}
 				} else {
-					let alertController = UIAlertController(title: "Failure", message: "Internet connection error", preferredStyle: .alert)
-					let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+					let alertController = UIAlertController(title: "Failure".localized, message: "Internet connection error".localized, preferredStyle: .alert)
+					let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
 					alertController.addAction(okAction)
 					self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 				}
 			}
 		} else {
-			let alertController = UIAlertController(title: "Failure", message: "Unknown response from the server", preferredStyle: .alert)
-			let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+			let alertController = UIAlertController(title: "Failure".localized, message: "Unexpected response".localized, preferredStyle: .alert)
+			let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
 			alertController.addAction(okAction)
 			self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 		}

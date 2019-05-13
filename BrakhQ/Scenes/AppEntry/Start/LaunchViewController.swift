@@ -13,11 +13,19 @@ class LaunchViewController: UIViewController {
 
 	let provider = MoyaProvider<AuthProvider>()
 	
+	@IBOutlet weak var logoImageView: UIImageView!
+	
 	@IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		DispatchQueue.main.async() {
+			UIView.transition(with: self.logoImageView,
+												duration: 0.75,
+												options: .beginFromCurrentState,
+												animations: { self.logoImageView.image = #imageLiteral(resourceName: "BQLabelBlue") },
+												completion: nil)
 			self.loadingIndicator.startAnimating()
 		}
 		

@@ -18,7 +18,7 @@ class QueueManagerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "My Queues"
+		title = "My Queues".localized
 		navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
@@ -44,9 +44,10 @@ class QueueManagerViewController: UIViewController {
 		eventsTable.delegate = self
 		eventsTable.dataSource = self
 		eventsTable.tableFooterView = UIView()
+		eventsTable.backgroundView = EmptyBackgroundView.instanceFromNib()
 		
 		eventsTable.refreshControl = UIRefreshControl()
-		eventsTable.refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
+		eventsTable.refreshControl?.attributedTitle = NSAttributedString(string: "Loading...".localized)
 		eventsTable.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
 	}
 	
@@ -57,8 +58,8 @@ class QueueManagerViewController: UIViewController {
 	@IBOutlet weak var scopeSegmentedControl: UISegmentedControl!
 	
 	func configureScopeBar() {
-		scopeSegmentedControl.setTitle("All", forSegmentAt: 0)
-		scopeSegmentedControl.setTitle("Managed", forSegmentAt: 1)
+		scopeSegmentedControl.setTitle("Used".localized, forSegmentAt: 0)
+		scopeSegmentedControl.setTitle("Managed".localized, forSegmentAt: 1)
 	}
 	
 	@IBAction func segmentChanged(_ sender: Any) {
@@ -72,11 +73,11 @@ class QueueManagerViewController: UIViewController {
 		searchBar.backgroundImage = UIImage()
 		searchBar.sizeToFit()
 		searchBar.isTranslucent = false
-		searchBar.placeholder = "Filter my queues by..."
+		searchBar.placeholder = "Filter my queues by...".localized
 		
 		searchBar.scopeBarBackgroundImage = UIImage()
 		searchBar.showsScopeBar = true
-		searchBar.scopeButtonTitles = ["All", "Managed"]
+		searchBar.scopeButtonTitles = ["Used".localized, "Managed".localized]
 	}
 	
 	@objc func createButtonClicked() {
@@ -85,7 +86,7 @@ class QueueManagerViewController: UIViewController {
 	}
 	
 	@objc func searchButtonClicked() {
-		alertWithTextField(title: "Search queue", message: "Enter link to the queue to enter it", placeholder: "queue.brakh.men/...") { result in
+		alertWithTextField(title: "Search queue".localized, message: "Enter link to the queue to enter it".localized, placeholder: "queue.brakh.men/...") { result in
 			if !result.isEmpty {
 				self.viewModel.searchBy(result)
 			}
@@ -97,8 +98,8 @@ class QueueManagerViewController: UIViewController {
 		alert.addTextField() { newTextField in
 			newTextField.placeholder = placeholder
 		}
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in completion("") })
-		alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+		alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in completion("") })
+		alert.addAction(UIAlertAction(title: "OK".localized, style: .default) { action in
 			if
 				let textFields = alert.textFields,
 				let tf = textFields.first,
@@ -119,7 +120,13 @@ extension QueueManagerViewController: UITableViewDelegate, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return scopeSegmentedControl.selectedSegmentIndex == 0 ? viewModel.usedQueues.count : viewModel.createdQueues.count
+		let number = scopeSegmentedControl.selectedSegmentIndex == 0 ? viewModel.usedQueues.count : viewModel.createdQueues.count
+		if number == 0 {
+			tableView.backgroundView?.isHidden = false
+		} else {
+			tableView.backgroundView?.isHidden = true
+		}
+		return number
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -182,8 +189,8 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 			viewController.viewModel = EventViewModel(for: queue!)
 			self.navigationController?.pushViewController(viewController, animated: true)
 		} else {
-			let alert = UIAlertController(title: "Failure", message: message ?? "There was an error, try again", preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 			self.present(alert, animated: true, completion: nil)
 		}
 	}

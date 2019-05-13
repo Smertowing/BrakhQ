@@ -27,6 +27,47 @@ protocol WebSocketModelDelegate: class {
 }
 
 final class WebSocketModel: WebSocketDelegate {
+
+	func websocketDidConnect(socket: WebSocketClient) {
+		switch connectionType {
+		case .url:
+			socket.write(data: try! JSONEncoder().encode(WebSocketConnectByURL(url: url)))
+		case .id:
+			socket.write(data: try! JSONEncoder().encode(WebSocketConnectById(id: id)))
+		}
+		
+	}
+	
+	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+		delegate?.webSocketModel(isListening: false)
+	}
+	
+	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+		if text == "Ok" {
+			delegate?.webSocketModel(isListening: true)
+		} else if let result = text.parse(to: WebSocketResponse.self) {
+			switch result.event {
+			case .regStart:
+				delegate?.regStarts()
+			case .regEnd:
+				delegate?.regEnds()
+			case .placeTake:
+				delegate?.take(place: result.place!)
+			case .placeFree:
+				delegate?.free(place: result.place!)
+			case .queueChange:
+				delegate?.changed(queue: result.queue!)
+			case .queueMix:
+				delegate?.mixed(queue: result.queue!)
+			}
+		} else {
+			delegate?.webSocketModel(didRecievedError: "Invalid server response".localized)
+		}
+	}
+	
+	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+		print(data)
+	}
 	
 	weak var delegate: WebSocketModelDelegate?
 	
@@ -61,45 +102,6 @@ final class WebSocketModel: WebSocketDelegate {
 		socket.disconnect()
 	}
 	
-	func websocketDidConnect(socket: WebSocketClient) {
-		switch connectionType {
-		case .url:
-			socket.write(data: try! JSONEncoder().encode(WebSocketConnectByURL(url: url)))
-		case .id:
-			socket.write(data: try! JSONEncoder().encode(WebSocketConnectById(id: id)))
-		}
-		
-	}
 	
-	func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-		delegate?.webSocketModel(isListening: false)
-	}
-	
-	func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-		if text == "Ok" {
-			delegate?.webSocketModel(isListening: true)
-		} else if let result = text.parse(to: WebSocketResponse.self) {
-			switch result.event {
-			case .regStart:
-				delegate?.regStarts()
-			case .regEnd:
-				delegate?.regEnds()
-			case .placeTake:
-				delegate?.take(place: result.place!)
-			case .placeFree:
-				delegate?.free(place: result.place!)
-			case .queueChange:
-				delegate?.changed(queue: result.queue!)
-			case .queueMix:
-				delegate?.mixed(queue: result.queue!)
-			}
-		} else {
-			delegate?.webSocketModel(didRecievedError: "Invalid server response")
-		}
-	}
-	
-	func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-		print(data)
-	}
 
 }

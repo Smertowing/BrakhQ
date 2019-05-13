@@ -34,26 +34,15 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="uZ9-g5-ejN"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modern solution for everyday routine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-Qt-5cn">
-                                        <rect key="frame" x="80" y="397" width="160" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="knh-Mr-Rd4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ysP-a1-qEG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yyL-38-jlj" secondAttribute="top" constant="48" id="5AU-vx-XmI"/>
                                     <constraint firstAttribute="width" constant="320" id="8Br-ad-c7K"/>
-                                    <constraint firstItem="MFC-Qt-5cn" firstAttribute="centerX" secondItem="yyL-38-jlj" secondAttribute="centerX" id="9AD-vb-UcR"/>
                                     <constraint firstItem="V9u-nI-8q4" firstAttribute="centerY" secondItem="yyL-38-jlj" secondAttribute="centerY" constant="-54" id="Gb4-TA-WSh"/>
                                     <constraint firstItem="V9u-nI-8q4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yyL-38-jlj" secondAttribute="leading" constant="24" id="IGa-iF-T9R"/>
                                     <constraint firstItem="V9u-nI-8q4" firstAttribute="top" secondItem="ysP-a1-qEG" secondAttribute="bottom" constant="24" id="OWz-gf-Jh4"/>
                                     <constraint firstItem="V9u-nI-8q4" firstAttribute="centerX" secondItem="yyL-38-jlj" secondAttribute="centerX" id="iG0-kI-zEG"/>
-                                    <constraint firstItem="MFC-Qt-5cn" firstAttribute="centerY" secondItem="yyL-38-jlj" secondAttribute="centerY" constant="24" id="sxL-6h-cYA"/>
                                     <constraint firstItem="ysP-a1-qEG" firstAttribute="centerX" secondItem="yyL-38-jlj" secondAttribute="centerX" id="weH-6i-zoK"/>
                                 </constraints>
                             </view>

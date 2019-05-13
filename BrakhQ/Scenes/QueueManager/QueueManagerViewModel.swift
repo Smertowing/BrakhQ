@@ -24,8 +24,12 @@ final class QueueManagerViewModel {
 	let providerUser = MoyaProvider<UserAPIProvider>()
 	let providerQueue = MoyaProvider<QueueAPIProvider>()
 	
-	var createdQueues: [QueueCashe] = DataManager.shared.createdFeed.queues
-	var usedQueues: [QueueCashe] = DataManager.shared.usedFeed.queues
+	var createdQueues: [QueueCashe] = DataManager.shared.createdFeed.queues.sorted(by: { (prev, next) -> Bool in
+		return prev.id > next.id
+	})
+	var usedQueues: [QueueCashe] = DataManager.shared.usedFeed.queues.sorted(by: { (prev, next) -> Bool in
+		return prev.id > next.id
+	})
 	
 	func filterQueues(type: FeedKeys) {
 		switch type {
@@ -50,7 +54,7 @@ final class QueueManagerViewModel {
 				String(link[Range($0.range, in: link)!])
 			}
 			if links.isEmpty {
-				self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input")
+				self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
 			} else {
 				var url: String = links[0]
 				url.removeFirst("queue.brakh.men/".count)
@@ -58,7 +62,7 @@ final class QueueManagerViewModel {
 				getQueue(by: url)
 			}
 		} catch {
-			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input")
+			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
 		}
 	}
 	
@@ -86,7 +90,7 @@ final class QueueManagerViewModel {
 						if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			case .failure(let error):
@@ -95,12 +99,12 @@ final class QueueManagerViewModel {
 						if success {
 							self.updateUsedEvents(with: refresher)
 						} else {
-							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			}
@@ -127,7 +131,7 @@ final class QueueManagerViewModel {
 						self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
+					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 				}
 				if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 			case .failure(let error):
@@ -136,12 +140,12 @@ final class QueueManagerViewModel {
 						if success {
 							self.updateCreatedEvents(with: refresher)
 						} else {
-							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
 							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 						}
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
 					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			}
@@ -164,7 +168,7 @@ final class QueueManagerViewModel {
 						self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: answer.message)
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Unexpected response")
+					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Unexpected response".localized)
 				}
 			case .failure(let error):
 				if error.errorCode == 401 {
@@ -172,11 +176,11 @@ final class QueueManagerViewModel {
 						if success {
 							self.getQueue(by: url)
 						} else {
-							self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Authorization error, try to restart application".localized)
 						}
 					}
 				} else {
-					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Internet connection error")
+					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Internet connection error".localized)
 				}
 			}
 		}

@@ -1,0 +1,21 @@
+
+/* Class = "UISegmentedControl"; 5rq-ti-DLg.segmentTitles[0] = "Used"; ObjectID = "5rq-ti-DLg"; */
+"5rq-ti-DLg.segmentTitles[0]" = "Used";
+
+/* Class = "UISegmentedControl"; 5rq-ti-DLg.segmentTitles[1] = "Managed"; ObjectID = "5rq-ti-DLg"; */
+"5rq-ti-DLg.segmentTitles[1]" = "Managed";
+
+/* Class = "UILabel"; text = "Status:"; ObjectID = "Kxm-Je-B7P"; */
+"Kxm-Je-B7P.text" = "Status:";
+
+/* Class = "UILabel"; text = "Active"; ObjectID = "KyL-4P-QqK"; */
+"KyL-4P-QqK.text" = "Active";
+
+/* Class = "UILabel"; text = "Event date:"; ObjectID = "mHn-dp-CnI"; */
+"mHn-dp-CnI.text" = "Event date:";
+
+/* Class = "UILabel"; text = "0/0"; ObjectID = "mk0-rI-Kb4"; */
+"mk0-rI-Kb4.text" = "0/0";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "yVj-cp-Zsw"; */
+"yVj-cp-Zsw.text" = "Name";
