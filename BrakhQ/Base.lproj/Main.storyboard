@@ -63,7 +63,7 @@
                                             <action selector="login:" destination="f3i-SZ-swZ" eventType="touchUpInside" id="CVR-0W-YjA"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omi-xB-y9j">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omi-xB-y9j">
                                         <rect key="frame" x="90.5" y="392" width="139" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -143,6 +143,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rvb-zG-70f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-472" y="580"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="K3k-LL-sjV">
+            <objects>
+                <viewController storyboardIdentifier="vkLogin" id="KK2-t8-5Ji" customClass="VKLoginViewController" customModule="BrakhQ" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QWm-tq-zid">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frR-di-jED">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gAq-zQ-SnX">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I2A-N4-cJy" firstAttribute="bottom" secondItem="frR-di-jED" secondAttribute="bottom" id="Agf-fO-X9c"/>
+                            <constraint firstItem="frR-di-jED" firstAttribute="top" secondItem="I2A-N4-cJy" secondAttribute="top" id="BBg-ks-Ymh"/>
+                            <constraint firstItem="gAq-zQ-SnX" firstAttribute="centerY" secondItem="QWm-tq-zid" secondAttribute="centerY" id="Uce-9n-1Xh"/>
+                            <constraint firstItem="gAq-zQ-SnX" firstAttribute="centerX" secondItem="QWm-tq-zid" secondAttribute="centerX" id="coz-OV-KF5"/>
+                            <constraint firstItem="frR-di-jED" firstAttribute="centerX" secondItem="QWm-tq-zid" secondAttribute="centerX" id="kKw-LG-JJr"/>
+                            <constraint firstItem="frR-di-jED" firstAttribute="leading" secondItem="I2A-N4-cJy" secondAttribute="leading" id="kvt-Rt-QtB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I2A-N4-cJy"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="gAq-zQ-SnX" id="uL9-bU-Kbs"/>
+                        <outlet property="webkitView" destination="frR-di-jED" id="D4E-SU-LoQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBY-ew-OVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2284" y="1441"/>
         </scene>
         <!--Queue Manager Navigation Controller-->
         <scene sceneID="rFR-R9-obS">

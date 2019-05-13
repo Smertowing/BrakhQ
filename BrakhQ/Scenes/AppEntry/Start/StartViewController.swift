@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Moya
 
 class StartViewController: UIViewController {
 
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -28,6 +30,8 @@ class StartViewController: UIViewController {
 	}
 	
 	@IBAction func loginViaVK(_ sender: Any) {
+		let loginViewController = self.storyboard!.instantiateViewController(withIdentifier: "vkLogin") as! VKLoginViewController
+		self.show(loginViewController, sender: self)
 	}
 	
 	@IBAction func signup(_ sender: Any) {

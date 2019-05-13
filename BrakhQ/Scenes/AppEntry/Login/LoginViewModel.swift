@@ -49,7 +49,7 @@ final class LoginViewModel {
 		
 	}
 	
-	private func getUserBy(username: String, token: String) {
+	func getUserBy(username: String, token: String) {
 		
 		self.delegate?.loginViewModel(self, isLoading: true)
 		

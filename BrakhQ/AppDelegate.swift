@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import Moya
+
+func getQueryStringParameter(url: URL, param: String) -> String? {
+	guard let url = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
+	return url.queryItems?.first(where: { $0.name == param })?.value
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +20,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		
+		return true
+	}
+	
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+		
+		let message = url.host?.removingPercentEncoding
+		if message == "auth" {
+			let providerUser = MoyaProvider<UserAPIProvider>()
+			AuthManager.shared.token = getQueryStringParameter(url: url, param: "token")
+			AuthManager.shared.refreshToken = getQueryStringParameter(url: url, param: "refreshToken")
+
+			providerUser.request(.getUserByUsername(username: getQueryStringParameter(url: url, param: "username")!)) { result in
+				if case .success(let response) = result  {
+					if let answer = try? response.map(ModelResponseUser.self) {
+						if let user = answer.response {
+							AuthManager.shared.user = user
+							AuthManager.shared.login()
+							let alertController = UIAlertController(title: "Success", message: "You've entered accoount via VK", preferredStyle: .alert)
+							let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { _ in
+								let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
+								self.window?.rootViewController?.present(mainViewController, animated: true)
+							})
+							alertController.addAction(okAction)
+							
+							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+						} else {
+							let alertController = UIAlertController(title: "Failure", message: answer.message ?? "Unknown response from the server", preferredStyle: .alert)
+							let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+							alertController.addAction(okAction)
+							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+						}
+					} else {
+						let alertController = UIAlertController(title: "Failure", message: "Unknown response from the server", preferredStyle: .alert)
+						let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+						alertController.addAction(okAction)
+						self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+					}
+				} else {
+					let alertController = UIAlertController(title: "Failure", message: "Internet connection error", preferredStyle: .alert)
+					let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+					alertController.addAction(okAction)
+					self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+				}
+			}
+		} else {
+			let alertController = UIAlertController(title: "Failure", message: "Unknown response from the server", preferredStyle: .alert)
+			let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+			alertController.addAction(okAction)
+			self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+		}
 		
 		return true
 	}

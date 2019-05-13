@@ -26,6 +26,7 @@
 		F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F926225CAD97009DDA7B /* CreateEventViewController.swift */; };
 		F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F931225CAE2B009DDA7B /* EditEventViewController.swift */; };
 		F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */; };
+		F334BE1D2289663100BF811A /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334BE1C2289663100BF811A /* VKLoginViewController.swift */; };
 		F36DB3DB2258A535002A8B71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36DB3DA2258A535002A8B71 /* Localizable.strings */; };
 		F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */; };
 		F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */; };
@@ -96,6 +97,7 @@
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F319F931225CAE2B009DDA7B /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewController.swift; sourceTree = "<group>"; };
+		F334BE1C2289663100BF811A /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		F36DB3DA2258A535002A8B71 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueManagerNavigationController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */,
 				F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */,
+				F334BE1C2289663100BF811A /* VKLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3D3165022883690005ED23E /* WebSockets.swift in Sources */,
+				F334BE1D2289663100BF811A /* VKLoginViewController.swift in Sources */,
 				F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */,
 				F3A731E4227F10DA0059233E /* BrakhQLogoView.swift in Sources */,
 				F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */,

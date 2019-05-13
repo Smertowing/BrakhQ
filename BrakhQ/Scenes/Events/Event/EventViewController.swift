@@ -18,7 +18,7 @@ class EventViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Queue"
+		title = nil
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Copy Link", style: .plain, target: self, action: #selector(self.copyLinkButtonClicked)), animated: false)
 		
 		setupViewModel()
@@ -116,6 +116,8 @@ class EventViewController: UIViewController {
 	
 	@objc func refresh(sender:AnyObject) {
 		viewModel.updateEvent(refresher: true)
+		configureWebSocketModel()
+		configureQueueInfo()
 	}
 	
 	@IBOutlet weak var webSocketConnection: UIImageView!

@@ -18,7 +18,7 @@ class QueueManagerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Queue Manager"
+		title = "My Queues"
 		navigationController?.title = nil
 		navigationController?.navigationBar.isTranslucent = false
 		tabBarController?.tabBar.isTranslucent = false
