@@ -12,6 +12,7 @@ enum QueueAPIProvider {
 	case getQueue(url: String)
 	case createQueue(name: String, description: String?, queueType: String, regStart: String, eventDate: String, regEnd: String, placesCount: Int)
 	case updateQueue(id: Int, name: String?, description: String?, regStart: String?, eventDate: String?, regEnd: String?, placesCount: Int?)
+	case delete(queueId: Int)
 	case takeQueueSite(site: Int, queueId: Int)
 	case freeUpQueueSite(queueId: Int)
 	case takeFirstQueueSite(queueId: Int)
@@ -30,12 +31,15 @@ extension QueueAPIProvider: TargetType {
 			return "/api/queue"
 		case .updateQueue:
 			return "/api/queue"
+		case .delete:
+			return "/api/queue"
 		case .takeQueueSite(_, let queueId):
 			return "/api/queues/\(queueId)/places"
 		case .freeUpQueueSite(let queueId):
 			return "/api/queues/\(queueId)/places"
 		case .takeFirstQueueSite(let queueId):
 			return "/api/queues/\(queueId)/places/first"
+	
 		}
 	}
 	
@@ -47,6 +51,8 @@ extension QueueAPIProvider: TargetType {
 			return .post
 		case .updateQueue, .freeUpQueueSite:
 			return .put
+		case .delete:
+			return .delete
 		}
 	}
 	
@@ -101,6 +107,13 @@ extension QueueAPIProvider: TargetType {
 				parameters: params,
 				encoding: JSONEncoding.default
 			)
+		case .delete(let queueId):
+			return .requestParameters(
+				parameters: [
+					"queueId": queueId
+				],
+				encoding: URLEncoding.default
+			)
 		case .takeQueueSite(let site, _):
 			return .requestParameters(
 				parameters: [
@@ -119,7 +132,7 @@ extension QueueAPIProvider: TargetType {
 		switch self {
 		case .getQueue:
 			return nil
-		case .takeQueueSite, .freeUpQueueSite, .takeFirstQueueSite:
+		case .takeQueueSite, .freeUpQueueSite, .delete, .takeFirstQueueSite:
 			return ["Authorization": AuthManager.shared.token ?? ""]
 		case .createQueue, .updateQueue:
 			return ["Authorization": AuthManager.shared.token ?? "",

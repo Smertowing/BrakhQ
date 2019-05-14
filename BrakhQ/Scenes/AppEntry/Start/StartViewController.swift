@@ -16,7 +16,7 @@ class StartViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		UIView.transition(with: logoImageView,
-											duration: 0.75,
+											duration: 0.2,
 											options: .beginFromCurrentState,
 											animations: { self.logoImageView.image = #imageLiteral(resourceName: "BQLabelBlue") },
 											completion: nil)

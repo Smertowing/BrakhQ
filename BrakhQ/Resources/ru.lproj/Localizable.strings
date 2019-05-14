@@ -40,11 +40,14 @@
 
 "Calendar" = "Календарь";
 "Registration starts" = "Регистрация начинается";
-"Registration ends" = "Регистрация заканчиваетсяя";
+"Registration ends" = "Регистрация заканчивается";
 
 "Edit Queue" = "Изменить Очередь";
 "Save Changes" = "Сохранить Изменения";
 "You've edited event queue" = "Вы изменили очередь на событие";
+"You've deleted event queue" = "Вы удалили очередь на событие";
+"Delete queue" = "Удалить очередь";
+"Queue is not empty" = "Очередь не пуста";
 
 "Create" = "Создать";
 "New Queue" = "Новая Очередь";
@@ -65,7 +68,7 @@
 "Description" = "Описание";
 "Description (optional)" = "Описание (опционально)";
 "Queue" = "Очередь";
-"Owner" = "Владелец";
+"Owner" = "Администратор";
 "Sites" = "Места";
 "Copy Link" = "Ссылка";
 "Link to this queue successfully copied to your clipboard!" = "Ссылка на эту очередь успешно сохранена в буфер обмена";
@@ -84,7 +87,7 @@
 "Update Profile" = "Обновить профиль";
 "Change Profile" = "Изменить профиль";
 "Change Password" = "Изменить пароль";
-"Length must be greater than 6" = "Длина должна превышать 6";
+"Length must be greater than 6" = "Длина должна превышать 6 символов";
 "New password" = "Новый пароль";
 "Confirm new password" = "Подтвердите новый пароль";
 "Submit New Password" = "Отправить";

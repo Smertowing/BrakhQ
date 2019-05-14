@@ -28,9 +28,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-mw-94f">
-                                        <rect key="frame" x="257" y="86.5" width="47" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="253" y="86.5" width="51" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                                        <color key="textColor" red="0.99942404029999998" green="0.79560578856583941" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37G-0X-Qrf">
@@ -103,6 +103,7 @@
                                     <constraint firstItem="fN4-UK-IOK" firstAttribute="leading" secondItem="AbL-fR-zrc" secondAttribute="leading" constant="16" id="1O9-r1-NIV"/>
                                     <constraint firstItem="efO-mf-Cvr" firstAttribute="top" secondItem="fN4-UK-IOK" secondAttribute="bottom" constant="4" id="3f9-rH-ndu"/>
                                     <constraint firstItem="efO-mf-Cvr" firstAttribute="leading" secondItem="AbL-fR-zrc" secondAttribute="leading" constant="16" id="5Gx-Cg-f2j"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TBP-gH-G6F" secondAttribute="trailing" constant="20" symbolic="YES" id="DHr-1x-CwF"/>
                                     <constraint firstAttribute="height" constant="138" id="EnG-6T-OQO"/>
                                     <constraint firstItem="TBP-gH-G6F" firstAttribute="top" secondItem="37G-0X-Qrf" secondAttribute="bottom" constant="8" id="INc-Gw-QXy"/>
                                     <constraint firstItem="37G-0X-Qrf" firstAttribute="leading" secondItem="AbL-fR-zrc" secondAttribute="leading" constant="14" id="OXx-se-u6C"/>
@@ -110,11 +111,13 @@
                                     <constraint firstItem="fN4-UK-IOK" firstAttribute="top" secondItem="qzW-4X-70D" secondAttribute="bottom" constant="8" id="Xca-Ve-hcn"/>
                                     <constraint firstAttribute="trailing" secondItem="wIV-YS-YmL" secondAttribute="trailing" constant="16" id="blR-wQ-SDj"/>
                                     <constraint firstItem="TBP-gH-G6F" firstAttribute="leading" secondItem="qzW-4X-70D" secondAttribute="trailing" constant="8" id="dAV-dy-oVN"/>
+                                    <constraint firstItem="wIV-YS-YmL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="efO-mf-Cvr" secondAttribute="trailing" constant="8" id="dlb-N8-ey1"/>
                                     <constraint firstItem="37G-0X-Qrf" firstAttribute="top" secondItem="AbL-fR-zrc" secondAttribute="top" constant="16" id="hid-5u-fxK"/>
                                     <constraint firstItem="qzW-4X-70D" firstAttribute="top" secondItem="37G-0X-Qrf" secondAttribute="bottom" constant="8" id="iz5-ek-F44"/>
                                     <constraint firstAttribute="trailing" secondItem="37G-0X-Qrf" secondAttribute="trailing" constant="14" id="oDM-4Q-vhJ"/>
                                     <constraint firstAttribute="trailing" secondItem="aMG-mw-94f" secondAttribute="trailing" constant="16" id="onx-IZ-qwa"/>
                                     <constraint firstItem="qzW-4X-70D" firstAttribute="leading" secondItem="AbL-fR-zrc" secondAttribute="leading" constant="16" id="ur9-HL-B7c"/>
+                                    <constraint firstItem="aMG-mw-94f" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fN4-UK-IOK" secondAttribute="trailing" constant="8" id="uwZ-TX-61o"/>
                                     <constraint firstItem="wIV-YS-YmL" firstAttribute="top" secondItem="aMG-mw-94f" secondAttribute="bottom" constant="8" id="zSV-JL-BbU"/>
                                 </constraints>
                             </view>

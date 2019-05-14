@@ -41,7 +41,7 @@ final class CreateEventViewModel {
 					self.delegate?.createEventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 				}
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.createEvent(name: name, description: description, queueType: queueType, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)

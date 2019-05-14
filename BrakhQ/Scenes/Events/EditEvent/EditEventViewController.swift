@@ -9,12 +9,17 @@
 import UIKit
 import Eureka
 
+protocol EditEventViewControllerDelegate {
+	func eventUpdated()
+	func deleted()
+}
+
 class EditEventViewController: FormViewController {
 
 	private let viewModel: EditEventViewModel
-	private let delegate: EventInfoViewControllerDelegate
+	private let delegate: EditEventViewControllerDelegate!
 	
-	init(viewModel: EditEventViewModel, delegate: EventInfoViewControllerDelegate) {
+	init(viewModel: EditEventViewModel, delegate: EditEventViewControllerDelegate) {
 		self.viewModel = viewModel
 		self.delegate = delegate
 		super.init(nibName: nil, bundle: nil)
@@ -85,6 +90,52 @@ class EditEventViewController: FormViewController {
 				}
 				.cellSetup { cell, row in
 					cell.textView.text = ""
+			}
+			
+			+++
+			Section("Queue".localized)
+			<<< LabelRow("Owner") {
+				$0.title = $0.tag?.localized
+				$0.value = viewModel.queue.owner.name
+			}
+			
+			<<< LabelRow("Sites") {
+				$0.title = $0.tag?.localized
+				$0.value = "\(viewModel.queue.busyPlaces.count)/\(viewModel.queue.placesCount)"
+			}
+			
+			<<< ButtonRow("URL") { (row: ButtonRow) -> Void in
+				row.title = "Copy Link".localized
+				}
+				.onCellSelection { (cell, row) in
+					UIPasteboard.general.string = "queue.brakh.men/\(self.viewModel.queue.url)"
+					let alert = UIAlertController(title: "Done".localized, message: "Link to this queue successfully copied to your clipboard!".localized, preferredStyle: UIAlertController.Style.alert)
+					alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
+					self.present(alert, animated: true, completion: nil)
+			}
+			
+			+++
+			Section("Queue Settings".localized)
+			<<< LabelRow("Type") {
+				$0.title = $0.tag?.localized
+				$0.value = viewModel.queue.queueType.rawValue
+			}
+			
+			<<< LabelRow("Number of Sites") {
+				$0.title = $0.tag?.localized
+				$0.value = "\(viewModel.queue.placesCount)"
+			}
+			
+			+++
+			Section("Registration Dates".localized)
+			<<< LabelRow("Starts") {
+				$0.title = $0.tag?.localized
+				$0.value = viewModel.queue.regStartDate.displayDate + " " + viewModel.queue.eventDate.displayTime
+			}
+			
+			<<< LabelRow("Ends"){
+				$0.title = $0.tag?.localized
+				$0.value = viewModel.queue.regEndDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 			}
 			/*
 			+++
@@ -174,6 +225,18 @@ class EditEventViewController: FormViewController {
 				}
 				.onCellSelection { (cell, row) in
 					self.saveButtonClicked()
+			}
+		
+			+++
+			Section()
+			<<< ButtonRow("Delete") { (row: ButtonRow) -> Void in
+				row.title = "Delete queue".localized
+				}
+				.onCellSelection { (cell, row) in
+					self.deleteButtonClicked()
+				}
+				.cellSetup { (cell, row) in
+					cell.tintColor = .red
 		}
 		
 	}
@@ -195,6 +258,10 @@ class EditEventViewController: FormViewController {
 		}
 	}
 
+	@objc func deleteButtonClicked() {
+		viewModel.deleteAction()
+	}
+	
 }
 
 extension EditEventViewController: EditEventViewModelDelegate {
@@ -207,8 +274,23 @@ extension EditEventViewController: EditEventViewModelDelegate {
 		if isSuccess {
 			let alert = UIAlertController(title: "Successfull".localized, message: "You've edited event queue".localized, preferredStyle: UIAlertController.Style.alert)
 			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
-				_ = self.navigationController?.popViewController(animated: true)
 				self.delegate.eventUpdated()
+				_ = self.navigationController?.popViewController(animated: true)
+			})
+			self.present(alert, animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	func editEventViewModel(_ editEventViewModel: EditEventViewModel, deleted: Bool, didRecieveMessage message: String?) {
+		if deleted {
+			let alert = UIAlertController(title: "Successfull".localized, message: "You've deleted event queue".localized, preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
+				self.delegate.deleted()
+				_ = self.navigationController?.popViewController(animated: true)
 			})
 			self.present(alert, animated: true, completion: nil)
 		} else {

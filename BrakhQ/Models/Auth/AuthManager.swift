@@ -28,7 +28,9 @@ final class AuthManager {
 			return defaults.get(UserDefaultKeys.token.rawValue)
 		}
 		set {
-			defaults.set(newValue ?? "", forKey: UserDefaultKeys.token.rawValue)
+			if let token = newValue {
+				defaults.set(token, forKey: UserDefaultKeys.token.rawValue)
+			}
 		}
 	}
 	
@@ -37,7 +39,9 @@ final class AuthManager {
 			return defaults.get(UserDefaultKeys.refreshToken.rawValue)
 		}
 		set {
-			defaults.set(newValue ?? "", forKey: UserDefaultKeys.refreshToken.rawValue)
+			if let token = newValue {
+				defaults.set(token, forKey: UserDefaultKeys.refreshToken.rawValue)
+			}
 		}
 	}//Int(defaults.getData(UserDefaultKeys.id.rawValue)
 	

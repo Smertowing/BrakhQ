@@ -105,7 +105,7 @@ final class EventViewModel {
 				}
 				if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.updateEvent(refresher: refresher)
@@ -142,7 +142,7 @@ final class EventViewModel {
 						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 					}
 				case .failure(let error):
-					if error.errorCode == 401 {
+					if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 						AuthManager.shared.update(token: .authentication) { success in
 							if success {
 								self.interactPlace(site)
@@ -173,7 +173,7 @@ final class EventViewModel {
 						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 					}
 				case .failure(let error):
-					if error.errorCode == 401 {
+					if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 						AuthManager.shared.update(token: .authentication) { success in
 							if success {
 								self.interactPlace(site)
@@ -206,7 +206,7 @@ final class EventViewModel {
 					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
 				}
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.takeSequent()

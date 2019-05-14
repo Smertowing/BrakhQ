@@ -9,12 +9,6 @@
 import UIKit
 import Eureka
 
-protocol EventInfoViewControllerDelegate {
-
-	func eventUpdated()
-	
-}
-
 class EventInfoViewController: FormViewController {
 
 	weak var viewModel: EventViewModel!
@@ -22,9 +16,6 @@ class EventInfoViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		if viewModel.queue.owner.id == AuthManager.shared.user?.id {
-			self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editButtonClicked)), animated: false)
-		}
 		configureForm()
 	}
 	
@@ -101,20 +92,6 @@ class EventInfoViewController: FormViewController {
 				$0.value = viewModel.queue.regEndDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 			}
 		
-	}
-	
-	@objc func editButtonClicked() {
-		let viewModel = EditEventViewModel(for: self.viewModel.queue)
-		let editEventViewController = EditEventViewController(viewModel: viewModel, delegate: self)
-		self.show(editEventViewController, sender: self)
-	}
-	
-}
-
-extension EventInfoViewController: EventInfoViewControllerDelegate {
-	
-	func eventUpdated() {
-		_ = self.navigationController?.popViewController(animated: true)
 	}
 	
 }

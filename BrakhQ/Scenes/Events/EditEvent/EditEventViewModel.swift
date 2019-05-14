@@ -13,7 +13,7 @@ protocol EditEventViewModelDelegate: class {
 	
 	func editEventViewModel(_ editEventViewModel: EditEventViewModel, isLoading: Bool)
 	func editEventViewModel(_ editEventViewModel: EditEventViewModel, isSuccess: Bool, didRecieveMessage message: String?)
-	
+	func editEventViewModel(_ editEventViewModel: EditEventViewModel, deleted: Bool, didRecieveMessage message: String?)
 }
 
 final class EditEventViewModel {
@@ -24,6 +24,41 @@ final class EditEventViewModel {
 	
 	init (for queue: QueueCashe) {
 		self.queue = queue
+	}
+	
+	func deleteAction() {
+		if queue.busyPlaces.isEmpty {
+			self.delegate?.editEventViewModel(self, isLoading: true)
+			provider.request(.delete(queueId: queue.id)) { result in
+				self.delegate?.editEventViewModel(self, isLoading: false)
+				switch result {
+				case .success(let response):
+					if let answer = try? response.map(ResponseState.self) {
+						if answer.success {
+								self.delegate?.editEventViewModel(self, deleted: true, didRecieveMessage: answer.message)
+						} else {
+							self.delegate?.editEventViewModel(self, deleted: false, didRecieveMessage: answer.message)
+						}
+					} else {
+						self.delegate?.editEventViewModel(self, deleted: false, didRecieveMessage: "Unexpected response".localized)
+					}
+				case .failure(let error):
+					if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+						AuthManager.shared.update(token: .authentication) { success in
+							if success {
+								self.deleteAction()
+							} else {
+								self.delegate?.editEventViewModel(self, deleted: false, didRecieveMessage: "Authorization error, try to restart application".localized)
+							}
+						}
+					} else {
+						self.delegate?.editEventViewModel(self, deleted: false, didRecieveMessage: "Internet connection error".localized)
+					}
+				}
+			}
+		} else {
+			delegate?.editEventViewModel(self, deleted: false, didRecieveMessage: "Queue is not empty".localized)
+		}
 	}
 	
 	func editEvent(name: String?, description: String?, regStart: Date?, eventDate: Date?, regEnd: Date?, placesCount: Int?) {
@@ -46,7 +81,7 @@ final class EditEventViewModel {
 					self.delegate?.editEventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
 				}
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.editEvent(name: name, description: description, regStart: regStart, eventDate: eventDate, regEnd: regEnd, placesCount: placesCount)

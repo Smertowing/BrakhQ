@@ -28,11 +28,16 @@ class EventViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		viewModel.updateEvent(refresher: false)
-		shown = true
-		configureWebSocketModel()
+		webSocketConnection.backgroundColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+		webSocketConnection.layer.cornerRadius = webSocketConnection.layer.width/2
 		configureQueueInfo()
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		shown = true
+		configureWebSocketModel()
+		super.viewDidAppear(animated)
+	}
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		webSocketModel?.disconnect()
@@ -123,16 +128,20 @@ class EventViewController: UIViewController {
 	@IBOutlet weak var webSocketConnection: UIImageView!
 	
 	func configureWebSocketModel() {
-		webSocketConnection.backgroundColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
-		webSocketConnection.layer.cornerRadius = webSocketConnection.layer.width/2
 		webSocketModel = WebSocketModel(queueId: viewModel.queue.id)
 		webSocketModel?.delegate = self
 	}
 	
 	@IBAction func additionalInfoClicked(_ sender: Any) {
-		let eventInfoViewController = EventInfoViewController()
-		eventInfoViewController.viewModel = viewModel
-		self.show(eventInfoViewController, sender: self)
+		if viewModel.queue.owner.id == AuthManager.shared.user?.id {
+			let viewModel = EditEventViewModel(for: self.viewModel.queue)
+			let editEventViewController = EditEventViewController(viewModel: viewModel, delegate: self)
+			self.show(editEventViewController, sender: self)
+		} else {
+			let eventInfoViewController = EventInfoViewController()
+			eventInfoViewController.viewModel = viewModel
+			self.show(eventInfoViewController, sender: self)
+		}
 	}
 	
 	@IBAction func takeSequent(_ sender: Any) {
@@ -268,7 +277,17 @@ extension EventViewController: WebSocketModelDelegate {
 		self.present(alert, animated: true, completion: nil)
 	}
 	
+}
+
+extension EventViewController: EditEventViewControllerDelegate {
 	
+	func deleted() {
+		shown = false
+		_ = self.navigationController?.popViewController(animated: true)
+	}
 	
+	func eventUpdated() {
+		//_ = self.navigationController?.popViewController(animated: true)
+	}
 	
 }

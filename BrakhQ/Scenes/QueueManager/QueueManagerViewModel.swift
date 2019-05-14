@@ -94,7 +94,7 @@ final class QueueManagerViewModel {
 					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.updateUsedEvents(with: refresher)
@@ -135,7 +135,7 @@ final class QueueManagerViewModel {
 				}
 				if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.updateCreatedEvents(with: refresher)
@@ -171,7 +171,7 @@ final class QueueManagerViewModel {
 					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Unexpected response".localized)
 				}
 			case .failure(let error):
-				if error.errorCode == 401 {
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.getQueue(by: url)

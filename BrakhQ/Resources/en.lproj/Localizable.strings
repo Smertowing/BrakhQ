@@ -18,13 +18,13 @@
 "Unexpected response" = "Unexpected response";
 "Authorization error, try to restart application" = "Authorization error, try to restart application";
 "Internet connection error" = "Internet connection error";
-"Wrong input" = "Wrong input";
+"Wrong input" = "Incorrect input";
 
-"You've entered accoount via VK" = "You've entered accoount via VK";
+"You've entered accoount via VK" = "You've signed in with VK";
 
 "Active" = "Active";
 "Ended" = "Ended";
-"Expected" = "Expected";
+"Expected" = "Estimated";
 
 "Release" = "Release";
 "Engaged" = "Engaged";
@@ -35,8 +35,8 @@
 "Used" = "Used";
 "Managed" = "Managed";
 "Filter my queues by..." = "Filter my queues by...";
-"Search queue" = "Search queue";
-"Enter link to the queue to enter it" = "Enter link to the queue to enter it";
+"Search queue" = "Search";
+"Enter link to the queue to enter it" = "Enter link to the queue to enter";
 
 "Calendar" = "Calendar";
 "Registration starts" = "Registration starts";
@@ -45,6 +45,9 @@
 "Edit Queue" = "Edit Queue";
 "Save Changes" = "Save Changes";
 "You've edited event queue" = "You've edited event queue";
+"You've deleted event queue" = "You've deleted event queue";
+"Delete queue" = "Delete Queue";
+"Queue is not empty" = "Queue is not empty";
 
 "Create" = "Create";
 "New Queue" = "New Queue";
@@ -52,9 +55,9 @@
 "You've created event queue" = "You've created event queue";
 
 "Updating..." = "Updating...";
-"Until end of registration:" = "Until end of registration:";
+"Until end of registration:" = "Until the end of registration:";
 "Registration is over" = "Registration is over";
-"Until start of registration:" = "Until start of registration:";
+"Until start of registration:" = "Until the start of registration:";
 
 "Disconnected" = "Disconnected";
 "Real-time connection lost" = "Real-time connection lost";
@@ -65,17 +68,17 @@
 "Description" = "Description";
 "Description (optional)" = "Description (optional)";
 "Queue" = "Queue";
-"Owner" = "Owner";
-"Sites" = "Sites";
+"Owner" = "Manager";
+"Sites" = "Places";
 "Copy Link" = "Copy Link";
 "Link to this queue successfully copied to your clipboard!" = "Link to this queue successfully copied to your clipboard!";
 "Queue Settings" = "Queue Settings";
 "Allocation" = "Allocation";
 "Type" = "Type";
-"Number of Sites" = "Number of Sites";
+"Number of Sites" = "Number of Places";
 "Registration Dates" = "Registration Dates";
-"Starts" = "Starts";
-"Ends" = "Ends";
+"Starts" = "Begining";
+"Ends" = "Ending";
 
 "Free" = "Free";
 
@@ -84,12 +87,12 @@
 "Update Profile" = "Update Profile";
 "Change Profile" = "Change Profile";
 "Change Password" = "Change Password";
-"Length must be greater than 6" = "Length must be greater than 6";
+"Length must be greater than 6" = "Length must be greater than 6 characters";
 "New password" = "New password";
 "Confirm new password" = "Confirm new password";
 "Submit New Password" = "Submit New Password";
 "You've updated account" = "You've updated account";
-"You've entered account" = "You've entered account";
+"You've entered account" = "You've signed in account";
 "You've created account" = "You've created account";
 
 "My Profile" = "My Profile";
