@@ -39,11 +39,22 @@ final class AuthManager {
 			return defaults.get(UserDefaultKeys.refreshToken.rawValue)
 		}
 		set {
-			if let token = newValue {
-				defaults.set(token, forKey: UserDefaultKeys.refreshToken.rawValue)
+			if let refreshToken = newValue {
+				defaults.set(refreshToken, forKey: UserDefaultKeys.refreshToken.rawValue)
 			}
 		}
-	}//Int(defaults.getData(UserDefaultKeys.id.rawValue)
+	}
+	
+	var deviceToken: String? {
+		get {
+			return defaults.get(UserDefaultKeys.deviceToken.rawValue)
+		}
+		set {
+			if let deviceToken = newValue {
+				defaults.set(deviceToken, forKey: UserDefaultKeys.deviceToken.rawValue)
+			}
+		}
+	}
 	
 	var user: User? {
 		get {
@@ -73,12 +84,51 @@ final class AuthManager {
 	}
 	
 	func login() {
+		print(AuthManager.shared.deviceToken as Any)
+		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
+		providerNotifications.request(.subscribe(token: AuthManager.shared.deviceToken ?? "")) { (result) in
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ResponseState.self) {
+					if answer.success {
+						print("success")
+					} else {
+						print(answer.message as Any)
+					}
+				} else {
+					print("unexpected error")
+				}
+			case .failure(let error):
+				print(error.errorDescription as Any)
+			}
+		}
+		
 		defaults.set(true, forKey: UserDefaultKeys.isLogged.rawValue)
 	}
 	
 	func logout() {
+		let tempToken = AuthManager.shared.deviceToken
+		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
+		providerNotifications.request(.unsubscribe) { (result) in
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ResponseState.self) {
+					if answer.success {
+						print("success")
+					} else {
+						print(answer.message as Any)
+					}
+				} else {
+					print("unexpected error")
+				}
+			case .failure(let error):
+				print(error.errorDescription as Any)
+			}
+		}
+		
 		defaults.clear()
 		defaults.set(false, forKey: UserDefaultKeys.isLogged.rawValue)
+		deviceToken = tempToken
 	}
 	
 	typealias CompletionHandler = (_ success:Bool) -> Void

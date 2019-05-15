@@ -59,7 +59,6 @@ extension UserAPIProvider: TargetType {
 	var task: Task {
 		switch self {
 		case .getUser(let id):
-			
 			return .requestParameters(
 				parameters: [
 					"id": id
@@ -67,7 +66,6 @@ extension UserAPIProvider: TargetType {
 				encoding: URLEncoding.default
 			)
 		case .getUserByUsername(let username):
-			
 			return .requestParameters(
 				parameters: [
 					"username": username

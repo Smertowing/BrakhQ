@@ -51,7 +51,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		) {
 		let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
 		let token = tokenParts.joined()
+		
+		AuthManager.shared.deviceToken = token
+		/*
 		print("Device Token: \(token)")
+
+		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
+		providerNotifications.request(.test) { (result) in
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ResponseState.self) {
+					if answer.success {
+						print("success")
+					} else {
+						print(answer.message as Any)
+					}
+				} else {
+					print("unexpected error")
+				}
+			case .failure(let error):
+				print(error.errorDescription as Any)
+			}
+		}
+*/
+		
 	}
 	
 	func application(

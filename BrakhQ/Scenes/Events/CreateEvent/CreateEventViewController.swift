@@ -101,6 +101,7 @@ class CreateEventViewController: FormViewController {
 			*/
 			<<< SwitchRow("Random") { row in
 			row.title = row.tag
+			row.value = false
 			}.onChange { row in
 				row.updateCell()
 			}

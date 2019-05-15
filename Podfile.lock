@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
-  - CalendarKit (0.6.0):
+  - CalendarKit (0.7.0):
     - DateToolsSwift
     - Neon
   - DataCache (1.5)
@@ -39,7 +39,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CalendarKit: ef7788f69da834471b5f20d87aa7ca1116fbd775
+  CalendarKit: 4c9353c4a692c3110132c7c7b0f5173fc48903b9
   DataCache: 8099e01aa35c2fd30f3410aae14ef5a130f6524b
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
   Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654

@@ -12,11 +12,13 @@ class EventTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var typeImageView: UIImageView!
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var nameView: UIView!
 	@IBOutlet weak var eventDateLabel: UILabel!
 	@IBOutlet weak var statusLabel: UILabel!
 	@IBOutlet weak var statusImageView: UIImageView!
 	@IBOutlet weak var counterLabel: UILabel!
 	@IBOutlet weak var userConditionLabel: UILabel!
+	
 	
 	var currentQueue: QueueCashe!
 	
@@ -24,6 +26,7 @@ class EventTableViewCell: UITableViewCell {
 		
 		currentQueue = queue
 		nameLabel.text = queue.name
+		nameView.layer.cornerRadius = 10
 		eventDateLabel.text = queue.eventDate.displayDate
 		counterLabel.text = "\(queue.busyPlaces.count)/\(queue.placesCount)"
 		

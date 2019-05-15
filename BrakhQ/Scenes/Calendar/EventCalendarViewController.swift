@@ -110,6 +110,7 @@ class EventCalendarViewController: DayViewController {
 extension EventCalendarViewController: QueueManagerViewModelDelegate {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, reload: Bool) {
+		
 	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {

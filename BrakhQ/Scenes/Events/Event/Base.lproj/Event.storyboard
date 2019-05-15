@@ -203,6 +203,7 @@
                         <outlet property="counterLabel" destination="efO-mf-Cvr" id="eXD-62-oVS"/>
                         <outlet property="eventDateLabel" destination="TBP-gH-G6F" id="Iy1-y3-3Tm"/>
                         <outlet property="eventNameLabel" destination="YKx-lz-eUN" id="UPc-0Q-Qew"/>
+                        <outlet property="eventNameView" destination="37G-0X-Qrf" id="LMd-Zq-aLW"/>
                         <outlet property="queueTableView" destination="mg3-LH-6TE" id="kHO-b5-L0t"/>
                         <outlet property="randomLabel" destination="aMG-mw-94f" id="G3f-Rz-ZCV"/>
                         <outlet property="sitesLabel" destination="wIV-YS-YmL" id="roY-L6-OGe"/>

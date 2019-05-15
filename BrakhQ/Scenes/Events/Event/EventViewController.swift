@@ -45,6 +45,7 @@ class EventViewController: UIViewController {
 		timer?.invalidate()
 	}
 	
+	@IBOutlet weak var eventNameView: UIView!
 	@IBOutlet weak var eventNameLabel: UILabel!
 	@IBOutlet weak var eventDateLabel: UILabel!
 	@IBOutlet weak var untilLabel: UILabel!
@@ -60,6 +61,7 @@ class EventViewController: UIViewController {
 	}
 	
 	func configureQueueInfo() {
+		eventNameView.layer.cornerRadius = 10
 		eventNameLabel.text = viewModel.queue.name
 		eventDateLabel.text = viewModel.queue.eventDate.displayDate + " " + viewModel.queue.eventDate.displayTime
 		sitesLabel.text = "\(viewModel.queue.busyPlaces.count)/\(viewModel.queue.placesCount)"

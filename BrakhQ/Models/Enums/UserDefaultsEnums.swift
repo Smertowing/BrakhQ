@@ -18,4 +18,5 @@ enum UserDefaultKeys: String {
 	case id = "id"
 	case email = "email"
 	case avatar = "avatar"
+	case deviceToken = "deviceToken"
 }
