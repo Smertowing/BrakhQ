@@ -8,6 +8,7 @@
 
 import UIKit
 import Moya
+import UserNotifications
 
 func getQueryStringParameter(url: URL, param: String) -> String? {
 	guard let url = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
@@ -20,8 +21,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
+		registerForPushNotifications()
 		return true
+	}
+	
+	func registerForPushNotifications() {
+		UNUserNotificationCenter.current()
+			.requestAuthorization(options: [.alert, .sound]) {
+				[weak self] granted, error in
+				
+				print("Permission granted: \(granted)")
+				guard granted else { return }
+				self?.getNotificationSettings()
+		}
+	}
+	
+	func getNotificationSettings() {
+		UNUserNotificationCenter.current().getNotificationSettings { settings in
+			guard settings.authorizationStatus == .authorized else { return }
+			DispatchQueue.main.async {
+				UIApplication.shared.registerForRemoteNotifications()
+			}
+		}
+	}
+	
+	func application(
+		_ application: UIApplication,
+		didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+		) {
+		let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+		let token = tokenParts.joined()
+		print("Device Token: \(token)")
+	}
+	
+	func application(
+		_ application: UIApplication,
+		didFailToRegisterForRemoteNotificationsWithError error: Error) {
+		print("Failed to register: \(error)")
 	}
 	
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -99,4 +135,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

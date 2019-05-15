@@ -31,6 +31,7 @@
 		F334BE2B2289FCB100BF811A /* QueueManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE2D2289FCB100BF811A /* QueueManager.storyboard */; };
 		F334BE322289FCCD00BF811A /* FailureInfoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE342289FCCD00BF811A /* FailureInfoView.storyboard */; };
 		F334BE392289FEE200BF811A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F334BE3B2289FEE200BF811A /* Localizable.strings */; };
+		F3711DA5228BF23000787AEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3711DA4228BF23000787AEC /* StoreKit.framework */; };
 		F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */; };
 		F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */; };
 		F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C9227DADD50059233E /* QueueManagerViewController.swift */; };
@@ -114,6 +115,7 @@
 		F334BE382289FCDF00BF811A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FailureInfoView.strings; sourceTree = "<group>"; };
 		F334BE3A2289FEE200BF811A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F334BE3C2289FEE500BF811A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F3711DA4228BF23000787AEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueManagerNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C9227DADD50059233E /* QueueManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueManagerViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3711DA5228BF23000787AEC /* StoreKit.framework in Frameworks */,
 				F301AB3722573EB600FA5412 /* AuthenticationServices.framework in Frameworks */,
 				9F833B8BE494E3151FFA1224 /* Pods_BrakhQ.framework in Frameworks */,
 			);
@@ -218,6 +221,7 @@
 		F301AB3522573EB600FA5412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3711DA4228BF23000787AEC /* StoreKit.framework */,
 				F301AB3622573EB600FA5412 /* AuthenticationServices.framework */,
 				38A975B58F9094AC404F7D33 /* Pods_BrakhQ.framework */,
 			);
@@ -518,13 +522,16 @@
 								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.DataProtection = {
 								enabled = 0;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -900,7 +907,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47K9CVZBFJ;
 				INFOPLIST_FILE = BrakhQ/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -923,7 +930,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47K9CVZBFJ;
 				INFOPLIST_FILE = BrakhQ/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

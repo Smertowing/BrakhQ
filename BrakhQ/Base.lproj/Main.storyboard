@@ -155,28 +155,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frR-di-jED">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gAq-zQ-SnX">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCT-A6-fHr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="I2A-N4-cJy" firstAttribute="bottom" secondItem="frR-di-jED" secondAttribute="bottom" id="Agf-fO-X9c"/>
-                            <constraint firstItem="frR-di-jED" firstAttribute="top" secondItem="I2A-N4-cJy" secondAttribute="top" id="BBg-ks-Ymh"/>
+                            <constraint firstItem="rCT-A6-fHr" firstAttribute="centerX" secondItem="QWm-tq-zid" secondAttribute="centerX" id="IWm-BO-aJB"/>
+                            <constraint firstItem="I2A-N4-cJy" firstAttribute="bottom" secondItem="rCT-A6-fHr" secondAttribute="bottom" id="Pbg-ZK-4c6"/>
+                            <constraint firstItem="rCT-A6-fHr" firstAttribute="leading" secondItem="I2A-N4-cJy" secondAttribute="leading" id="S3l-TN-Rrg"/>
                             <constraint firstItem="gAq-zQ-SnX" firstAttribute="centerY" secondItem="QWm-tq-zid" secondAttribute="centerY" id="Uce-9n-1Xh"/>
                             <constraint firstItem="gAq-zQ-SnX" firstAttribute="centerX" secondItem="QWm-tq-zid" secondAttribute="centerX" id="coz-OV-KF5"/>
-                            <constraint firstItem="frR-di-jED" firstAttribute="centerX" secondItem="QWm-tq-zid" secondAttribute="centerX" id="kKw-LG-JJr"/>
-                            <constraint firstItem="frR-di-jED" firstAttribute="leading" secondItem="I2A-N4-cJy" secondAttribute="leading" id="kvt-Rt-QtB"/>
+                            <constraint firstItem="rCT-A6-fHr" firstAttribute="top" secondItem="I2A-N4-cJy" secondAttribute="top" id="kI0-qV-mYW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I2A-N4-cJy"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="gAq-zQ-SnX" id="uL9-bU-Kbs"/>
-                        <outlet property="webkitView" destination="frR-di-jED" id="D4E-SU-LoQ"/>
+                        <outlet property="webkitView" destination="rCT-A6-fHr" id="rU3-Sf-MdP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBY-ew-OVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
