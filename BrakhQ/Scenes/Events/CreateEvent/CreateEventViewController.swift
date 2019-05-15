@@ -87,6 +87,7 @@ class CreateEventViewController: FormViewController {
 			
 			+++
 			Section("Queue Settings".localized)
+			/*
 			<<< SegmentedRow<String>("Allocation"){
 				$0.title = $0.tag?.localized
 				$0.options = [QueueType.def.rawValue, QueueType.random.rawValue]
@@ -96,6 +97,12 @@ class CreateEventViewController: FormViewController {
 				}
 				.onChange { row in
 					
+			}
+			*/
+			<<< SwitchRow("Random") { row in
+			row.title = row.tag
+			}.onChange { row in
+				row.updateCell()
 			}
 			
 			<<< StepperRow("Number of Sites") {
@@ -190,13 +197,15 @@ class CreateEventViewController: FormViewController {
 			let title: TextRow! = form.rowBy(tag: "Title")
 			let description: TextAreaRow! = form.rowBy(tag: "Description")
 			let eventDate: DateTimeInlineRow! = form.rowBy(tag: "Event Date")
-			let queueType: SegmentedRow<String>! = form.rowBy(tag: "Allocation")
+			//let queueType: SegmentedRow<String>! = form.rowBy(tag: "Allocation")
+			let queueType: SwitchRow! = form.rowBy(tag: "Random")
 			let regStart: DateTimeInlineRow! = form.rowBy(tag: "Starts")
 			let regEnd: DateTimeInlineRow! = form.rowBy(tag: "Ends")
 			let placesCount: StepperRow! = form.rowBy(tag: "Number of Sites")
 			viewModel.createEvent(name: title.value!,
 														description: description.value,
-														queueType: QueueType(rawValue: queueType.value!)!,
+														//queueType: QueueType(rawValue: queueType.value!)!,
+														queueType: queueType.value! ? QueueType.random : QueueType.def,
 														regStart: regStart.value!,
 														eventDate: eventDate.value!,
 														regEnd: regEnd.value!,
