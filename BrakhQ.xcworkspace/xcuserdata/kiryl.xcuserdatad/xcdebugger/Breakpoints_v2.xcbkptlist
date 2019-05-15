@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Networking/Providers/UserAPIProvider.swift"
-            timestampString = "579379952.280022"
+            timestampString = "579589926.257876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -538,7 +538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
-            timestampString = "579544529.0454969"
+            timestampString = "579590118.600214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -602,7 +602,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Networking/Providers/UserAPIProvider.swift"
-            timestampString = "579379952.282024"
+            timestampString = "579589926.2588871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -618,7 +618,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Networking/Providers/UserAPIProvider.swift"
-            timestampString = "579379952.28222"
+            timestampString = "579589926.25946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
@@ -682,7 +682,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.6515011"
+            timestampString = "579589595.341617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -746,7 +746,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.6518919"
+            timestampString = "579589595.3419681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -762,7 +762,7 @@
                   moduleName = "BrakhQ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-                  timestampString = "579529214.7117"
+                  timestampString = "579589605.550984"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "31"
@@ -777,7 +777,7 @@
                   moduleName = "BrakhQ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-                  timestampString = "579529214.713841"
+                  timestampString = "579589605.553213"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "31"
@@ -810,7 +810,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.652236"
+            timestampString = "579589595.3422281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -1194,7 +1194,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/CustomVIews/SiteTableViewCell.swift"
-            timestampString = "579474293.905776"
+            timestampString = "579589519.439628"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -1418,7 +1418,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/CustomVIews/SiteTableViewCell.swift"
-            timestampString = "579474293.90669"
+            timestampString = "579589519.440348"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -1434,7 +1434,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/CustomVIews/SiteTableViewCell.swift"
-            timestampString = "579474293.90677"
+            timestampString = "579589519.440829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -2026,7 +2026,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.6540149"
+            timestampString = "579589595.343021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -2074,7 +2074,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.654278"
+            timestampString = "579589595.343264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -2090,7 +2090,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.654518"
+            timestampString = "579589595.343511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -2102,11 +2102,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.654761"
+            timestampString = "579589595.343727"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -2122,7 +2122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.655"
+            timestampString = "579589595.3439389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -2138,7 +2138,7 @@
                   moduleName = "BrakhQ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-                  timestampString = "579529146.9706891"
+                  timestampString = "579589672.064495"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -2153,7 +2153,7 @@
                   moduleName = "BrakhQ"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-                  timestampString = "579529146.9765069"
+                  timestampString = "579589672.066878"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "24"
@@ -2166,11 +2166,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
-            timestampString = "579529214.655232"
+            timestampString = "579589595.344153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -2186,7 +2186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Models/Auth/AuthManager.swift"
-            timestampString = "579544101.502318"
+            timestampString = "579590118.601572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -2201,40 +2201,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
-            timestampString = "579544529.0477459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
-            timestampString = "579544529.047797"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BrakhQ/Models/Auth/AuthManager.swift"
-            timestampString = "579544101.503486"
+            timestampString = "579590118.601703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -2250,13 +2218,93 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrakhQ/Models/Auth/AuthManager.swift"
-            timestampString = "579544101.503576"
+            timestampString = "579590118.601812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
             landmarkName = "refreshToken"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
+            timestampString = "579590118.601867"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
+            timestampString = "579590118.601926"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in BrakhQ.LaunchViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "BrakhQ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
+                  timestampString = "579589219.364397"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in BrakhQ.LaunchViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "BrakhQ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kiryl/Documents/Study/BrakhQ-ios/BrakhQ/BrakhQ/Scenes/AppEntry/Start/LaunchViewController.swift"
+                  timestampString = "579589219.369427"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "316">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BrakhQ/Scenes/Events/CreateEvent/CreateEventViewModel.swift"
+            timestampString = "579589623.775838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "createEvent(name:description:queueType:regStart:eventDate:regEnd:placesCount:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

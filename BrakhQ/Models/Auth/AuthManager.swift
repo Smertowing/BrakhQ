@@ -86,7 +86,8 @@ final class AuthManager {
 	func update(token tokenType: TokenType, completionHandler: @escaping (CompletionHandler)) {
 		if let refreshToken = defaults.get(UserDefaultKeys.refreshToken.rawValue) {
 			provider.request(.updateToken(refreshToken: refreshToken, tokenType: tokenType)) { result in
-				if case .success(let response) = result {
+				switch result {
+				case .success(let response):
 					if let newToken = try? response.map(Token.self) {
 						switch tokenType {
 						case .authentication:
@@ -99,6 +100,9 @@ final class AuthManager {
 						}
 						return completionHandler(true)
 					}
+					return completionHandler(false)
+				case .failure(_):
+					return completionHandler(false)
 				}
 			}
 		} else {

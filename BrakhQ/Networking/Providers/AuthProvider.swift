@@ -63,7 +63,7 @@ extension AuthProvider: TargetType {
 			return .requestParameters(
 				parameters: [
 					"refreshToken": refreshToken,
-					"tokenType": tokenType
+					"tokenType": tokenType.rawValue
 				],
 				encoding: URLEncoding.default
 			)

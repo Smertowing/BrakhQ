@@ -31,14 +31,11 @@ class LaunchViewController: UIViewController {
 		if AuthManager.shared.isAuthenticated {
 			if let refreshToken = AuthManager.shared.refreshToken {
 				provider.request(.checkToken(token: refreshToken)) { result in
-					if case .success(let response) = result {
+					switch result {
+					case .success(let response):
 						if let answer = try? response.map(TokenValidationResponse.self) {
 							if answer.valid, let expired = answer.expired, let expires = answer.expires {
-								if expired {
-									AuthManager.shared.logout()
-									self.segueToStartScreen()
-									self.loadingIndicator.stopAnimating()
-								} else {
+								if !expired {
 									let diffDate = Date(dateString: expires, format: Date.iso8601Format)
 									if diffDate.timeIntervalSinceNow < 60*60*24*7 {
 										AuthManager.shared.update(token: .refresh) { success in
@@ -50,27 +47,30 @@ class LaunchViewController: UIViewController {
 									}
 									self.segueToAppllication()
 									self.loadingIndicator.stopAnimating()
+									return
 								}
-							} else {
-								AuthManager.shared.logout()
-								self.segueToStartScreen()
-								self.loadingIndicator.stopAnimating()
 							}
-						} else {
-							self.segueToStartScreen()
-							self.loadingIndicator.stopAnimating()
 						}
+						AuthManager.shared.logout()
+						self.segueToStartScreen()
+						self.loadingIndicator.stopAnimating()
+						return
+					case .failure(_):
+						self.segueToAppllication()
+						self.loadingIndicator.stopAnimating()
+						return
 					}
-					self.segueToAppllication()
-					self.loadingIndicator.stopAnimating()
 				}
 			} else {
+				AuthManager.shared.logout()
 				segueToStartScreen()
 				loadingIndicator.stopAnimating()
+				return
 			}
 		} else {
 			segueToStartScreen()
 			loadingIndicator.stopAnimating()
+			return
 		}
 	}
 	

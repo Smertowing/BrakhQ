@@ -28,7 +28,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMG-mw-94f">
-                                        <rect key="frame" x="253" y="86.5" width="51" height="15"/>
+                                        <rect key="frame" x="253" y="90.5" width="51" height="15"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
                                         <color key="textColor" red="0.99942404029999998" green="0.79560578856583941" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -118,7 +118,7 @@
                                     <constraint firstAttribute="trailing" secondItem="aMG-mw-94f" secondAttribute="trailing" constant="16" id="onx-IZ-qwa"/>
                                     <constraint firstItem="qzW-4X-70D" firstAttribute="leading" secondItem="AbL-fR-zrc" secondAttribute="leading" constant="16" id="ur9-HL-B7c"/>
                                     <constraint firstItem="aMG-mw-94f" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fN4-UK-IOK" secondAttribute="trailing" constant="8" id="uwZ-TX-61o"/>
-                                    <constraint firstItem="wIV-YS-YmL" firstAttribute="top" secondItem="aMG-mw-94f" secondAttribute="bottom" constant="8" id="zSV-JL-BbU"/>
+                                    <constraint firstItem="wIV-YS-YmL" firstAttribute="top" secondItem="aMG-mw-94f" secondAttribute="bottom" constant="4" id="zSV-JL-BbU"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mg3-LH-6TE">

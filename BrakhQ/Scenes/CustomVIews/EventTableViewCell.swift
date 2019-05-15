@@ -46,7 +46,15 @@ class EventTableViewCell: UITableViewCell {
 		} else {
 			userConditionLabel.text = ""
 		}
-	*/
+*/ /*
+		typeImageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+		for place in queue.busyPlaces {
+			if place.user?.id == AuthManager.shared.user?.id {
+				typeImageView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+			}
+		}
+*/
+		
 		if queue.owner.id == AuthManager.shared.user?.id {
 			typeImageView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
 		} else {
