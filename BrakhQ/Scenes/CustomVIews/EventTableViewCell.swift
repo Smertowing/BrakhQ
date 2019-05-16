@@ -26,7 +26,7 @@ class EventTableViewCell: UITableViewCell {
 		
 		currentQueue = queue
 		nameLabel.text = queue.name
-		nameView.layer.cornerRadius = 10
+		nameView.layer.cornerRadius = 5
 		eventDateLabel.text = queue.eventDate.displayDate
 		counterLabel.text = "\(queue.busyPlaces.count)/\(queue.placesCount)"
 		

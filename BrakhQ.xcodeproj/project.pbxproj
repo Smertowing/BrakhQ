@@ -26,12 +26,13 @@
 		F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F926225CAD97009DDA7B /* CreateEventViewController.swift */; };
 		F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F931225CAE2B009DDA7B /* EditEventViewController.swift */; };
 		F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */; };
-		F334BE1D2289663100BF811A /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334BE1C2289663100BF811A /* VKLoginViewController.swift */; };
+		F334BE1D2289663100BF811A /* VKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334BE1C2289663100BF811A /* VKViewController.swift */; };
 		F334BE242289FC8700BF811A /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE262289FC8700BF811A /* Event.storyboard */; };
 		F334BE2B2289FCB100BF811A /* QueueManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE2D2289FCB100BF811A /* QueueManager.storyboard */; };
 		F334BE322289FCCD00BF811A /* FailureInfoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE342289FCCD00BF811A /* FailureInfoView.storyboard */; };
 		F334BE392289FEE200BF811A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F334BE3B2289FEE200BF811A /* Localizable.strings */; };
 		F3711DA5228BF23000787AEC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3711DA4228BF23000787AEC /* StoreKit.framework */; };
+		F39EA397228D407E00C8584C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39EA396228D407E00C8584C /* WebKit.framework */; };
 		F3A731C5227D9C000059233E /* EventCalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */; };
 		F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */; };
 		F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A731C9227DADD50059233E /* QueueManagerViewController.swift */; };
@@ -100,7 +101,7 @@
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F319F931225CAE2B009DDA7B /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewController.swift; sourceTree = "<group>"; };
-		F334BE1C2289663100BF811A /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		F334BE1C2289663100BF811A /* VKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKViewController.swift; sourceTree = "<group>"; };
 		F334BE1F2289FC4300BF811A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F334BE202289FC5700BF811A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		F334BE212289FC5700BF811A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		F334BE3A2289FEE200BF811A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F334BE3C2289FEE500BF811A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F3711DA4228BF23000787AEC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F39EA396228D407E00C8584C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F3A731C4227D9C000059233E /* EventCalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C7227DADAD0059233E /* QueueManagerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueManagerNavigationController.swift; sourceTree = "<group>"; };
 		F3A731C9227DADD50059233E /* QueueManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueManagerViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39EA397228D407E00C8584C /* WebKit.framework in Frameworks */,
 				F3711DA5228BF23000787AEC /* StoreKit.framework in Frameworks */,
 				F301AB3722573EB600FA5412 /* AuthenticationServices.framework in Frameworks */,
 				9F833B8BE494E3151FFA1224 /* Pods_BrakhQ.framework in Frameworks */,
@@ -223,6 +226,7 @@
 		F301AB3522573EB600FA5412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F39EA396228D407E00C8584C /* WebKit.framework */,
 				F3711DA4228BF23000787AEC /* StoreKit.framework */,
 				F301AB3622573EB600FA5412 /* AuthenticationServices.framework */,
 				38A975B58F9094AC404F7D33 /* Pods_BrakhQ.framework */,
@@ -256,7 +260,7 @@
 			children = (
 				F319F8E9225BD7F2009DDA7B /* LoginViewController.swift */,
 				F3DE2E7522674C0D002E5810 /* LoginViewModel.swift */,
-				F334BE1C2289663100BF811A /* VKLoginViewController.swift */,
+				F334BE1C2289663100BF811A /* VKViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -537,7 +541,7 @@
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -669,7 +673,7 @@
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3D3165022883690005ED23E /* WebSockets.swift in Sources */,
-				F334BE1D2289663100BF811A /* VKLoginViewController.swift in Sources */,
+				F334BE1D2289663100BF811A /* VKViewController.swift in Sources */,
 				F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */,
 				F3A731E4227F10DA0059233E /* BrakhQLogoView.swift in Sources */,
 				F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */,
@@ -943,6 +947,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = men.brakh.BrakhQ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

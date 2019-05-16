@@ -151,7 +151,7 @@ class EventViewController: UIViewController {
 	}
 	
 	@objc func copyLinkButtonClicked() {
-		UIPasteboard.general.string = "queue.brakh.men/\(viewModel.queue.url)"
+		UIPasteboard.general.string = "queue.brakh.men/queue/\(viewModel.queue.url)"
 		let alert = UIAlertController(title: "Done".localized, message: "Link to this queue successfully copied to your clipboard!".localized, preferredStyle: UIAlertController.Style.alert)
 		alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 		self.present(alert, animated: true, completion: nil)

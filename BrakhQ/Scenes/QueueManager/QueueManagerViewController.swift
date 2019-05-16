@@ -86,7 +86,7 @@ class QueueManagerViewController: UIViewController {
 	}
 	
 	@objc func searchButtonClicked() {
-		alertWithTextField(title: "Search queue".localized, message: "Enter link to the queue to enter it".localized, placeholder: "queue.brakh.men/...") { result in
+		alertWithTextField(title: "Search queue".localized, message: "Enter link to the queue to enter it".localized, placeholder: "queue.brakh.men/queue/...") { result in
 			if !result.isEmpty {
 				self.viewModel.searchBy(result)
 			}

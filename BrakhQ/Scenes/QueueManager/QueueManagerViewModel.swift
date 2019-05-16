@@ -47,7 +47,7 @@ final class QueueManagerViewModel {
 	
 	func searchBy(_ link: String) {
 		do {
-			let regex = try NSRegularExpression(pattern: "queue.brakh.men/[a-zA-Z0-9]+")
+			let regex = try NSRegularExpression(pattern: "queue.brakh.men/queue/[a-zA-Z0-9]+")
 			let results = regex.matches(in: link,
 																	range: NSRange(link.startIndex..., in: link))
 			var links = results.map {
@@ -57,7 +57,7 @@ final class QueueManagerViewModel {
 				self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
 			} else {
 				var url: String = links[0]
-				url.removeFirst("queue.brakh.men/".count)
+				url.removeFirst("queue.brakh.men/queue/".count)
 				
 				getQueue(by: url)
 			}

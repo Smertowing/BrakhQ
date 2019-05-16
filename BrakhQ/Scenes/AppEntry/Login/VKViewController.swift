@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class VKLoginViewController: UIViewController, WKNavigationDelegate {
+class VkontakteLoginViewController: UIViewController, WKNavigationDelegate {
 	
 	@IBOutlet weak var webkitView: WKWebView!
 	@IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -22,11 +22,8 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
 		activityIndicator.hidesWhenStopped = true
 		activityIndicator.startAnimating()
 		webkitView.load(URLRequest(url: URL(string: "https://queue-api.brakh.men/api/auth/vk?callback=brakhq://auth")!))
-	}
-	
-}
 
-extension VKLoginViewController {
+	}
 	
 	//    Called when web content begins to load in a web view.
 	func webView(_ webView: WKWebView, didStartProvisionalNavigation: WKNavigation!) {
@@ -46,6 +43,39 @@ extension VKLoginViewController {
 	//    Called when the navigation is complete.
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!) {
 		activityIndicator.stopAnimating()
+	}
+	
+	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		
+		if webView != self.webkitView {
+			decisionHandler(.allow)
+			return
+		}
+		
+		let app = UIApplication.shared
+		if let url = navigationAction.request.url {
+			// Handle target="_blank"
+			if navigationAction.targetFrame == nil {
+				if app.canOpenURL(url) {
+					app.open(url)
+					decisionHandler(.cancel)
+					return
+				}
+			}
+			
+			// Handle phone and email links
+			if url.scheme == "brakhq"  {
+				if app.canOpenURL(url) {
+					app.open(url)
+				}
+				
+				decisionHandler(.cancel)
+				return
+			}
+			
+			decisionHandler(.allow)
+		}
+		
 	}
 	
 	

@@ -35,8 +35,8 @@ class StartViewController: UIViewController {
 	}
 	
 	@IBAction func loginViaVK(_ sender: Any) {
-		let loginViewController = self.storyboard!.instantiateViewController(withIdentifier: "vkLogin") as! VKLoginViewController
-		self.show(loginViewController, sender: self)
+		let vkontakteLoginViewController = self.storyboard!.instantiateViewController(withIdentifier: "vkLogin") as! VkontakteLoginViewController
+		self.show(vkontakteLoginViewController, sender: self)
 	}
 	
 	@IBAction func signup(_ sender: Any) {

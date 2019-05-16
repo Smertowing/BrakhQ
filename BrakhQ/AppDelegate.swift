@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if message == "auth" {
 			let providerUser = MoyaProvider<UserAPIProvider>()
 			AuthManager.shared.token = getQueryStringParameter(url: url, param: "token")
-			AuthManager.shared.refreshToken = getQueryStringParameter(url: url, param: "refreshToken")
+			AuthManager.shared.refreshToken = getQueryStringParameter(url: url, param: "refresh_token")
 
 			providerUser.request(.getUserByUsername(username: getQueryStringParameter(url: url, param: "username")!)) { result in
 				if case .success(let response) = result  {
