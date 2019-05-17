@@ -141,21 +141,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaU-WF-5iJ">
-                                                    <rect key="frame" x="15" y="19" width="12.5" height="21.5"/>
+                                                    <rect key="frame" x="15" y="19" width="20" height="21.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="mMe-dX-ORY"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nme-bE-Ok1">
-                                                    <rect key="frame" x="35.5" y="18.5" width="48" height="22.5"/>
+                                                    <rect key="frame" x="43" y="18.5" width="48" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvX-oL-eue">
-                                                    <rect key="frame" x="189" y="14.5" width="80" height="30.5"/>
+                                                    <rect key="frame" x="169" y="14.5" width="100" height="30.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="6qS-AY-ULg"/>
+                                                        <constraint firstAttribute="width" constant="100" id="6qS-AY-ULg"/>
                                                     </constraints>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -108,7 +108,7 @@ class EditEventViewController: FormViewController {
 				row.title = "Copy Link".localized
 				}
 				.onCellSelection { (cell, row) in
-					UIPasteboard.general.string = "queue.brakh.men/queue/\(self.viewModel.queue.url)"
+					UIPasteboard.general.string = "https://queue.brakh.men/queue/\(self.viewModel.queue.url)"
 					let alert = UIAlertController(title: "Done".localized, message: "Link to this queue successfully copied to your clipboard!".localized, preferredStyle: UIAlertController.Style.alert)
 					alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
 					self.present(alert, animated: true, completion: nil)
@@ -130,12 +130,12 @@ class EditEventViewController: FormViewController {
 			Section("Registration Dates".localized)
 			<<< LabelRow("Starts") {
 				$0.title = $0.tag?.localized
-				$0.value = viewModel.queue.regStartDate.displayDate + " " + viewModel.queue.eventDate.displayTime
+				$0.value = viewModel.queue.regStartDate.displayDate + " " + viewModel.queue.regStartDate.displayTime
 			}
 			
 			<<< LabelRow("Ends"){
 				$0.title = $0.tag?.localized
-				$0.value = viewModel.queue.regEndDate.displayDate + " " + viewModel.queue.eventDate.displayTime
+				$0.value = viewModel.queue.regEndDate.displayDate + " " + viewModel.queue.regEndDate.displayTime
 			}
 			/*
 			+++

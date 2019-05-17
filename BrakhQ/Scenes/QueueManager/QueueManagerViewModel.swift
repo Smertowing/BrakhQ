@@ -46,6 +46,13 @@ final class QueueManagerViewModel {
 	}
 	
 	func searchBy(_ link: String) {
+		let params = link.split(separator: "/")
+		if let last = params.last {
+			getQueue(by: String(last))
+		} else {
+			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
+		}
+		/*
 		do {
 			let regex = try NSRegularExpression(pattern: "queue.brakh.men/queue/[a-zA-Z0-9]+")
 			let results = regex.matches(in: link,
@@ -64,6 +71,7 @@ final class QueueManagerViewModel {
 		} catch {
 			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
 		}
+*/
 	}
 	
 	func refresh(refresher: Bool) {

@@ -89,7 +89,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			*/
 			<<< PasswordRow("New password") {
-				$0.title = $0.tag?.localized
+				$0.placeholder = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleMinLength(minLength: 6))
 				}
@@ -100,7 +100,7 @@ class UpdateProfileViewController: FormViewController {
 			}
 			
 			<<< PasswordRow("Confirm new password") {
-				$0.title = $0.tag?.localized
+				$0.placeholder = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.add(rule: RuleEqualsToRow(form: form, tag: "New password"))
 				}

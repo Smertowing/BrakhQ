@@ -26,7 +26,7 @@ class RegistrationViewController: FormViewController {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
 		title = "Register".localized
-		self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.registerButtonClicked)), animated: false)
+		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Register".localized, style: .done, target: self, action: #selector(self.registerButtonClicked)), animated: false)
 		
 		setupViewModel()
 		initializeForm()
