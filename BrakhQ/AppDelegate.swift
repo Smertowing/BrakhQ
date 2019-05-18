@@ -86,11 +86,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 		
 		let message = url.host?.removingPercentEncoding
-		if message == "auth" {
+		switch message {
+		case "auth":
 			let providerUser = MoyaProvider<UserAPIProvider>()
 			AuthManager.shared.token = getQueryStringParameter(url: url, param: "token")
 			AuthManager.shared.refreshToken = getQueryStringParameter(url: url, param: "refresh_token")
-
+			
 			providerUser.request(.getUserByUsername(username: getQueryStringParameter(url: url, param: "username")!)) { result in
 				if case .success(let response) = result  {
 					if let answer = try? response.map(ModelResponseUser.self) {
@@ -106,32 +107,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 							
 							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 						} else {
-							let alertController = UIAlertController(title: "Failure".localized, message: answer.message ?? "Unexpected response".localized, preferredStyle: .alert)
-							let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
-							alertController.addAction(okAction)
-							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+							self.showErrorAlert(message: "Unexpected response".localized)
 						}
 					} else {
-						let alertController = UIAlertController(title: "Failure".localized, message: "Unexpected response".localized, preferredStyle: .alert)
-						let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
-						alertController.addAction(okAction)
-						self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+						self.showErrorAlert(message: "Unexpected response".localized)
 					}
 				} else {
-					let alertController = UIAlertController(title: "Failure".localized, message: "Internet connection error".localized, preferredStyle: .alert)
-					let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
-					alertController.addAction(okAction)
-					self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+					self.showErrorAlert(message: "Internet connection error".localized)
 				}
 			}
-		} else {
-			let alertController = UIAlertController(title: "Failure".localized, message: "Unexpected response".localized, preferredStyle: .alert)
-			let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default, handler: nil)
-			alertController.addAction(okAction)
-			self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+		case "queue":
+			let providerQueue = MoyaProvider<QueueAPIProvider>()
+			if let url = getQueryStringParameter(url: url, param: "url") {
+				getQueue(provider: providerQueue, by: url)
+			}
+		default:
+			showErrorAlert(message: "Unexpected response".localized)
 		}
 		
 		return true
+	}
+	
+	func getQueue(provider: MoyaProvider<QueueAPIProvider>, by url: String) {
+		provider.request(.getQueue(url: url)) { (result) in
+			switch result {
+			case .success(let response):
+				if let answer = try? response.map(ModelResponseQueue.self) {
+					if answer.success, let queue = answer.response {
+						let storyBoard = UIStoryboard(name: "Event", bundle: nil)
+						let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
+						viewController.viewModel = EventViewModel(for: QueueCashe(queue: queue))
+						
+						DispatchQueue.global(qos: .background).async {
+							while (self.window?.rootViewController as? UITabBarController) == nil {
+								sleep(1)
+							}
+							DispatchQueue.main.async {
+								let tabbar = self.window!.rootViewController as! UITabBarController
+								tabbar.selectedViewController?.show(viewController, sender: self)
+							}
+						}
+						/*
+						if let tabbar = self.window?.rootViewController as? UITabBarController {
+							tabbar.selectedViewController?.show(viewController, sender: self)
+						} else {
+							DispatchQueue.global(qos: .background).async {
+								sleep(1)
+								DispatchQueue.main.async {
+									if let tabbar = self.window?.rootViewController as? UITabBarController {
+										tabbar.selectedViewController?.show(viewController, sender: self)
+									} else {
+										self.window?.rootViewController?.present(viewController, animated: true, completion: nil)
+									}
+								}
+							}
+						}
+*/
+					} else {
+						self.showErrorAlert(message: answer.message ?? "Unexpected response".localized)
+					}
+				} else {
+					self.showErrorAlert(message: "Unexpected response".localized)
+				}
+			case .failure(let error):
+				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+					AuthManager.shared.update(token: .authentication) { success in
+						if success {
+							self.getQueue(provider: provider, by: url)
+						} else {
+							self.showErrorAlert(message: "Authorization error, try to restart application".localized)
+						}
+					}
+				} else {
+					self.showErrorAlert(message: "Internet connection error".localized)
+				}
+			}
+		}
+	}
+	
+	func showErrorAlert(message: String) {
+		let alert = UIAlertController(title: "Failure".localized, message: message, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
+		self.window?.rootViewController?.present(alert, animated: true, completion: nil)
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
