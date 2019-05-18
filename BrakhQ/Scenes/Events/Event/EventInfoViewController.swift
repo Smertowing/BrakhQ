@@ -37,6 +37,7 @@ class EventInfoViewController: FormViewController {
 			Section("Description".localized)
 			<<< TextAreaRow() {
 				$0.value = viewModel.queue.descript
+				$0.disabled = true
 				$0.resetValue = viewModel.queue.descript
 				}
 				.onChange { row in

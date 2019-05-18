@@ -52,26 +52,6 @@ final class QueueManagerViewModel {
 		} else {
 			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
 		}
-		/*
-		do {
-			let regex = try NSRegularExpression(pattern: "queue.brakh.men/queue/[a-zA-Z0-9]+")
-			let results = regex.matches(in: link,
-																	range: NSRange(link.startIndex..., in: link))
-			var links = results.map {
-				String(link[Range($0.range, in: link)!])
-			}
-			if links.isEmpty {
-				self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
-			} else {
-				var url: String = links[0]
-				url.removeFirst("queue.brakh.men/queue/".count)
-				
-				getQueue(by: url)
-			}
-		} catch {
-			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
-		}
-*/
 	}
 	
 	func refresh(refresher: Bool) {

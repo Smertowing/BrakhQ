@@ -147,22 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 								tabbar.selectedViewController?.show(viewController, sender: self)
 							}
 						}
-						/*
-						if let tabbar = self.window?.rootViewController as? UITabBarController {
-							tabbar.selectedViewController?.show(viewController, sender: self)
-						} else {
-							DispatchQueue.global(qos: .background).async {
-								sleep(1)
-								DispatchQueue.main.async {
-									if let tabbar = self.window?.rootViewController as? UITabBarController {
-										tabbar.selectedViewController?.show(viewController, sender: self)
-									} else {
-										self.window?.rootViewController?.present(viewController, animated: true, completion: nil)
-									}
-								}
-							}
-						}
-*/
 					} else {
 						self.showErrorAlert(message: answer.message ?? "Unexpected response".localized)
 					}
