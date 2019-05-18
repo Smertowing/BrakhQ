@@ -12,15 +12,19 @@ import Moya
 class StartViewController: UIViewController {
 
 	@IBOutlet weak var logoImageView: UIImageView!
+	@IBOutlet weak var loginButton: UIButton!
+	@IBOutlet weak var signupButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		UIView.transition(with: logoImageView,
-											duration: 0.2,
-											options: .beginFromCurrentState,
+											duration: 0.75,
+											options: .transitionCrossDissolve,
 											animations: { self.logoImageView.image = #imageLiteral(resourceName: "BQLabelBlue") },
 											completion: nil)
 		hideKeyboardWhenTappedAround()
+		loginButton.layer.cornerRadius = 5
+		signupButton.layer.cornerRadius = 5
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {

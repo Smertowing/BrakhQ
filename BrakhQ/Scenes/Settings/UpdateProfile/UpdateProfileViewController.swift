@@ -41,7 +41,7 @@ class UpdateProfileViewController: FormViewController {
 			
 			+++
 			Section("Change Profile".localized)
-			<<< NameRow("Name") {
+			<<< TextRow("Name") {
 				$0.title = $0.tag?.localized
 				$0.value = AuthManager.shared.user?.name
 				$0.add(rule: RuleRequired())
@@ -66,7 +66,7 @@ class UpdateProfileViewController: FormViewController {
 				row.title = "Save".localized
 				}.onCellSelection { (cell, row) in
 					let emailRow: EmailRow! = self.form.rowBy(tag: "Email")
-					let nameRow: NameRow! = self.form.rowBy(tag: "Name")
+					let nameRow: TextRow! = self.form.rowBy(tag: "Name")
 					if emailRow.validate().isEmpty && nameRow.validate().isEmpty {
 						self.viewModel.changeProfile(name: nameRow.value!, email: emailRow.value!)
 					}

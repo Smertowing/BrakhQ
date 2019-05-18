@@ -25,7 +25,7 @@ class RegistrationViewController: FormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		hideKeyboardWhenTappedAround()
-		title = "Register".localized
+		//title = "Register".localized
 		self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Register".localized, style: .done, target: self, action: #selector(self.registerButtonClicked)), animated: false)
 		
 		setupViewModel()
@@ -46,7 +46,7 @@ class RegistrationViewController: FormViewController {
 			
 			+++
 			Section("Change Profile".localized)
-			<<< NameRow("Username") {
+			<<< TextRow("Username") {
 				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -57,7 +57,7 @@ class RegistrationViewController: FormViewController {
 				}
 			}
 			
-			<<< NameRow("Name") {
+			<<< TextRow("Name") {
 				$0.title = $0.tag?.localized
 				$0.add(rule: RuleRequired())
 				$0.validationOptions = .validatesOnChangeAfterBlurred
@@ -121,10 +121,10 @@ class RegistrationViewController: FormViewController {
 	
 	@objc func registerButtonClicked() {
 		if form.validate().isEmpty {
-			let usernameRow: NameRow! = form.rowBy(tag: "Username")
+			let usernameRow: TextRow! = form.rowBy(tag: "Username")
 			let passwordRow: PasswordRow! = form.rowBy(tag: "New password")
 			let emailRow: EmailRow! = form.rowBy(tag: "Email")
-			let nameRow: NameRow! = form.rowBy(tag: "Name")
+			let nameRow: TextRow! = form.rowBy(tag: "Name")
 			viewModel.register(username: usernameRow.value!,
 												 password: passwordRow.value!,
 												 email: emailRow.value!,

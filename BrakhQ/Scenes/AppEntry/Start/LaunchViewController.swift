@@ -21,8 +21,8 @@ class LaunchViewController: UIViewController {
 		super.viewDidLoad()
 	
 		UIView.transition(with: self.logoImageView,
-											duration: 0.2,
-											options: .beginFromCurrentState,
+											duration: 0.75,
+											options: .transitionCrossDissolve,
 											animations: { self.logoImageView.image = #imageLiteral(resourceName: "BQLabelBlue") },
 											completion: nil)
 		self.loadingIndicator.startAnimating()

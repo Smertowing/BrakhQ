@@ -259,7 +259,12 @@ class EditEventViewController: FormViewController {
 	}
 
 	@objc func deleteButtonClicked() {
-		viewModel.deleteAction()
+		let alert = UIAlertController(title: "Delete queue".localized, message: "Do you really want to delete this queue?".localized, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: "Yes".localized, style: .destructive, handler: { action in
+			self.viewModel.deleteAction()
+		}))
+		self.present(alert, animated: true)
 	}
 	
 }

@@ -47,6 +47,7 @@
 "You've edited event queue" = "You've edited event queue";
 "You've deleted event queue" = "You've deleted event queue";
 "Delete queue" = "Delete Queue";
+"Do you really want to delete this queue?" = "Do you really want to delete this queue?";
 "Queue is not empty" = "Queue is not empty";
 
 "Create" = "Create";
@@ -96,7 +97,7 @@
 "You've created account" = "You've created account";
 
 "My Profile" = "My Profile";
-"Username" = "Username";
+"Username" = "Login";
 "Name" = "Name";
 "Email" = "Email";
 "Update profile" = "Update profile";

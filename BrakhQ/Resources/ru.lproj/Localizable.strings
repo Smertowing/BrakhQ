@@ -47,6 +47,7 @@
 "You've edited event queue" = "Вы изменили очередь на событие";
 "You've deleted event queue" = "Вы удалили очередь на событие";
 "Delete queue" = "Удалить очередь";
+"Do you really want to delete this queue?" = "Вы действительно хотите удилть эту очередь?";
 "Queue is not empty" = "Очередь не пуста";
 
 "Create" = "Создать";
@@ -96,7 +97,7 @@
 "You've created account" = "Вы создали аккаунт";
 
 "My Profile" = "Мой Профиль";
-"Username" = "Никнейм";
+"Username" = "Логин";
 "Name" = "Имя";
 "Email" = "Email";
 "Update profile" = "Обновить профиль";

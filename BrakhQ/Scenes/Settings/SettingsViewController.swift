@@ -83,6 +83,7 @@ class SettingsViewController: FormViewController {
 			}
 			
 		form
+		
 			/*
 			+++
 			Section("Application Settings".localized)
@@ -98,15 +99,29 @@ class SettingsViewController: FormViewController {
 				row.value = row.options[0]
 			}
 			*/
+			
 			+++
 			Section()
+			<<< ButtonRow() { (row: ButtonRow) -> Void in
+				row.title = "Open in Settings"
+				}.onCellSelection({ (cell, row) in
+					self.notificationClicked()
+				})
 			
+			+++
+			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
 				row.title = "Log Out".localized
-				}.onCellSelection { [weak self] (cell, row) in
-					self?.exitButtonClicked()
+				}.onCellSelection { (cell, row) in
+					self.exitButtonClicked()
 				}.cellSetup { (cell, row) in
 					cell.tintColor = .red
+		}
+	}
+	
+	@objc func notificationClicked() {
+		if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+			UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
 		}
 	}
 
