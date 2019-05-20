@@ -45,7 +45,7 @@ class SiteTableViewCell: UITableViewCell {
 		case .release:
 			backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
 		case .engaged:
-			backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+			backgroundColor = #colorLiteral(red: 0.9480290292, green: 0.580959484, blue: 0.7219921503, alpha: 1)
 		case .free:
 			backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 		}

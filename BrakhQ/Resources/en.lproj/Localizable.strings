@@ -13,6 +13,7 @@
 "OK" = "OK";
 "Failure" = "Failure";
 "Done" = "Done";
+"Open in Settings" = "Open in Settings";
 
 "There was an error" = "There was an error";
 "Unexpected response" = "Unexpected response";

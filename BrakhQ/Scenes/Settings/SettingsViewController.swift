@@ -103,7 +103,7 @@ class SettingsViewController: FormViewController {
 			+++
 			Section()
 			<<< ButtonRow() { (row: ButtonRow) -> Void in
-				row.title = "Open in Settings"
+				row.title = "Open in Settings".localized
 				}.onCellSelection({ (cell, row) in
 					self.notificationClicked()
 				})

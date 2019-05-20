@@ -13,6 +13,7 @@
 "OK" = "ОК";
 "Failure" = "Неудача";
 "Done" = "Готово";
+"Open in Settings" = "Открыть в Настройках";
 
 "There was an error" = "Произошла ошибка";
 "Unexpected response" = "Неизвестный ответ сервера";
