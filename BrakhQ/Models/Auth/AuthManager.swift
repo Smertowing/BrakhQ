@@ -86,7 +86,7 @@ final class AuthManager {
 	func login() {
 		print(AuthManager.shared.deviceToken as Any)
 		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
-		providerNotifications.request(.subscribe(token: AuthManager.shared.deviceToken ?? "")) { (result) in
+		providerNotifications.request(.subscribe) { (result) in
 			switch result {
 			case .success(let response):
 				if let answer = try? response.map(ResponseState.self) {

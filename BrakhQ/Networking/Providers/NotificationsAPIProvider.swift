@@ -9,7 +9,7 @@
 import Moya
 
 enum NotificationsAPIProvider {
-	case subscribe(token: String)
+	case subscribe
 	case unsubscribe
 	case test
 }
@@ -17,7 +17,7 @@ enum NotificationsAPIProvider {
 extension NotificationsAPIProvider: TargetType {
 	
 	var baseURL: URL {
-		return URL(string: "https://queue-api.brakh.men")!
+		return URL(string: "https://queue-api.brakh.men/api/v2")!
 	}
 	
 	var path: String {
@@ -34,7 +34,7 @@ extension NotificationsAPIProvider: TargetType {
 	var method: Method {
 		switch self {
 		case .subscribe:
-			return .post
+			return .put
 		case .unsubscribe:
 			return .delete
 		case .test:
@@ -48,10 +48,10 @@ extension NotificationsAPIProvider: TargetType {
 	
 	var task: Task {
 		switch self {
-		case .subscribe(let token):
+		case .subscribe:
 			return .requestParameters(
 				parameters: [
-					"token": token,
+					"token": AuthManager.shared.deviceToken ?? "",
 					"type": "APPLE_TOKEN"
 				],
 				encoding: URLEncoding.default
@@ -59,6 +59,7 @@ extension NotificationsAPIProvider: TargetType {
 		case .unsubscribe:
 			return .requestParameters(
 				parameters: [
+					"token": AuthManager.shared.deviceToken ?? "",
 					"type": "APPLE_TOKEN"
 				],
 				encoding: URLEncoding.default
@@ -73,7 +74,11 @@ extension NotificationsAPIProvider: TargetType {
 	}
 	
 	var validationType: ValidationType {
-		return .successCodes
+		switch self {
+		default:
+			return .customCodes([200])
+		}
+		
 	}
 	
 }

@@ -13,9 +13,7 @@ struct Queue: Codable {
 	var busy_places: [Place]
 	var description: String?
 	var event_date: String
-	var full: Bool
 	var id: Int
-	var mixed: Bool
 	var name: String
 	var owner: User
 	var places_count: Int

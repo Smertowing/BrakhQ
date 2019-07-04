@@ -13,41 +13,39 @@ enum UserAPIProvider {
 	case getUserByUsername(username: String)
 	case updateUser(name: String, email: String)
 	case updatePassword(password: String)
-	case getQueuesCreatedBy(userId: Int)
-	case getQueuesUsedBy(userId: Int)
+	case updateAvatar(avatar: Data)
+	case getQueuesBy(userId: Int)
 	case register(username: String, password: String, email: String, name: String)
 }
 
 extension UserAPIProvider: TargetType {
 	
 	var baseURL: URL {
-		return URL(string: "https://queue-api.brakh.men")!
+		return URL(string: "https://queue-api.brakh.men/api/v2")!
 	}
 	
 	var path: String {
 		switch self {
-		case .getUser:
-			return "/api/user"
-		case .getUserByUsername:
-			return "/api/user"
+		case .getUser, .getUserByUsername:
+			return "/user"
 		case .updateUser, .updatePassword:
-			return "/api/user"
-		case .getQueuesCreatedBy(let userId):
-			return "/api/users/\(userId)/queues/created"
-		case .getQueuesUsedBy(let userId):
-			return "/api/users/\(userId)/queues/used"
+			return "/user"
+		case .updateAvatar:
+			return "/user/avatar"
+		case .getQueuesBy(let userId):
+			return "/users/\(userId)/queues"
 		case .register:
-			return "/api/users/registration"
+			return "/users/registration"
 		}
 	}
 	
 	var method: Method {
 		switch self {
-		case .getUser, .getUserByUsername, .getQueuesCreatedBy, .getQueuesUsedBy:
+		case .getUser, .getUserByUsername, .getQueuesBy:
 			return .get
 		case .updateUser, .updatePassword:
 			return .put
-		case .register:
+		case .register, .updateAvatar:
 			return .post
 		}
 	}
@@ -87,9 +85,9 @@ extension UserAPIProvider: TargetType {
 				],
 				encoding: JSONEncoding.default
 			)
-		case .getQueuesCreatedBy(_):
-			return .requestPlain
-		case .getQueuesUsedBy(_):
+		case .updateAvatar(let avatar):
+			return .uploadMultipart([Moya.MultipartFormData(provider: .data(avatar), name: "file", fileName: "avatar.png", mimeType: "image/png")])
+		case .getQueuesBy:
 			return .requestPlain
 		case .register(let username, let password, let email, let name):
 			return .requestParameters(
@@ -108,7 +106,7 @@ extension UserAPIProvider: TargetType {
 		switch self {
 		case .register:
 			return ["Content-Type": "application/json"]
-		case .getUser, .getUserByUsername,  .getQueuesCreatedBy, .getQueuesUsedBy:
+		case .getUser, .getUserByUsername, .getQueuesBy, .updateAvatar:
 			return ["Authorization": "\(AuthManager.shared.token ?? "")"]
 		case .updateUser, .updatePassword:
 			return ["Authorization": "\(AuthManager.shared.token ?? "")",
@@ -117,7 +115,12 @@ extension UserAPIProvider: TargetType {
 	}
 	
 	var validationType: ValidationType {
-		return .successCodes
+		switch self {
+		case .register:
+			return .customCodes([201])
+		default:
+			return .customCodes([200])
+		}
 	}
 
 }

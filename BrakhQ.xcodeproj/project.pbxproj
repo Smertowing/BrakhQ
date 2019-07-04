@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,12 @@
 		F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F926225CAD97009DDA7B /* CreateEventViewController.swift */; };
 		F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F931225CAE2B009DDA7B /* EditEventViewController.swift */; };
 		F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */; };
+		F333C2B122CE1DB300532D5F /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2B022CE1DB300532D5F /* NetworkingManager.swift */; };
+		F333C2B322CE216100532D5F /* NetworkErrorsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2B222CE216100532D5F /* NetworkErrorsEnums.swift */; };
+		F333C2B622CE239800532D5F /* AuthProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2B522CE239800532D5F /* AuthProxy.swift */; };
+		F333C2B822CE23D500532D5F /* NotificationsProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2B722CE23D500532D5F /* NotificationsProxy.swift */; };
+		F333C2BA22CE23E200532D5F /* QueueProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2B922CE23E200532D5F /* QueueProxy.swift */; };
+		F333C2BC22CE23ED00532D5F /* UserProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333C2BB22CE23ED00532D5F /* UserProxy.swift */; };
 		F334BE1D2289663100BF811A /* VKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334BE1C2289663100BF811A /* VKViewController.swift */; };
 		F334BE242289FC8700BF811A /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE262289FC8700BF811A /* Event.storyboard */; };
 		F334BE2B2289FCB100BF811A /* QueueManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334BE2D2289FCB100BF811A /* QueueManager.storyboard */; };
@@ -101,6 +107,12 @@
 		F319F926225CAD97009DDA7B /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		F319F931225CAE2B009DDA7B /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		F319F93C225CAF39009DDA7B /* EventCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarViewController.swift; sourceTree = "<group>"; };
+		F333C2B022CE1DB300532D5F /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		F333C2B222CE216100532D5F /* NetworkErrorsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorsEnums.swift; sourceTree = "<group>"; };
+		F333C2B522CE239800532D5F /* AuthProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProxy.swift; sourceTree = "<group>"; };
+		F333C2B722CE23D500532D5F /* NotificationsProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsProxy.swift; sourceTree = "<group>"; };
+		F333C2B922CE23E200532D5F /* QueueProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueProxy.swift; sourceTree = "<group>"; };
+		F333C2BB22CE23ED00532D5F /* UserProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProxy.swift; sourceTree = "<group>"; };
 		F334BE1C2289663100BF811A /* VKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKViewController.swift; sourceTree = "<group>"; };
 		F334BE1F2289FC4300BF811A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F334BE202289FC5700BF811A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -322,6 +334,17 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		F333C2B422CE237F00532D5F /* NetworkingProxies */ = {
+			isa = PBXGroup;
+			children = (
+				F333C2B522CE239800532D5F /* AuthProxy.swift */,
+				F333C2B722CE23D500532D5F /* NotificationsProxy.swift */,
+				F333C2B922CE23E200532D5F /* QueueProxy.swift */,
+				F333C2BB22CE23ED00532D5F /* UserProxy.swift */,
+			);
+			path = NetworkingProxies;
+			sourceTree = "<group>";
+		};
 		F36DB3DD2258A673002A8B71 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A731F3227FAED00059233E /* AuthEnums.swift */,
+				F333C2B222CE216100532D5F /* NetworkErrorsEnums.swift */,
 				F3A731F5227FAF6E0059233E /* QueueEnums.swift */,
 				F3A731F7227FAF7C0059233E /* FeedEnums.swift */,
 				F3DB0F0322808A1B00A9F436 /* UserDefaultsEnums.swift */,
@@ -467,6 +491,8 @@
 			isa = PBXGroup;
 			children = (
 				F3A731EB227FADA00059233E /* Providers */,
+				F333C2B422CE237F00532D5F /* NetworkingProxies */,
+				F333C2B022CE1DB300532D5F /* NetworkingManager.swift */,
 				F3D3164F22883690005ED23E /* WebSockets.swift */,
 			);
 			path = Networking;
@@ -591,38 +617,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CalendarKit/CalendarKit.framework",
-				"${BUILT_PRODUCTS_DIR}/DataCache/DataCache.framework",
-				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Neon/Neon.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalendarKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Neon.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BrakhQ/Pods-BrakhQ-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3CE4431A27476D8272803A30 /* [CP] Check Pods Manifest.lock */ = {
@@ -671,9 +674,11 @@
 				F3A731F8227FAF7C0059233E /* FeedEnums.swift in Sources */,
 				F3CCDB26228334770049AF51 /* AuthManager.swift in Sources */,
 				F3DE2E6222674B5D002E5810 /* EditEventViewModel.swift in Sources */,
+				F333C2B622CE239800532D5F /* AuthProxy.swift in Sources */,
 				F3DE2E7222674BE9002E5810 /* RegistrationViewModel.swift in Sources */,
 				F3D3165022883690005ED23E /* WebSockets.swift in Sources */,
 				F334BE1D2289663100BF811A /* VKViewController.swift in Sources */,
+				F333C2B322CE216100532D5F /* NetworkErrorsEnums.swift in Sources */,
 				F3A731E8227F68FA0059233E /* EventInfoViewController.swift in Sources */,
 				F3A731E4227F10DA0059233E /* BrakhQLogoView.swift in Sources */,
 				F3A731CA227DADD50059233E /* QueueManagerViewController.swift in Sources */,
@@ -681,12 +686,14 @@
 				F301AB2322573DD800FA5412 /* AppDelegate.swift in Sources */,
 				F3DB0F0D2280AC8B00A9F436 /* Token.swift in Sources */,
 				F3DB0F0622808D7100A9F436 /* LaunchViewController.swift in Sources */,
+				F333C2B122CE1DB300532D5F /* NetworkingManager.swift in Sources */,
 				F3DE78D0228A1C43000B2DA8 /* EmptyBackgroundView.swift in Sources */,
 				F319F911225CABD3009DDA7B /* RegistrationViewController.swift in Sources */,
 				F319F8DE225BCA23009DDA7B /* Place.swift in Sources */,
 				F3A731CC227DADFB0059233E /* QueueManagerViewModel.swift in Sources */,
 				F319F8D0225B8A67009DDA7B /* EventViewController.swift in Sources */,
 				F3DE2E7A22674C26002E5810 /* SettingsViewModel.swift in Sources */,
+				F333C2BC22CE23ED00532D5F /* UserProxy.swift in Sources */,
 				F3A731F1227FAE060059233E /* UserAPIProvider.swift in Sources */,
 				F3A731EA227F70440059233E /* SiteTableViewCell.swift in Sources */,
 				F3CCDB2C22833FE80049AF51 /* FailureInfoView.swift in Sources */,
@@ -703,10 +710,12 @@
 				F3A731C8227DADAD0059233E /* QueueManagerNavigationController.swift in Sources */,
 				F3D3164E2288350D005ED23E /* WSEnums.swift in Sources */,
 				F319F927225CAD97009DDA7B /* CreateEventViewController.swift in Sources */,
+				F333C2B822CE23D500532D5F /* NotificationsProxy.swift in Sources */,
 				F319F93D225CAF39009DDA7B /* EventCalendarViewController.swift in Sources */,
 				F3CCDB232283163D0049AF51 /* UserCashe.swift in Sources */,
 				F3A731ED227FADC60059233E /* AuthProvider.swift in Sources */,
 				F319F8E2225BCBB6009DDA7B /* Responses.swift in Sources */,
+				F333C2BA22CE23E200532D5F /* QueueProxy.swift in Sources */,
 				F319F932225CAE2B009DDA7B /* EditEventViewController.swift in Sources */,
 				F3A731F6227FAF6E0059233E /* QueueEnums.swift in Sources */,
 			);

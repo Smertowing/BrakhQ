@@ -18,19 +18,19 @@ enum AuthProvider {
 extension AuthProvider: TargetType {
 	
 	var baseURL: URL {
-		return URL(string: "https://queue-api.brakh.men")!
+		return URL(string: "https://queue-api.brakh.men/api/v2")!
 	}
 	
 	var path: String {
 		switch self {
 		case .auth:
-			return "/api/auth"
+			return "/auth"
 		case .checkToken:
-			return "/api/auth/checkToken"
+			return "/auth/checkToken"
 		case .updateToken:
-			return "/api/auth/token"
+			return "/auth/token"
 		case .authVK:
-			return "/api/auth/vk"
+			return "/vk"
 		}
 	}
 	
@@ -47,8 +47,8 @@ extension AuthProvider: TargetType {
 		case .auth(let password, let username):
 			return .requestParameters(
 				parameters: [
-					"password": password,
-					"username": username
+					"username": username,
+					"password": password
 				],
 				encoding: URLEncoding.default
 			)
@@ -82,7 +82,13 @@ extension AuthProvider: TargetType {
 	}
 	
 	var validationType: ValidationType {
-		return .successCodes
+		switch self {
+		case .authVK:
+			return .customCodes([302])
+		default:
+			return .customCodes([200])
+		}
+		
 	}
 	
 }

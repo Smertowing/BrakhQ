@@ -11,35 +11,40 @@ import Moya
 enum QueueAPIProvider {
 	case getQueue(url: String)
 	case createQueue(name: String, description: String?, queueType: String, regStart: String, eventDate: String, regEnd: String, placesCount: Int)
-	case updateQueue(id: Int, name: String?, description: String?, regStart: String?, eventDate: String?, regEnd: String?, placesCount: Int?)
+	case updateQueue(id: Int, name: String?, description: String?, eventDate: String?)
 	case delete(queueId: Int)
 	case takeQueueSite(site: Int, queueId: Int)
 	case freeUpQueueSite(queueId: Int)
 	case takeFirstQueueSite(queueId: Int)
+	case subscribeToQueue(queueId: Int)
+	case unsubscribeFromQueue(queueId: Int)
 }
 
 extension QueueAPIProvider: TargetType {
 	var baseURL: URL {
-		return URL(string: "https://queue-api.brakh.men")!
+		return URL(string: "https://queue-api.brakh.men/api/v2")!
 	}
 	
 	var path: String {
 		switch self {
 		case .getQueue:
-			return "/api/queue"
+			return "/queue"
 		case .createQueue:
-			return "/api/queue"
+			return "/queue"
 		case .updateQueue:
-			return "/api/queue"
+			return "/queue"
 		case .delete:
-			return "/api/queue"
+			return "/queue"
 		case .takeQueueSite(_, let queueId):
-			return "/api/queues/\(queueId)/places"
+			return "/queues/\(queueId)/places"
 		case .freeUpQueueSite(let queueId):
-			return "/api/queues/\(queueId)/places"
+			return "/queues/\(queueId)/places"
 		case .takeFirstQueueSite(let queueId):
-			return "/api/queues/\(queueId)/places/first"
-	
+			return "/queues/\(queueId)/places/first"
+		case .subscribeToQueue(let queueId):
+			return "/queues/\(queueId)/subscription"
+		case .unsubscribeFromQueue(let queueId):
+			return "/queues/\(queueId)/subscription"
 		}
 	}
 	
@@ -47,11 +52,11 @@ extension QueueAPIProvider: TargetType {
 		switch self {
 		case .getQueue:
 			return .get
-		case .createQueue, .takeQueueSite, .takeFirstQueueSite:
+		case .createQueue, .takeQueueSite, .takeFirstQueueSite, .subscribeToQueue:
 			return .post
-		case .updateQueue, .freeUpQueueSite:
+		case .updateQueue:
 			return .put
-		case .delete:
+		case .delete, .unsubscribeFromQueue, .freeUpQueueSite:
 			return .delete
 		}
 	}
@@ -83,7 +88,7 @@ extension QueueAPIProvider: TargetType {
 				parameters: params,
 				encoding: JSONEncoding.default
 			)
-		case .updateQueue(let id, let name, let description, let regStart, let eventDate, let regEnd, let placesCount):
+		case .updateQueue(let id, let name, let description, let eventDate):
 			var params: [String:Any] = ["id": id]
 			if let name = name {
 				params["name"] = name
@@ -91,17 +96,8 @@ extension QueueAPIProvider: TargetType {
 			if let desript = description {
 				params["description"] = desript
 			}
-			if let start = regStart {
-				params["reg_start"] = start
-			}
 			if let event = eventDate {
 				params["event_date"] = event
-			}
-			if let end = regEnd {
-				params["reg_end"] = end
-			}
-			if let places = placesCount {
-				params["places_count"] = places
 			}
 			return .requestParameters(
 				parameters: params,
@@ -121,9 +117,13 @@ extension QueueAPIProvider: TargetType {
 				],
 				encoding: URLEncoding.default
 			)
-		case .freeUpQueueSite(_):
+		case .freeUpQueueSite:
 			return .requestPlain
-		case .takeFirstQueueSite(_):
+		case .takeFirstQueueSite:
+			return .requestPlain
+		case .subscribeToQueue:
+			return .requestPlain
+		case .unsubscribeFromQueue:
 			return .requestPlain
 		}
 	}
@@ -132,7 +132,7 @@ extension QueueAPIProvider: TargetType {
 		switch self {
 		case .getQueue:
 			return nil
-		case .takeQueueSite, .freeUpQueueSite, .delete, .takeFirstQueueSite:
+		case .takeQueueSite, .freeUpQueueSite, .delete, .takeFirstQueueSite, .subscribeToQueue, .unsubscribeFromQueue:
 			return ["Authorization": AuthManager.shared.token ?? ""]
 		case .createQueue, .updateQueue:
 			return ["Authorization": AuthManager.shared.token ?? "",
@@ -143,7 +143,12 @@ extension QueueAPIProvider: TargetType {
 	}
 	
 	var validationType: ValidationType {
-		return .successCodes
+		switch self {
+		case .createQueue:
+			return .customCodes([201])
+		default:
+			return .customCodes([200])
+		}
 	}
 	
 }

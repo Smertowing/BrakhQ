@@ -251,10 +251,7 @@ class EditEventViewController: FormViewController {
 			//let placesCount: StepperRow! = form.rowBy(tag: "Number of Sites")
 			viewModel.editEvent(name: title.value!,
 													description: description.value,
-													regStart: nil,
-													eventDate: eventDate.value,
-													regEnd: nil,
-													placesCount: nil)
+													eventDate: eventDate.value)
 		}
 	}
 

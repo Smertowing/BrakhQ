@@ -60,7 +60,7 @@ final class QueueManagerViewModel {
 	
 	private func updateUsedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		providerUser.request(.getQueuesUsedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
+		providerUser.request(.getQueuesBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
@@ -102,7 +102,7 @@ final class QueueManagerViewModel {
 
 	private func updateCreatedEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		providerUser.request(.getQueuesCreatedBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
+		providerUser.request(.getQueuesBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
 			switch result {
 			case .success(let response):
