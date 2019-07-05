@@ -12,6 +12,7 @@ target 'BrakhQ' do
   pod 'Eureka'
   pod 'DataCache'
   pod 'KeychainSwift', '~> 16.0'
+  pod 'RealmSwift'
 end
 
 post_install do |installer|
