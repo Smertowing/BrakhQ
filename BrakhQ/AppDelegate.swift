@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Moya
 import UserNotifications
 
 func getQueryStringParameter(url: URL, param: String) -> String? {
@@ -88,38 +87,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let message = url.host?.removingPercentEncoding
 		switch message {
 		case "auth":
-			let providerUser = MoyaProvider<UserAPIProvider>()
 			AuthManager.shared.token = getQueryStringParameter(url: url, param: "token")
 			AuthManager.shared.refreshToken = getQueryStringParameter(url: url, param: "refresh_token")
 			
-			providerUser.request(.getUserByUsername(username: getQueryStringParameter(url: url, param: "username")!)) { result in
-				if case .success(let response) = result  {
-					if let answer = try? response.map(ModelResponseUser.self) {
-						if let user = answer.response {
-							AuthManager.shared.user = user
-							AuthManager.shared.login()
-							let alertController = UIAlertController(title: "Success".localized, message: "You've entered accoount via VK".localized, preferredStyle: .alert)
-							let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive, handler: { _ in
-								let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
-								self.window?.rootViewController?.present(mainViewController, animated: true)
-							})
-							alertController.addAction(okAction)
-							
-							self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
-						} else {
-							self.showErrorAlert(message: "Unexpected response".localized)
-						}
-					} else {
-						self.showErrorAlert(message: "Unexpected response".localized)
+			NetworkingManager.shared.getUser(id: nil, username: getQueryStringParameter(url: url, param: "username")!) { (result) in
+				switch result {
+				case .success(let user):
+					AuthManager.shared.user = user
+					AuthManager.shared.login()
+					let alertController = UIAlertController(title: "Success".localized, message: "You've entered accoount via VK".localized, preferredStyle: .alert)
+					let okAction = UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.destructive, handler: { _ in
+						let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
+						self.window?.rootViewController?.present(mainViewController, animated: true)
+					})
+					alertController.addAction(okAction)
+					
+					self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+				case .failure(let error):
+					switch error {
+					case .unknownError:
+						self.showErrorAlert(message: "")
+					case .invalidCredentials:
+						self.showErrorAlert(message: "")
+					case .invalidRequest:
+						self.showErrorAlert(message: "")
+					case .notFound:
+						self.showErrorAlert(message: "")
+					case .invalidResponse:
+						self.showErrorAlert(message: "")
+					default:
+						self.showErrorAlert(message: "")
 					}
-				} else {
-					self.showErrorAlert(message: "Internet connection error".localized)
 				}
 			}
 		case "queue":
-			let providerQueue = MoyaProvider<QueueAPIProvider>()
 			if let url = getQueryStringParameter(url: url, param: "url") {
-				getQueue(provider: providerQueue, by: url)
+				getQueue(by: url)
 			}
 		default:
 			showErrorAlert(message: "Unexpected response".localized)
@@ -128,42 +131,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	
-	func getQueue(provider: MoyaProvider<QueueAPIProvider>, by url: String) {
-		provider.request(.getQueue(url: url)) { (result) in
+	func getQueue(by url: String) {
+		NetworkingManager.shared.getQueue(url: url) { (result) in
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ModelResponseQueue.self) {
-					if answer.success, let queue = answer.response {
-						let storyBoard = UIStoryboard(name: "Event", bundle: nil)
-						let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
-						viewController.viewModel = EventViewModel(for: QueueCashe(queue: queue))
-						
-						DispatchQueue.global(qos: .background).async {
-							while (self.window?.rootViewController as? UITabBarController) == nil {
-								sleep(1)
-							}
-							DispatchQueue.main.async {
-								let tabbar = self.window!.rootViewController as! UITabBarController
-								tabbar.selectedViewController?.show(viewController, sender: self)
-							}
-						}
-					} else {
-						self.showErrorAlert(message: answer.message ?? "Unexpected response".localized)
+			case .success(let queue):
+				let storyBoard = UIStoryboard(name: "Event", bundle: nil)
+				let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
+				viewController.viewModel = EventViewModel(for: QueueCashe(queue: queue))
+				
+				DispatchQueue.global(qos: .background).async {
+					while (self.window?.rootViewController as? UITabBarController) == nil {
+						sleep(1)
 					}
-				} else {
-					self.showErrorAlert(message: "Unexpected response".localized)
+					DispatchQueue.main.async {
+						let tabbar = self.window!.rootViewController as! UITabBarController
+						tabbar.selectedViewController?.show(viewController, sender: self)
+					}
 				}
 			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
-					AuthManager.shared.update(token: .authentication) { success in
-						if success {
-							self.getQueue(provider: provider, by: url)
-						} else {
-							self.showErrorAlert(message: "Authorization error, try to restart application".localized)
-						}
-					}
-				} else {
-					self.showErrorAlert(message: "Internet connection error".localized)
+				switch error {
+				case .unknownError:
+					self.showErrorAlert(message: "")
+				case .invalidRequest:
+					self.showErrorAlert(message: "")
+				case .notFound:
+					self.showErrorAlert(message: "")
+				case .invalidResponse:
+					self.showErrorAlert(message: "")
+				default:
+					self.showErrorAlert(message: "")
 				}
 			}
 		}

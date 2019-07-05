@@ -182,16 +182,14 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 		}
 	}
 	
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage error: NetworkError!) {
 		if found {
 			let storyBoard = UIStoryboard(name: "Event", bundle: nil)
 			let viewController = storyBoard.instantiateViewController(withIdentifier: "eventViewController") as! EventViewController
 			viewController.viewModel = EventViewModel(for: queue!)
 			self.navigationController?.pushViewController(viewController, animated: true)
 		} else {
-			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
-			self.present(alert, animated: true, completion: nil)
+			self.showErrorAlert(error)
 		}
 	}
 	
@@ -205,11 +203,11 @@ extension QueueManagerViewController: QueueManagerViewModelDelegate {
 		}
 	}
 	
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
 			viewModel.filterQueues(type: scopeSegmentedControl.selectedSegmentIndex == 0 ? FeedKeys.usedFeed : FeedKeys.createdFeed)
 		} else {
-			print(message as Any)
+			print(error.localizedDescription as Any)
 		}
 	}
 	

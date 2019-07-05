@@ -140,21 +140,13 @@ extension RegistrationViewController: RegistrationViewModelDelegate {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func registrationViewModel(_ registrationViewModel: RegistrationViewModel, isSuccess: Bool, didRecieveMessage message: ResponseStateRegistration?) {
+	func registrationViewModel(_ registrationViewModel: RegistrationViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
-			if message!.success {
-				
-				let alert = UIAlertController(title: "Successfull".localized, message: "You've created account".localized, preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
-					_ = self.navigationController?.popViewController(animated: true)
-				})
-				self.present(alert, animated: true, completion: nil)
-				
-			} else {
-				showErrorAlert(errorsLog: message!.errors)
+			showAlert(title: "Successfull".localized, message: "You've created account".localized) {
+				_ = self.navigationController?.popViewController(animated: true)
 			}
 		} else {
-			showErrorAlert(errorsLog: ["Error:":"Internet connection failure"])
+			showErrorAlert(error)
 		}
 	}
 	

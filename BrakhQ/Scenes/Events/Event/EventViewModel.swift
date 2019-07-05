@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import Moya
 
 protocol EventViewModelDelegate: class {
 	
 	func eventViewModel(_ eventViewModel: EventViewModel, isLoading: Bool)
-	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?)
+	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!)
 	func eventViewModel(_ eventViewModel: EventViewModel, endRefreshing: Bool)
 	func eventViewModel(_ eventViewModel: EventViewModel, endConfigurating: Bool)
 }
@@ -20,7 +19,6 @@ protocol EventViewModelDelegate: class {
 final class EventViewModel {
 	
 	weak var delegate: EventViewModelDelegate?
-	let provider = MoyaProvider<QueueAPIProvider>()
 	var queue: QueueCashe
 	var places: [SiteConfig] = []
 	
@@ -87,35 +85,26 @@ final class EventViewModel {
 	
 	func updateEvent(refresher: Bool) {
 		delegate?.eventViewModel(self, isLoading: true)
-		provider.request(.getQueue(url: queue.url)) { result in
+		
+		NetworkingManager.shared.getQueue(url: queue.url) { (result) in
 			self.delegate?.eventViewModel(self, isLoading: false)
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ModelResponseQueue.self) {
-					if answer.success, let queue = answer.response {
-				
-						self.queue = QueueCashe(queue: queue)
-						self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
-					
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-					}
-				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
-				}
-				if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
+			case .success(let queue):
+				self.queue = QueueCashe(queue: queue)
+				self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
 			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+				switch error {
+				case .invalidCredentials:
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.updateEvent(refresher: refresher)
 						} else {
-							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: .invalidCredentials)
 							if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 						}
 					}
-				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
+				default:
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: error)
 					if refresher { self.delegate?.eventViewModel(self, endRefreshing: true) }
 				}
 			}
@@ -127,62 +116,48 @@ final class EventViewModel {
 		
 		switch places[site-1].accessability {
 		case .release:
-			provider.request(.freeUpQueueSite(queueId: queue.id)) { result in
+			NetworkingManager.shared.freePlace(queueId: queue.id) { (result) in
 				self.delegate?.eventViewModel(self, isLoading: false)
 				switch result {
-				case .success(let response):
-					if let answer = try? response.map(ResponseState.self) {
-						if answer.success {
-							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
-							self.updateEvent(refresher: false)
-						} else {
-							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-						}
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
-					}
+				case .success(_):
+					self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+					self.updateEvent(refresher: false)
 				case .failure(let error):
-					if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+					switch error {
+					case .invalidCredentials:
 						AuthManager.shared.update(token: .authentication) { success in
 							if success {
 								self.interactPlace(site)
 							} else {
-								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: .invalidCredentials)
 							}
 						}
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
+					default:
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: error)
 					}
 				}
 			}
 		case .engaged:
 			break
 		case .free:
-			provider.request(.takeQueueSite(site: site, queueId: queue.id)) { result in
+			NetworkingManager.shared.takePlace(queueId: queue.id, place: site) { (result) in
 				self.delegate?.eventViewModel(self, isLoading: false)
 				switch result {
-				case .success(let response):
-					if let answer = try? response.map(ResponseState.self) {
-						if answer.success {
-							self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
-							self.updateEvent(refresher: false)
-						} else {
-							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-						}
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
-					}
+				case .success(_):
+					self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+					self.updateEvent(refresher: false)
 				case .failure(let error):
-					if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+					switch error {
+					case .invalidCredentials:
 						AuthManager.shared.update(token: .authentication) { success in
 							if success {
 								self.interactPlace(site)
 							} else {
-								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
+								self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: .invalidCredentials)
 							}
 						}
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
+					default:
+						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: error)
 					}
 				}
 			}
@@ -191,34 +166,28 @@ final class EventViewModel {
 	
 	func takeSequent() {
 		delegate?.eventViewModel(self, isLoading: true)
-		provider.request(.takeFirstQueueSite(queueId: queue.id)) { result in
+		NetworkingManager.shared.takeFirstPlace(queueId: queue.id) { (result) in
 			self.delegate?.eventViewModel(self, isLoading: false)
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ResponseState.self) {
-					if answer.success {
-						self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
-						self.updateEvent(refresher: false)
-					} else {
-						self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-					}
-				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response")
-				}
+			case .success(_):
+				self.delegate?.eventViewModel(self, isSuccess: true, didRecieveMessage: nil)
+				self.updateEvent(refresher: false)
 			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+				switch error {
+				case .invalidCredentials:
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.takeSequent()
 						} else {
-							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application")
+							self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: .invalidCredentials)
 						}
 					}
-				} else {
-					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error")
+				default:
+					self.delegate?.eventViewModel(self, isSuccess: false, didRecieveMessage: error)
 				}
 			}
 		}
 	}
 	
 }
+

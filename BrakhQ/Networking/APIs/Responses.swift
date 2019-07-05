@@ -18,7 +18,7 @@ struct AuthResponse: Codable {
 struct TokenValidationResponse: Codable {
 
 	var isExpired: Bool
-	var expiresDate: String?
+	var expiresDate: String
 	var type: TokenType
 	var isValid: Bool
 

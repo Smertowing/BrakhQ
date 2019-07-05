@@ -53,11 +53,14 @@ extension NetworkingManager {
 		}
 	}
 	
-	func updateQueue(id: Int, name: String?, description: String?, eventDate: String?, result: @escaping (Result<(Bool), NetworkError>) -> Void) {
+	func updateQueue(id: Int, name: String?, description: String?, eventDate: String?, result: @escaping (Result<(Queue), NetworkError>) -> Void) {
 		queueProvider.request(.updateQueue(id: id, name: name, description: description, eventDate: eventDate)) { (answer) in
 			switch answer {
-			case .success(_):
-				return result(.success(true))
+			case .success(let response):
+				guard let answer = try? response.map(Queue.self) else {
+					return result(.failure(.invalidResponse))
+				}
+				return result(.success(answer))
 			case .failure(let error):
 				switch error.response?.statusCode {
 				case 400:
@@ -73,14 +76,11 @@ extension NetworkingManager {
 		}
 	}
 	
-	func deleteQueue(queueId: Int, result: @escaping (Result<(Queue), NetworkError>) -> Void) {
+	func deleteQueue(queueId: Int, result: @escaping (Result<(Bool), NetworkError>) -> Void) {
 		queueProvider.request(.delete(queueId: queueId)) { (answer) in
 			switch answer {
-			case .success(let response):
-				guard let answer = try? response.map(Queue.self) else {
-					return result(.failure(.invalidResponse))
-				}
-				return result(.success(answer))
+			case .success(_):
+				return result(.success(true))
 			case .failure(let error):
 				switch error.response?.statusCode {
 				case 400:

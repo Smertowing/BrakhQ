@@ -7,13 +7,11 @@
 //
 
 import Foundation
-import Moya
 import KeychainSwift
 
 final class AuthManager {
 	static let shared = AuthManager()
 	
-	private let provider = MoyaProvider<AuthProvider>()
 	private let defaults = KeychainSwift()
 	private init() { }
 	
@@ -58,7 +56,7 @@ final class AuthManager {
 	
 	var user: User? {
 		get {
-			return User(avatar: defaults.get(UserDefaultKeys.avatar.rawValue),
+			return User(avatar: defaults.get(UserDefaultKeys.avatar.rawValue)!,
 									id: Int(defaults.get(UserDefaultKeys.id.rawValue)!)!,
 									name: (defaults.get(UserDefaultKeys.name.rawValue))!,
 									email: defaults.get(UserDefaultKeys.email.rawValue),
@@ -85,21 +83,12 @@ final class AuthManager {
 	
 	func login() {
 		print(AuthManager.shared.deviceToken as Any)
-		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
-		providerNotifications.request(.subscribe) { (result) in
+		NetworkingManager.shared.subscribeOnNotifications { (result) in
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ResponseState.self) {
-					if answer.success {
-						print("success")
-					} else {
-						print(answer.message as Any)
-					}
-				} else {
-					print("unexpected error")
-				}
+			case .success(_):
+				print("success")
 			case .failure(let error):
-				print(error.errorDescription as Any)
+				print(error.localizedDescription)
 			}
 		}
 		
@@ -108,21 +97,13 @@ final class AuthManager {
 	
 	func logout() {
 		let tempToken = AuthManager.shared.deviceToken
-		let providerNotifications = MoyaProvider<NotificationsAPIProvider>()
-		providerNotifications.request(.unsubscribe) { (result) in
+		
+		NetworkingManager.shared.unsubscribeFromNotifications { (result) in
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ResponseState.self) {
-					if answer.success {
-						print("success")
-					} else {
-						print(answer.message as Any)
-					}
-				} else {
-					print("unexpected error")
-				}
+			case .success(_):
+				print("success")
 			case .failure(let error):
-				print(error.errorDescription as Any)
+				print(error.localizedDescription)
 			}
 		}
 		
@@ -135,22 +116,18 @@ final class AuthManager {
 	
 	func update(token tokenType: TokenType, completionHandler: @escaping (CompletionHandler)) {
 		if let refreshToken = defaults.get(UserDefaultKeys.refreshToken.rawValue) {
-			provider.request(.updateToken(refreshToken: refreshToken, tokenType: tokenType)) { result in
+			NetworkingManager.shared.updateToken(tokenType: tokenType, refreshToken: refreshToken) { (result) in
 				switch result {
-				case .success(let response):
-					if let newToken = try? response.map(Token.self) {
-						switch tokenType {
-						case .authentication:
-							self.defaults.set(newToken.token, forKey: UserDefaultKeys.token.rawValue)
-						case .refresh:
-							self.defaults.set(newToken.token, forKey: UserDefaultKeys.refreshToken.rawValue)
-						case .undefined:
-							print("undefined token refreshed")
-							return completionHandler(false)
-						}
-						return completionHandler(true)
+				case .success(let newToken):
+					switch tokenType {
+					case .authentication:
+						self.defaults.set(newToken.token, forKey: UserDefaultKeys.token.rawValue)
+					case .refresh:
+						self.defaults.set(newToken.token, forKey: UserDefaultKeys.refreshToken.rawValue)
+					case .undefined:
+						return completionHandler(false)
 					}
-					return completionHandler(false)
+					return completionHandler(true)
 				case .failure(_):
 					return completionHandler(false)
 				}

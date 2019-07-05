@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class EventViewController: UIViewController {
 
 	var viewModel: EventViewModel!
@@ -205,12 +204,12 @@ extension EventViewController: EventViewModelDelegate {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func eventViewModel(_ eventViewModel: EventViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
 			prepareForReloadTable()
 			configureQueueInfo()
 		} else {
-			print(message as Any)
+			print(error?.localizedDescription as Any)
 		}
 	}
 	

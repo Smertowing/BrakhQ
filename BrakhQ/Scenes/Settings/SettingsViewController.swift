@@ -138,10 +138,9 @@ class SettingsViewController: FormViewController {
 extension SettingsViewController: SettingsViewModelDelegate {
 	
 	func settingsViewModel(_ settingsViewModel: SettingsViewModel, readyToExit: Bool) {
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		let startController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "startVC") as! UINavigationController
-		appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
-		appDelegate.window?.rootViewController = startController
+		if readyToExit {
+			self.segueToStartScreen()
+		}
 	}
 	
 }

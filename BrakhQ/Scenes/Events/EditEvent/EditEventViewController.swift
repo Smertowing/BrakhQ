@@ -272,33 +272,25 @@ extension EditEventViewController: EditEventViewModelDelegate {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func editEventViewModel(_ editEventViewModel: EditEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func editEventViewModel(_ editEventViewModel: EditEventViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
-			let alert = UIAlertController(title: "Successfull".localized, message: "You've edited event queue".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
+			self.showAlert(title: "Successfull".localized, message: "You've edited event queue".localized) {
 				self.delegate.eventUpdated()
 				_ = self.navigationController?.popViewController(animated: true)
-			})
-			self.present(alert, animated: true, completion: nil)
+			}
 		} else {
-			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
-			self.present(alert, animated: true, completion: nil)
+			self.showErrorAlert(error)
 		}
 	}
 	
-	func editEventViewModel(_ editEventViewModel: EditEventViewModel, deleted: Bool, didRecieveMessage message: String?) {
+	func editEventViewModel(_ editEventViewModel: EditEventViewModel, deleted: Bool, didRecieveMessage error: NetworkError!) {
 		if deleted {
-			let alert = UIAlertController(title: "Successfull".localized, message: "You've deleted event queue".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
+			self.showAlert(title: "Successfull".localized, message: "You've deleted event queue".localized) {
 				self.delegate.deleted()
 				_ = self.navigationController?.popViewController(animated: true)
-			})
-			self.present(alert, animated: true, completion: nil)
+			}
 		} else {
-			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
-			self.present(alert, animated: true, completion: nil)
+			self.showErrorAlert(error)
 		}
 	}
 	

@@ -12,9 +12,7 @@ open class QueueCashe: NSObject, NSCoding {
 	open var busyPlaces: [PlaceCashe]
 	open var descript: String?
 	open var eventDate: Date
-	open var isFull: Bool
 	open var id: Int
-	open var isMixed: Bool
 	open var name: String
 	open var owner: UserCashe
 	open var placesCount: Int
@@ -33,9 +31,7 @@ open class QueueCashe: NSObject, NSCoding {
 		}
 		descript = queue.description
 		eventDate = Date(dateString: queue.event_date, format: Date.iso8601Format, timeZone: .autoupdatingCurrent)
-		isFull = queue.full
 		id = queue.id
-		isMixed = queue.mixed
 		name = queue.name
 		owner = UserCashe(user: queue.owner)
 		placesCount = queue.places_count
@@ -65,9 +61,7 @@ open class QueueCashe: NSObject, NSCoding {
 		self.busyPlaces = aDecoder.decodeObject(forKey: "busyPlaces") as! [PlaceCashe]
 		self.descript = aDecoder.decodeObject(forKey: "description") as? String
 		self.eventDate = aDecoder.decodeObject(forKey: "eventDate") as! Date
-		self.isFull = aDecoder.decodeBool(forKey: "isFull")
 		self.id = aDecoder.decodeInteger(forKey: "id")
-		self.isMixed = aDecoder.decodeBool(forKey: "isMixed")
 		self.name = aDecoder.decodeObject(forKey: "name") as! String
 		self.owner = aDecoder.decodeObject(forKey: "owner") as! UserCashe
 		self.placesCount = aDecoder.decodeInteger(forKey: "placesCount")
@@ -84,9 +78,7 @@ open class QueueCashe: NSObject, NSCoding {
 		aCoder.encode(self.busyPlaces, forKey: "busyPlaces")
 		aCoder.encode(self.descript, forKey: "description")
 		aCoder.encode(self.eventDate, forKey: "eventDate")
-		aCoder.encode(self.isFull, forKey: "isFull")
 		aCoder.encode(self.id, forKey: "id")
-		aCoder.encode(self.isMixed, forKey: "isMixed")
 		aCoder.encode(self.name, forKey: "name")
 		aCoder.encode(self.owner, forKey: "owner")
 		aCoder.encode(self.placesCount, forKey: "placesCount")

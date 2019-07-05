@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Moya
 
 class StartViewController: UIViewController {
 

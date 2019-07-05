@@ -221,17 +221,13 @@ extension CreateEventViewController: CreateEventViewModelDelegate {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func createEventViewModel(_ createEventViewModel: CreateEventViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
-			let alert = UIAlertController(title: "Successfull".localized, message: "You've created event queue".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default) { _ in
+			self.showAlert(title: "Successfull".localized, message: "You've created event queue".localized) {
 				_ = self.navigationController?.popViewController(animated: true)
-			})
-			self.present(alert, animated: true, completion: nil)
+			}
 		} else {
-			let alert = UIAlertController(title: "Failure".localized, message: message ?? "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
-			self.present(alert, animated: true, completion: nil)
+			self.showErrorAlert(error)
 		}
 	}
 

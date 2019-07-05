@@ -7,22 +7,19 @@
 //
 
 import UIKit
-import Moya
 
 protocol QueueManagerViewModelDelegate: class {
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool)
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?)
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, endRefreshing: Bool)
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?)
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage error: NetworkError!)
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, reload: Bool)
 }
 
 final class QueueManagerViewModel {
 	
 	weak var delegate: QueueManagerViewModelDelegate?
-	let providerUser = MoyaProvider<UserAPIProvider>()
-	let providerQueue = MoyaProvider<QueueAPIProvider>()
 	
 	var createdQueues: [QueueCashe] = DataManager.shared.createdFeed.queues.sorted(by: { (prev, next) -> Bool in
 		return prev.id > next.id
@@ -50,125 +47,75 @@ final class QueueManagerViewModel {
 		if let last = params.last {
 			getQueue(by: String(last))
 		} else {
-			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Wrong input".localized)
+			self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: .invalidRequest)
 		}
 	}
 	
 	func refresh(refresher: Bool) {
-		updateUsedEvents(with: refresher)
+		updateEvents(with: refresher)
 	}
 	
-	private func updateUsedEvents(with refresher: Bool) {
+	private func updateEvents(with refresher: Bool) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		providerUser.request(.getQueuesBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
+		
+		NetworkingManager.shared.getQeuesBy(userId: AuthManager.shared.user?.id ?? -1) { (result) in
 			self.delegate?.queueManagerViewModel(self, isLoading: false)
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ModelResponseCollectionQueue.self) {
-					if answer.success, let queues = answer.response {
-						DataManager.shared.usedFeed = FeedCashe(queues: [])
-						for queue in queues {
-							DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
-								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
-							}
-						}
-						self.updateCreatedEvents(with: refresher)
-					} else {
-						self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-						if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
+			case .success(let queues):
+				DataManager.shared.usedFeed = FeedCashe(queues: [])
+				for queue in queues.used {
+					DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
+						self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: nil)
 					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
-					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
+				}
+				DataManager.shared.createdFeed = FeedCashe(queues: [])
+				for queue in queues.created {
+					DataManager.shared.addNew(queue, to: FeedKeys.createdFeed) {
+						self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: nil)
+					}
 				}
 			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+				switch error {
+				case .invalidCredentials:
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
-							self.updateUsedEvents(with: refresher)
+							self.updateEvents(with: refresher)
 						} else {
-							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
+							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: .invalidCredentials)
 							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 						}
 					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
+				default:
+					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: error)
 					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
 				}
 			}
-			
-		}
-	}
-
-	private func updateCreatedEvents(with refresher: Bool) {
-		delegate?.queueManagerViewModel(self, isLoading: true)
-		providerUser.request(.getQueuesBy(userId: AuthManager.shared.user?.id ?? -1)) { result in
-			self.delegate?.queueManagerViewModel(self, isLoading: false)
-			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ModelResponseCollectionQueue.self) {
-					if answer.success, let queues = answer.response {
-						DataManager.shared.createdFeed = FeedCashe(queues: [])
-						for queue in queues {
-							DataManager.shared.addNew(queue, to: FeedKeys.createdFeed) {
-								self.delegate?.queueManagerViewModel(self, isSuccess: true, didRecieveMessage: answer.message)
-							}
-						}
-						
-					} else {
-						self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: answer.message)
-					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Unexpected response".localized)
-				}
-				if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
-			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
-					AuthManager.shared.update(token: .authentication) { success in
-						if success {
-							self.updateCreatedEvents(with: refresher)
-						} else {
-							self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Authorization error, try to restart application".localized)
-							if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
-						}
-					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, isSuccess: false, didRecieveMessage: "Internet connection error".localized)
-					if refresher { self.delegate?.queueManagerViewModel(self, endRefreshing: true) }
-				}
-			}
-			
 		}
 	}
 	
 	func getQueue(by url: String) {
 		delegate?.queueManagerViewModel(self, isLoading: true)
-		providerQueue.request(.getQueue(url: url)) { result in
+		
+		NetworkingManager.shared.getQueue(url: url) { (result) in
 			self.delegate?.queueManagerViewModel(self, isLoading: true)
 			switch result {
-			case .success(let response):
-				if let answer = try? response.map(ModelResponseQueue.self) {
-					if answer.success, let queue = answer.response {
-						DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
-							self.delegate?.queueManagerViewModel(self, found: true, queue: QueueCashe(queue: queue), didRecieveMessage: nil)
-						}
-					} else {
-						self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: answer.message)
-					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Unexpected response".localized)
+			case .success(let queue):
+				DataManager.shared.addNew(queue, to: FeedKeys.usedFeed) {
+					self.delegate?.queueManagerViewModel(self, found: true, queue: QueueCashe(queue: queue), didRecieveMessage: nil)
 				}
 			case .failure(let error):
-				if error.errorDescription?.contains("401") ?? false || error.errorDescription?.contains("403") ?? false {
+				switch error {
+				case .invalidCredentials:
 					AuthManager.shared.update(token: .authentication) { success in
 						if success {
 							self.getQueue(by: url)
 						} else {
-							self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Authorization error, try to restart application".localized)
+							self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: .invalidCredentials)
 						}
 					}
-				} else {
-					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: "Internet connection error".localized)
+				default:
+					self.delegate?.queueManagerViewModel(self, found: false, queue: nil, didRecieveMessage: error)
+	
 				}
 			}
 		}

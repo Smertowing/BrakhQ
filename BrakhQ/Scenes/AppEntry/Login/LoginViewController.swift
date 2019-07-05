@@ -56,14 +56,11 @@ extension LoginViewController: LoginViewModelDelegate {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
 	}
 	
-	func loginViewModel(_ loginViewModel: LoginViewModel, isSuccess: Bool, user: User?) {
+	func loginViewModel(_ loginViewModel: LoginViewModel, isSuccess: Bool, user: User!, error: NetworkError!) {
 		if isSuccess {
-			let mainViewController = self.storyboard!.instantiateViewController(withIdentifier: "mainTabVC")
-			self.present(mainViewController, animated: true, completion: nil)
+			self.segueToAppllication()
 		} else {
-			let alert = UIAlertController(title: "Failure".localized, message: "There was an error".localized, preferredStyle: UIAlertController.Style.alert)
-			alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertAction.Style.default))
-			self.present(alert, animated: true, completion: nil)
+			self.showErrorAlert(error)
 		}
 	}
 	

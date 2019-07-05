@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import Moya
 
 class LaunchViewController: UIViewController {
-
-	let provider = MoyaProvider<AuthProvider>()
 	
 	@IBOutlet weak var logoImageView: UIImageView!
 	
@@ -27,66 +24,39 @@ class LaunchViewController: UIViewController {
 											completion: nil)
 		self.loadingIndicator.startAnimating()
 
-		
-		if AuthManager.shared.isAuthenticated {
-			if let refreshToken = AuthManager.shared.refreshToken {
-				provider.request(.checkToken(token: refreshToken)) { result in
-					switch result {
-					case .success(let response):
-						if let answer = try? response.map(TokenValidationResponse.self) {
-							if answer.valid, let expired = answer.expired, let expires = answer.expires {
-								if !expired {
-									let diffDate = Date(dateString: expires, format: Date.iso8601Format)
-									if diffDate.timeIntervalSinceNow < 60*60*24*7 {
-										AuthManager.shared.update(token: .refresh) { success in
-											print(success)
-										}
-									}
-									AuthManager.shared.update(token: .authentication) { success in
-										print(success)
-									}
-									self.segueToAppllication()
-									self.loadingIndicator.stopAnimating()
-									return
-								}
-							}
-						}
-						AuthManager.shared.logout()
-						self.segueToStartScreen()
-						self.loadingIndicator.stopAnimating()
-						return
-					case .failure(_):
-						self.segueToAppllication()
-						self.loadingIndicator.stopAnimating()
-						return
-					}
-				}
-			} else {
-				AuthManager.shared.logout()
-				segueToStartScreen()
-				loadingIndicator.stopAnimating()
-				return
-			}
-		} else {
+		guard AuthManager.shared.isAuthenticated, let refreshToken = AuthManager.shared.refreshToken else {
+			AuthManager.shared.logout()
 			segueToStartScreen()
-			loadingIndicator.stopAnimating()
 			return
 		}
-	}
-	
-	
-	func segueToAppllication() {
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		let mainTabViewController = storyboard!.instantiateViewController(withIdentifier: "mainTabVC") as! UITabBarController
-		appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
-		appDelegate.window?.rootViewController = mainTabViewController
-	}
-	
-	func segueToStartScreen() {
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		let startController = storyboard!.instantiateViewController(withIdentifier: "startVC") as! UINavigationController
-		appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
-		appDelegate.window?.rootViewController = startController
+		
+		self.loadingIndicator.startAnimating()
+		NetworkingManager.shared.checkToken(refreshToken) { (result) in
+			self.loadingIndicator.stopAnimating()
+			switch result {
+			case .success(let tokenValidation):
+				guard tokenValidation.isValid, !tokenValidation.isExpired else {
+					AuthManager.shared.logout()
+					self.segueToStartScreen()
+					return
+				}
+				let diffDate = Date(dateString: tokenValidation.expiresDate, format: Date.iso8601Format)
+				if diffDate.timeIntervalSinceNow < 60*60*24*7 {
+					AuthManager.shared.update(token: .refresh) { success in
+						print(success)
+					}
+				}
+				AuthManager.shared.update(token: .authentication) { success in
+					print(success)
+				}
+				self.segueToAppllication()
+				return
+			case .failure(_):
+				self.segueToAppllication()
+				self.loadingIndicator.stopAnimating()
+				return
+			}
+		}
 	}
 
 }

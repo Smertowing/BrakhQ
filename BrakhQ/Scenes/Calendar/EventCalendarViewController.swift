@@ -113,7 +113,7 @@ extension EventCalendarViewController: QueueManagerViewModelDelegate {
 		
 	}
 	
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage message: String?) {
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, found: Bool, queue: QueueCashe?, didRecieveMessage error: NetworkError!) {
 	}
 	
 	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isLoading: Bool) {
@@ -124,11 +124,11 @@ extension EventCalendarViewController: QueueManagerViewModelDelegate {
 		
 	}
 	
-	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage message: String?) {
+	func queueManagerViewModel(_ queueManagerViewModel: QueueManagerViewModel, isSuccess: Bool, didRecieveMessage error: NetworkError!) {
 		if isSuccess {
 			reloadData()
 		} else {
-			print(message as Any)
+			print(error.localizedDescription as Any)
 		}
 	}
 	
