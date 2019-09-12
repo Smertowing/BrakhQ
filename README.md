@@ -16,3 +16,6 @@
 
 ## Technologies 
 Project created using Swift, BrakhQ-API, Moya, Eureka and Starscream. 
+
+## Links 
+Download in App Store: https://itunes.apple.com/us/app/brakhq/id1463453535 
